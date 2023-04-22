@@ -2,10 +2,16 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-export default function AuthEntry() {
+
+export default function AuthEntry({ navigation }) {
 
   const [logInPressed, setLogInPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
+
+  const login = () => {
+    setLogInPressed(false);
+    navigation.navigate('Login');
+  }
 
   return (
     <View style={styles.container}>
@@ -13,7 +19,7 @@ export default function AuthEntry() {
       <View style={styles.buttonContainer}>
         <Pressable 
           onPressIn={() => setLogInPressed(true)}
-          onPressOut={() => setLogInPressed(false)}
+          onPressOut={login}
           style={{backgroundColor: logInPressed ? "white" : "black", ...styles.button}}>
           <Text style={{color: logInPressed ? "black" : "white", ...styles.buttonText}}>Log In</Text>
         </Pressable>
