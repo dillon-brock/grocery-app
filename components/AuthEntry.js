@@ -13,6 +13,11 @@ export default function AuthEntry({ navigation }) {
     navigation.navigate('Login');
   }
 
+  const signUp = () => {
+    setSignUpPressed(false);
+    navigation.navigate('Sign Up');
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Grocery App</Text>
@@ -25,7 +30,7 @@ export default function AuthEntry({ navigation }) {
         </Pressable>
         <Pressable 
           onPressIn={() => setSignUpPressed(true)}
-          onPressOut={() => setSignUpPressed(false)}
+          onPressOut={signUp}
           style={{backgroundColor: signUpPressed ? "white" : "black", ...styles.button}}>
           <Text style={{color: signUpPressed ? "black" : "white", ...styles.buttonText}}>Sign Up</Text>
         </Pressable>
