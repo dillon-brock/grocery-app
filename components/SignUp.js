@@ -12,14 +12,12 @@ export default function SignUp() {
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
-        placeholder={'Email or username'}
         value={email}
       />
       <TextInput
         style={styles.input}
         secureTextEntry
         value={password}
-        placeholder={'Password'}
         onChangeText={setPassword}
       />
     </View>
