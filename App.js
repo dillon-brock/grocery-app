@@ -7,19 +7,21 @@ import SignUp from './components/SignUp';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="Entry"
-          component={AuthEntry}/>
+          component={AuthEntry}
+        />
         <Stack.Screen
           name="Login"
-          component={LogIn}/>
+          component={LogIn}
+        />
         <Stack.Screen
           name="Sign Up"
-          component={SignUp} />
+          component={SignUp}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
