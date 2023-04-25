@@ -1,9 +1,13 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack/lib/typescript/src/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { RootStackParamList } from '../App';
 
+type Props = NativeStackScreenProps<RootStackParamList, "Entry">
 
-export default function AuthEntry({ navigation }) {
+export default function AuthEntry({ navigation }: Props) {
 
   const [logInPressed, setLogInPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
@@ -15,7 +19,7 @@ export default function AuthEntry({ navigation }) {
 
   const signUp = () => {
     setSignUpPressed(false);
-    navigation.navigate('Sign Up');
+    navigation.navigate('SignUp');
   }
 
   return (
