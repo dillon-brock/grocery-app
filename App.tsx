@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthEntry from './components/AuthEntry';
 import LogInScreen from './components/LogInScreen';
 import SignUpScreen from './components/SignUpScreen';
-import { RootStackParamList } from './types/props';
+import { RootStackParamList } from './types/types';
+import DashboardScreen from './components/DashboardScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -23,6 +24,10 @@ export default function App() {
         <Stack.Screen
           name="SignUp"
           component={SignUpScreen}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
