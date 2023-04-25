@@ -7,3 +7,7 @@ export type RootStackParamList = {
 };
 
 export type EntryScreenProps = NativeStackScreenProps<RootStackParamList, "Entry">
+
+export type AuthFormProps = {
+  method: string
+}
