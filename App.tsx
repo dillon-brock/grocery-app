@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthEntry from './components/AuthEntry';
 import LogInScreen from './components/LogInScreen';
-import SignUp from './components/SignUp';
+import SignUpScreen from './components/SignUpScreen';
 import { RootStackParamList } from './types/props';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -22,7 +22,7 @@ export default function App() {
         />
         <Stack.Screen
           name="SignUp"
-          component={SignUp}
+          component={SignUpScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
