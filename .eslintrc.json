@@ -5,7 +5,9 @@
         "react-native/react-native": true
     },
     "extends": [
-        "plugin:react/recommended"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [
     ],
@@ -18,7 +20,8 @@
     },
     "plugins": [
         "react",
-        "react-native"
+        "react-native",
+        "@typescript-eslint"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",

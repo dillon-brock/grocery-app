@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { AuthFormProps } from "../types/props";
 
 export default function AuthForm({ method }: AuthFormProps) {
@@ -7,7 +7,6 @@ export default function AuthForm({ method }: AuthFormProps) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
-  const [submitPressed, setSubmitPressed] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
