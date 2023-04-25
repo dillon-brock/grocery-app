@@ -1,16 +1,23 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { SignUpScreenProps } from '../types/props';
+import { RootStackParamList } from '../types/types';
 import AuthForm from './AuthForm';
 
-export default function SignUpScreen({ navigation }: SignUpScreenProps) {
+export default function SignUpScreen() {
 
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [signUpPressed, setSignUpPressed] = useState<boolean>(false);
 
   const signUp = () => {
     setSignUpPressed(false);
     navigation.navigate('Dashboard');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Dashboard' }]
+    });
   }
 
   return (

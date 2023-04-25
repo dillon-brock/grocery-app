@@ -1,15 +1,23 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { LoginScreenProps } from '../types/props';
+import { RootStackParamList } from '../types/types';
 import AuthForm from './AuthForm';
 
-export default function LogInScreen({ navigation }: LoginScreenProps) {
+export default function LogInScreen() {
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const [loginPressed, setLoginPressed] = useState<boolean>(false);
 
   const login = () => {
     setLoginPressed(false);
     navigation.navigate('Dashboard');
+    navigation.reset({ 
+      index: 0, 
+      routes: [{ name: 'Dashboard' }]
+    })
   }
 
   return (
