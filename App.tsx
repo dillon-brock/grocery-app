@@ -4,12 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthEntry from './components/AuthEntry';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
-
-export type RootStackParamList = {
-  Entry: undefined;
-  Login: undefined;
-  SignUp: undefined;
-};
+import { RootStackParamList } from './types/props';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
