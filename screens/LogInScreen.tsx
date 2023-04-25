@@ -1,34 +1,34 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { RootStackParamList } from '../types/types';
-import AuthForm from './AuthForm';
+import AuthForm from '../components/AuthForm';
 
-export default function SignUpScreen() {
+export default function LogInScreen() {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [signUpPressed, setSignUpPressed] = useState<boolean>(false);
 
-  const signUp = () => {
-    setSignUpPressed(false);
+  const [loginPressed, setLoginPressed] = useState<boolean>(false);
+
+  const login = () => {
+    setLoginPressed(false);
     navigation.navigate('Dashboard');
-    navigation.reset({
-      index: 0,
+    navigation.reset({ 
+      index: 0, 
       routes: [{ name: 'Dashboard' }]
-    });
+    })
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-      <AuthForm method='sign-up' />
+      <Text style={styles.title}>Log In</Text>
+      <AuthForm method='login' />
       <Pressable 
-          onPressIn={() => setSignUpPressed(true)}
-          onPressOut={signUp}
-          style={{backgroundColor: signUpPressed ? "white" : "black", ...styles.button}}>
-          <Text style={{color: signUpPressed ? "black" : "white", ...styles.buttonText}}>
+          onPressIn={() => setLoginPressed(true)}
+          onPressOut={login}
+          style={{backgroundColor: loginPressed ? "white" : "black", ...styles.button}}>
+          <Text style={{color: loginPressed ? "black" : "white", ...styles.buttonText}}>
             Log In
           </Text>
       </Pressable>
