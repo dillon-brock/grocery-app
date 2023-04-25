@@ -30,7 +30,7 @@ export default function AuthForm({ method }: AuthFormProps) {
           secureTextEntry
           value={passwordConfirmation}
           onChangeText={setPasswordConfirmation}
-          placeholder='Password'
+          placeholder='Confirm password'
         />
       }
       <Pressable 
@@ -40,7 +40,7 @@ export default function AuthForm({ method }: AuthFormProps) {
           <Text style={{color: submitPressed ? "black" : "white", ...styles.buttonText}}>
             {method == 'login' ? 'Log In' : 'Sign Up'}
           </Text>
-        </Pressable>
+      </Pressable>
     </View>
   );
 }
