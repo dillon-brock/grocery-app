@@ -1,24 +1,20 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
+import PrimaryButton from '../components/PrimaryButton';
 
 export default function EntryScreen() {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [logInPressed, setLogInPressed] = useState<boolean>(false);
-  const [signUpPressed, setSignUpPressed] = useState<boolean>(false);
 
-  const login = () => {
-    setLogInPressed(false);
+  const navigateToLogin = () => {
     navigation.navigate('Login');
   }
 
-  const signUp = () => {
-    setSignUpPressed(false);
+  const navigateToSignUp = () => {
     navigation.navigate('SignUp');
   }
 
@@ -26,18 +22,8 @@ export default function EntryScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Grocery App</Text>
       <View style={styles.buttonContainer}>
-        <Pressable 
-          onPressIn={() => setLogInPressed(true)}
-          onPressOut={login}
-          style={{backgroundColor: logInPressed ? "white" : "black", ...styles.button}}>
-          <Text style={{color: logInPressed ? "black" : "white", ...styles.buttonText}}>Log In</Text>
-        </Pressable>
-        <Pressable 
-          onPressIn={() => setSignUpPressed(true)}
-          onPressOut={signUp}
-          style={{backgroundColor: signUpPressed ? "white" : "black", ...styles.button}}>
-          <Text style={{color: signUpPressed ? "black" : "white", ...styles.buttonText}}>Sign Up</Text>
-        </Pressable>
+        <PrimaryButton text="Log In" handlePress={navigateToLogin} />
+        <PrimaryButton text="Sign Up" handlePress={navigateToSignUp} />
       </View>
       <StatusBar style="auto" />
     </View>
@@ -59,21 +45,5 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingTop: 80,
     gap: 40
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 5,
-    borderWidth: 4,
-    borderColor: 'black',
-    elevation: 3,
-  },
-  buttonText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-  },
+  }
 });
