@@ -33,14 +33,6 @@ export default function AuthForm({ method }: AuthFormProps) {
           placeholder='Confirm password'
         />
       }
-      <Pressable 
-          onPressIn={() => setSubmitPressed(true)}
-          onPressOut={() => setSubmitPressed(false)}
-          style={{backgroundColor: submitPressed ? "white" : "black", ...styles.button}}>
-          <Text style={{color: submitPressed ? "black" : "white", ...styles.buttonText}}>
-            {method == 'login' ? 'Log In' : 'Sign Up'}
-          </Text>
-      </Pressable>
     </View>
   );
 }
@@ -62,21 +54,5 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingTop: 80,
     gap: 40
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 5,
-    borderWidth: 4,
-    borderColor: 'black',
-    elevation: 3,
-  },
-  buttonText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
   }
 })

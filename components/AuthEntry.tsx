@@ -2,9 +2,9 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { NavProps } from '../types/props';
+import { AuthEntryProps } from '../types/props';
 
-export default function AuthEntry({ navigation }: NavProps) {
+export default function AuthEntry({ navigation }: AuthEntryProps) {
 
   const [logInPressed, setLogInPressed] = useState<boolean>(false);
   const [signUpPressed, setSignUpPressed] = useState<boolean>(false);
