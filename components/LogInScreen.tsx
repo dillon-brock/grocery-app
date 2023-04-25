@@ -1,10 +1,11 @@
+import React from 'react';
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function LogIn() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   return (
     <View style={styles.container}>

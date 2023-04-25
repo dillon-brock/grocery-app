@@ -6,8 +6,8 @@ import { EntryScreenProps } from '../types/props';
 
 export default function AuthEntry({ navigation }: EntryScreenProps) {
 
-  const [logInPressed, setLogInPressed] = useState(false);
-  const [signUpPressed, setSignUpPressed] = useState(false);
+  const [logInPressed, setLogInPressed] = useState<boolean>(false);
+  const [signUpPressed, setSignUpPressed] = useState<boolean>(false);
 
   const login = () => {
     setLogInPressed(false);
