@@ -1,36 +1,22 @@
-import React, { useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { AuthFormProps } from "../types/props";
+import Input from "./Input";
 
 export default function AuthForm({ method }: AuthFormProps) {
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
-
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        onChangeText={setEmail}
-        value={email}
-        placeholder='Email or username'
-      />
-      <TextInput
-        style={styles.input}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
+      <Input 
+      placeholder={method == 'login' ? 'Email or username' : 'Email'}
+      type='text' />
+      <Input
         placeholder='Password'
-      />
+        type='password' />
       {method == 'sign-up' &&
-        <TextInput
-          style={styles.input}
-          secureTextEntry
-          value={passwordConfirmation}
-          onChangeText={setPasswordConfirmation}
+        <Input
           placeholder='Confirm password'
-        />
+          type='password' />
       }
     </View>
   );
@@ -40,15 +26,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    width: 220,
-    margin: 12,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 10,
-    padding: 10,
   },
   buttonContainer: {
     paddingTop: 80,
