@@ -1,6 +1,10 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 
-export default StyleSheet.create({
+type InputStyle = {
+  input: ViewStyle;
+}
+
+export default StyleSheet.create<InputStyle>({
   input: {
     height: 40,
     width: 240,

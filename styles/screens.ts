@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
+import { CommonScreenStyle, DashboardScreenStyle, EntryScreenStyle } from "../types/styles";
 
-export const commonScreenStyles = StyleSheet.create({
+export const commonScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
   title: {
     fontSize: 50,
     fontFamily: 'Avenir-Oblique'
@@ -15,26 +16,27 @@ export const commonScreenStyles = StyleSheet.create({
   }
 });
 
-export const dashboardScreenStyles = StyleSheet.create({
+export const dashboardScreenStyles: DashboardScreenStyle = StyleSheet.create<DashboardScreenStyle>({
   ...commonScreenStyles,
   buttonContainer: {
     gap: 40
   }
 });
 
-export const entryScreenStyles = StyleSheet.create({
+export const entryScreenStyles: EntryScreenStyle = StyleSheet.create<EntryScreenStyle>({
   ...commonScreenStyles,
   buttonContainer: {
     paddingTop: 80,
     gap: 40
-  }
+  },
+
 });
 
-export const loginScreenStyles = StyleSheet.create({
+export const loginScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
   ...commonScreenStyles
 });
 
-export const signUpScreenStyles = StyleSheet.create({
+export const signUpScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
   ...commonScreenStyles
 });
 

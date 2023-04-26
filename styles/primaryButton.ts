@@ -1,6 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-export default StyleSheet.create({
+type PrimaryButtonStyle = {
+  button: ViewStyle;
+  buttonText: TextStyle;
+}
+
+export default StyleSheet.create<PrimaryButtonStyle>({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
