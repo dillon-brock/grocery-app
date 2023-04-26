@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { AuthFormProps } from "../types/props";
 import Input from "./Input";
+import styles from "../styles/authForm";
 
 export default function AuthForm({ method }: AuthFormProps) {
 
@@ -21,14 +22,3 @@ export default function AuthForm({ method }: AuthFormProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    paddingTop: 80,
-    gap: 40
-  }
-})

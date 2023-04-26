@@ -1,10 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
 import PrimaryButton from '../components/PrimaryButton';
+import { entryScreenStyles as styles } from '../styles/screens';
 
 export default function EntryScreen() {
 
@@ -29,21 +30,3 @@ export default function EntryScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 60
-  },
-  title: {
-    fontSize: 50,
-    fontFamily: 'Avenir-Oblique'
-  },
-  buttonContainer: {
-    paddingTop: 80,
-    gap: 40
-  }
-});

@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { RootStackParamList } from '../types/types';
 import AuthForm from '../components/AuthForm';
 import PrimaryButton from '../components/PrimaryButton';
+import { signUpScreenStyles as styles } from '../styles/screens';
 
 export default function SignUpScreen() {
 
@@ -26,15 +27,3 @@ export default function SignUpScreen() {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 30,
-    fontFamily: 'Avenir-Oblique'
-  }
-})

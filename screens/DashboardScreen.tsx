@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import { dashboardScreenStyles as styles } from '../styles/screens'
 
 export default function DashboardScreen() {
 
@@ -15,19 +16,3 @@ export default function DashboardScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingTop: 60,
-    paddingBottom: 60
-  },
-  title: {
-    fontSize: 30,
-    fontFamily: 'Avenir-Oblique'
-  },
-  buttonContainer: {
-    gap: 40
-  }
-})
