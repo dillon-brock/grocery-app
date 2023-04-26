@@ -2,5 +2,11 @@ export type RootStackParamList = {
   Entry: undefined;
   Login: undefined;
   SignUp: undefined;
-  Dashboard: undefined;
+  Home: undefined;
 };
+
+export type HomeStackParamList = {
+  Dashboard: undefined;
+  List: undefined;
+  Recipes: undefined;
+}
