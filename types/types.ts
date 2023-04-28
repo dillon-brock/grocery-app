@@ -10,3 +10,15 @@ export type HomeStackParamList = {
   List: undefined;
   Recipes: undefined;
 }
+
+export type DatabaseErrorResponse = {
+  message: string;
+  status: number;
+  success: false;
+}
+
+export type User = {
+  id: string;
+  email: string;
+  username: string;
+}
