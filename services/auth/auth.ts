@@ -9,6 +9,7 @@ export async function signUp({ email, password, username }: UserSignUpData): Pro
     headers: {
       'Content-type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({
       email,
       password,
@@ -16,7 +17,8 @@ export async function signUp({ email, password, username }: UserSignUpData): Pro
     }),
   });
 
+  const success: boolean = response.status == 200;
   const jsonRes = await response.json();
-  jsonRes.success = jsonRes.message == 'Signed up and logged in successfully';
+  jsonRes.success = success;
   return jsonRes;
 }
