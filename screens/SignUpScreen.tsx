@@ -12,11 +12,7 @@ export default function SignUpScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const signUp = () => {
-    navigation.navigate('Dashboard');
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }]
-    });
+    navigation.navigate('Home');
   }
 
   return (

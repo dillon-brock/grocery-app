@@ -5,7 +5,7 @@ import EntryScreen from './screens/EntryScreen';
 import LogInScreen from './screens/LogInScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import { RootStackParamList } from './types/types';
-import DashboardScreen from './screens/DashboardScreen';
+import HomeNavigator from './components/navigation/HomeNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,8 +26,8 @@ export default function App() {
           component={SignUpScreen}
         />
         <Stack.Screen
-          name="Dashboard"
-          component={DashboardScreen}
+          name="Home"
+          component={HomeNavigator}
         />
       </Stack.Navigator>
     </NavigationContainer>

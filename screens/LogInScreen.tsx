@@ -12,11 +12,7 @@ export default function LogInScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const login = () => {
-    navigation.navigate('Dashboard');
-    navigation.reset({ 
-      index: 0, 
-      routes: [{ name: 'Dashboard' }]
-    })
+    navigation.navigate('Home');
   }
 
   return (
