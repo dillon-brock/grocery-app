@@ -28,7 +28,11 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem('@token');
-      if (token) {
+      if (!token) {
+        setDoneGettingUser(true);
+        return;
+      }
+      else {
         try {
           const data: UserResponse | DatabaseErrorResponse = await getUser(token);
           if (data.success) {
@@ -38,10 +42,6 @@ const UserProvider = ({ children }: PropsWithChildren) => {
         } catch (e) {
           console.error(e);
         }
-      }
-      else {
-        setUser(null);
-        setDoneGettingUser(true);
       }
     };
     fetchUser();

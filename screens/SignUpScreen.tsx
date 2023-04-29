@@ -6,8 +6,9 @@ import { RootStackParamList } from '../types/types';
 import PrimaryButton from '../components/PrimaryButton';
 import { signUpScreenStyles as styles } from '../styles/screens';
 import SignUpForm from '../components/SignUpForm';
-import { signUp } from '../services/auth/auth';
+import { getUser, signUp } from '../services/auth/auth';
 import { useUserContext } from '../context/UserContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignUpScreen() {
 
@@ -16,22 +17,25 @@ export default function SignUpScreen() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
-  const { user, doneGettingUser } = useUserContext();
+  const { user, setUser, doneGettingUser } = useUserContext();
 
   useEffect(() => {
     if (user && doneGettingUser) {
       navigation.navigate('Home');
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Home'}],
+      });
     }
   })
 
   const handleSubmit = async () => {
     const signUpResponse = await signUp({ email, password, username });
     if (signUpResponse.success) {
-      navigation.navigate('Home');
-      navigation.reset({
-        index: 0,
-        routes: [{name: 'Home'}],
-      });
+      const token = signUpResponse.token;
+      AsyncStorage.setItem('@token', token);
+      const userRes = await getUser(token);
+      if (userRes.success) setUser(userRes.user);
     }
   }
 

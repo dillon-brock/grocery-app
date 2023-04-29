@@ -1,4 +1,4 @@
-import { DatabaseErrorResponse, SuccessfulResponse } from "../../types/types";
+import { DatabaseErrorResponse } from "../../types/types";
 import { TokenResponse, UserAuthData, UserResponse, UserSignUpData } from "./types";
 import { responseWithSuccessStatus } from "../../utils";
 const API_URL = 'http://localhost:7890';
