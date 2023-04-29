@@ -1,3 +1,5 @@
+import { User } from "../../context/UserContext";
+
 enum SuccessMessage {
   SignUp = 'Signed up and logged in successfully',
   SignIn = 'Signed in successfully'
@@ -17,12 +19,7 @@ export interface UserSignUpData extends UserAuthData {
   username: string;
 }
 
-type User = {
-  id: string;
-  email: string;
-  username: string;
-}
-
 export interface UserResponse {
   user: User | null;
+  success: true;
 }
