@@ -6,10 +6,16 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
 import PrimaryButton from '../components/PrimaryButton';
 import { entryScreenStyles as styles } from '../styles/screens';
+import { useUserContext } from '../context/UserContext';
 
 export default function EntryScreen() {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { user, doneGettingUser } = useUserContext();
+
+  if (user && doneGettingUser) {
+    navigation.navigate('Home');
+  }
 
   const navigateToLogin = () => {
     navigation.navigate('Login');

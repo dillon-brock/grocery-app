@@ -7,6 +7,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import { signUpScreenStyles as styles } from '../styles/screens';
 import SignUpForm from '../components/SignUpForm';
 import { signUp } from '../services/auth/auth';
+import { useUserContext } from '../context/UserContext';
 
 export default function SignUpScreen() {
 
@@ -15,6 +16,11 @@ export default function SignUpScreen() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
+  const { user, doneGettingUser } = useUserContext();
+
+  if (user && doneGettingUser) {
+    navigation.navigate('Home');
+  }
 
   const handleSubmit = async () => {
     const signUpResponse = await signUp({ email, password, username });

@@ -1,14 +1,5 @@
 import { User } from "../../context/UserContext";
-
-enum SuccessMessage {
-  SignUp = 'Signed up and logged in successfully',
-  SignIn = 'Signed in successfully'
-}
-
-export interface SuccessfulResponse {
-  success: true
-  message: SuccessMessage
-}
+import { SuccessfulResponse } from "../../types/types";
 
 export interface UserAuthData {
   email: string;
@@ -19,7 +10,6 @@ export interface UserSignUpData extends UserAuthData {
   username: string;
 }
 
-export interface UserResponse {
+export interface UserResponse extends SuccessfulResponse {
   user: User | null;
-  success: true;
 }

@@ -17,6 +17,18 @@ export type DatabaseErrorResponse = {
   success: false;
 }
 
+enum SuccessMessage {
+  SignUp = 'Signed up and logged in successfully',
+  SignIn = 'Signed in successfully',
+  NoUser = 'No current user',
+  UserFound = 'Current user found'
+}
+
+export interface SuccessfulResponse {
+  success: true
+  message: SuccessMessage
+}
+
 export type User = {
   id: string;
   email: string;

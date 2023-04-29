@@ -6,10 +6,16 @@ import { RootStackParamList } from '../types/types';
 import PrimaryButton from '../components/PrimaryButton';
 import { loginScreenStyles as styles } from '../styles/screens';
 import SignInForm from '../components/SignInForm';
+import { useUserContext } from '../context/UserContext';
 
 export default function LogInScreen() {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { user, doneGettingUser } = useUserContext();
+
+  if (user && doneGettingUser) {
+    navigation.navigate('Home');
+  }
 
   const login = () => {
     navigation.navigate('Home');

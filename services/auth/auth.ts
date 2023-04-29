@@ -1,5 +1,5 @@
-import { DatabaseErrorResponse } from "../../types/types";
-import { SuccessfulResponse, UserAuthData, UserResponse, UserSignUpData } from "./types";
+import { DatabaseErrorResponse, SuccessfulResponse } from "../../types/types";
+import { UserAuthData, UserResponse, UserSignUpData } from "./types";
 import { responseWithSuccessStatus } from "../../utils";
 const API_URL = 'http://localhost:7890';
 
@@ -44,5 +44,12 @@ export async function getUser(): Promise<UserResponse | DatabaseErrorResponse> {
     credentials: 'include'
   });
 
+  return responseWithSuccessStatus(response);
+}
+
+export async function logOut(): Promise<SuccessfulResponse | DatabaseErrorResponse> {
+  const response = await fetch(`${API_URL}/users/sessions`, {
+    method: 'DELETE'
+  });
   return responseWithSuccessStatus(response);
 }
