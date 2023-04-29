@@ -16,3 +16,13 @@ export interface UserAuthData {
 export interface UserSignUpData extends UserAuthData {
   username: string;
 }
+
+type User = {
+  id: string;
+  email: string;
+  username: string;
+}
+
+export interface UserResponse {
+  user: User | null;
+}
