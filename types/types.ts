@@ -3,13 +3,9 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
-};
-
-export type HomeStackParamList = {
-  Dashboard: undefined;
   List: undefined;
   Recipes: undefined;
-}
+};
 
 export type DatabaseErrorResponse = {
   message: string;

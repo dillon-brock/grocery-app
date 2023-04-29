@@ -1,9 +1,9 @@
 import { DatabaseErrorResponse, SuccessfulResponse } from "../../types/types";
-import { UserAuthData, UserResponse, UserSignUpData } from "./types";
+import { TokenResponse, UserAuthData, UserResponse, UserSignUpData } from "./types";
 import { responseWithSuccessStatus } from "../../utils";
 const API_URL = 'http://localhost:7890';
 
-export async function signUp({ email, password, username }: UserSignUpData): Promise<SuccessfulResponse | DatabaseErrorResponse> {
+export async function signUp({ email, password, username }: UserSignUpData): Promise<TokenResponse | DatabaseErrorResponse> {
   const response = await fetch(`${API_URL}/users`, {
     method: 'POST',
     headers: {
@@ -20,7 +20,7 @@ export async function signUp({ email, password, username }: UserSignUpData): Pro
   return responseWithSuccessStatus(response);
 }
 
-export async function signIn({ email, password }: UserAuthData): Promise<SuccessfulResponse | DatabaseErrorResponse> {
+export async function signIn({ email, password }: UserAuthData): Promise<TokenResponse | DatabaseErrorResponse> {
   const response = await fetch(`${API_URL}/users/sessions`, {
     method: 'POST',
     headers: {
@@ -36,10 +36,11 @@ export async function signIn({ email, password }: UserAuthData): Promise<Success
   return responseWithSuccessStatus(response);
 }
 
-export async function getUser(): Promise<UserResponse | DatabaseErrorResponse> {
+export async function getUser(token: string): Promise<UserResponse | DatabaseErrorResponse> {
   const response = await fetch(`${API_URL}/users/me`, {
     headers: {
-      'Content-type': 'application/json'
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     credentials: 'include'
   });
@@ -47,9 +48,6 @@ export async function getUser(): Promise<UserResponse | DatabaseErrorResponse> {
   return responseWithSuccessStatus(response);
 }
 
-export async function logOut(): Promise<SuccessfulResponse | DatabaseErrorResponse> {
-  const response = await fetch(`${API_URL}/users/sessions`, {
-    method: 'DELETE'
-  });
-  return responseWithSuccessStatus(response);
+export function logOut() {
+  console.log('logged out');
 }

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from "react-native";
 import { RootStackParamList } from '../types/types';
 import PrimaryButton from '../components/PrimaryButton';
@@ -13,13 +13,15 @@ export default function LogInScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { user, doneGettingUser } = useUserContext();
 
-  if (user && doneGettingUser) {
-    navigation.navigate('Home');
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'Home'}],
-    });
-  }
+  useEffect(() => {
+    if (user && doneGettingUser) {
+      navigation.navigate('Home');
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Home'}],
+      });
+    }
+  })
 
   const login = () => {
     navigation.navigate('Home');

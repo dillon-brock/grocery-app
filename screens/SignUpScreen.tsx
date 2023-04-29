@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from "react-native";
 import { RootStackParamList } from '../types/types';
 import PrimaryButton from '../components/PrimaryButton';
@@ -18,9 +18,11 @@ export default function SignUpScreen() {
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
   const { user, doneGettingUser } = useUserContext();
 
-  if (user && doneGettingUser) {
-    navigation.navigate('Home');
-  }
+  useEffect(() => {
+    if (user && doneGettingUser) {
+      navigation.navigate('Home');
+    }
+  })
 
   const handleSubmit = async () => {
     const signUpResponse = await signUp({ email, password, username });

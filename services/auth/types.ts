@@ -6,6 +6,10 @@ export interface UserAuthData {
   password: string;
 }
 
+export interface TokenResponse extends SuccessfulResponse {
+  token: string;
+}
+
 export interface UserSignUpData extends UserAuthData {
   username: string;
 }

@@ -3,6 +3,7 @@ import { Dispatch, PropsWithChildren, SetStateAction, createContext, useEffect, 
 import { UserResponse } from "../services/auth/types";
 import { getUser } from "../services/auth/auth";
 import { DatabaseErrorResponse } from "../types/types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface User {
   id: string;
@@ -26,14 +27,21 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
   
     const fetchUser = async () => {
-      try {
-        const data: UserResponse | DatabaseErrorResponse = await getUser();
-        if (data.success) {
-          setUser(data.user);
-          setDoneGettingUser(true);
+      const token = await AsyncStorage.getItem('@token');
+      if (token) {
+        try {
+          const data: UserResponse | DatabaseErrorResponse = await getUser(token);
+          if (data.success) {
+            setUser(data.user);
+            setDoneGettingUser(true);
+          }
+        } catch (e) {
+          console.error(e);
         }
-      } catch (e) {
-        console.error(e);
+      }
+      else {
+        setUser(null);
+        setDoneGettingUser(true);
       }
     };
     fetchUser();
