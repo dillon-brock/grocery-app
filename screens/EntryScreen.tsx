@@ -15,6 +15,10 @@ export default function EntryScreen() {
 
   if (user && doneGettingUser) {
     navigation.navigate('Home');
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Home'}],
+    });
   }
 
   const navigateToLogin = () => {

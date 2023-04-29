@@ -24,9 +24,12 @@ export default function SignUpScreen() {
 
   const handleSubmit = async () => {
     const signUpResponse = await signUp({ email, password, username });
-    console.log(signUpResponse);
     if (signUpResponse.success) {
       navigation.navigate('Home');
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Home'}],
+      });
     }
   }
 

@@ -5,8 +5,8 @@ import EntryScreen from './screens/EntryScreen';
 import LogInScreen from './screens/LogInScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import { RootStackParamList } from './types/types';
-import HomeNavigator from './components/navigation/HomeNavigator';
 import { UserProvider } from './context/UserContext';
+import DashboardScreen from './screens/DashboardScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,7 +29,7 @@ export default function App() {
           />
           <Stack.Screen
             name="Home"
-            component={HomeNavigator}
+            component={DashboardScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
