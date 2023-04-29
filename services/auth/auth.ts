@@ -47,7 +47,3 @@ export async function getUser(token: string): Promise<UserResponse | DatabaseErr
 
   return responseWithSuccessStatus(response);
 }
-
-export function logOut() {
-  console.log('logged out');
-}

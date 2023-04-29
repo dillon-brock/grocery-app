@@ -5,8 +5,8 @@ import { dashboardScreenStyles as styles } from '../styles/screens'
 import { useUserContext } from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { getUser, logOut } from "../services/auth/auth";
 import { RootStackParamList } from "../types/types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function DashboardScreen() {
 
@@ -24,11 +24,8 @@ export default function DashboardScreen() {
   })
 
   const handleLogOut = async () => {
-    // await logOut();
-    // const userRes = await getUser();
-    // if (userRes.success) 
-    //   setUser(userRes.user);
-    // else setUser(null);
+    await AsyncStorage.removeItem('@token');
+    setUser(null);
   }
 
   return (

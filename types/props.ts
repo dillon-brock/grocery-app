@@ -24,3 +24,10 @@ export type SignUpFormProps = {
   passwordConfirmation: string;
   setPasswordConfirmation: Dispatch<SetStateAction<string>>;
 }
+
+export type SignInFormProps = {
+  email: string;
+  setEmail: Dispatch<SetStateAction<string>>;
+  password: string;
+  setPassword: Dispatch<SetStateAction<string>>;
+}
