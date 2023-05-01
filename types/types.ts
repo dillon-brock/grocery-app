@@ -39,3 +39,21 @@ export interface List {
   updatedAt: string;
   title: string | null;
 }
+
+export type ListItem = {
+  id: string;
+  item: string;
+  listId: string;
+  bought: boolean;
+  quantity: number | null;
+}
+
+export interface ListWithItems extends List {
+  items: ListItem[];
+}
+
+export type RouteParamList = {
+  ListDetail: {
+    list: List
+  }
+}
