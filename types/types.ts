@@ -17,7 +17,8 @@ enum SuccessMessage {
   SignUp = 'Signed up and logged in successfully',
   SignIn = 'Signed in successfully',
   NoUser = 'No current user',
-  UserFound = 'Current user found'
+  UserFound = 'Current user found',
+  CreateList = 'List successfully created'
 }
 
 export interface SuccessfulResponse {
@@ -29,4 +30,12 @@ export type User = {
   id: string;
   email: string;
   username: string;
+}
+
+export interface List {
+  id: string;
+  ownerId: string;
+  createdAt: string;
+  updatedAt: string;
+  title: string | null;
 }
