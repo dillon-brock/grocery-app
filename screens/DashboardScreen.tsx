@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Text, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import { dashboardScreenStyles as styles } from '../styles/screens'
 import { useUserContext } from "../context/UserContext";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useCheckForLogOut } from "../hooks/useCheckForLogOut";
 
 export default function DashboardScreen() {
 
-  const { user, setUser, doneGettingUser } = useUserContext();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { user, setUser } = useUserContext();
 
-  useEffect(() => {
-    if (!user && doneGettingUser) {
-      navigation.navigate('Entry');
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Entry' }]
-      });
-    }
-  })
+  useCheckForLogOut();
 
   const handleLogOut = async () => {
     await AsyncStorage.removeItem('@token');
