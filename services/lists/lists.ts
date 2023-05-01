@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_URL } from "../vars";
 import { responseWithSuccessStatus } from "../../utils";
-import { CreateListResponse } from "./types";
+import { AllListsResponse, CreateListResponse } from "./types";
 import { DatabaseErrorResponse } from "../../types/types";
 
 export async function createList(title: string | null): Promise<CreateListResponse | DatabaseErrorResponse> {
@@ -15,6 +15,19 @@ export async function createList(title: string | null): Promise<CreateListRespon
     },
     credentials: 'include',
     body: JSON.stringify({ title })
+  });
+
+  return responseWithSuccessStatus(response);
+}
+
+export async function getLists(): Promise<AllListsResponse | DatabaseErrorResponse> {
+  const token = await AsyncStorage.getItem('@token');
+  const response = await fetch(`${API_URL}/lists`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    credentials: 'include'
   });
 
   return responseWithSuccessStatus(response);
