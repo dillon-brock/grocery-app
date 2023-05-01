@@ -40,6 +40,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
             setDoneGettingUser(true);
           }
         } catch (e) {
+          setDoneGettingUser(true);
           console.error(e);
         }
       }
