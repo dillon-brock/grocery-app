@@ -1,8 +1,5 @@
-import { StyleSheet, ViewStyle } from "react-native";
-
-type InputStyle = {
-  input: ViewStyle;
-}
+import { StyleSheet } from "react-native";
+import { InputStyle } from "../types/styles";
 
 export default StyleSheet.create<InputStyle>({
   input: {
