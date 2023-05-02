@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { InputStyle } from "../types/styles";
+import { InputStyle } from "../../../types/styles";
 
 export default StyleSheet.create<InputStyle>({
   input: {

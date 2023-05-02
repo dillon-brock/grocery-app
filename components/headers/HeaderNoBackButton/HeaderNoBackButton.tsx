@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from "react-native";
-import styles from '../../styles/header';
-import MenuIcon from '../menu/MenuIcon';
+import styles from '../header-styles';
+import MenuIcon from '../../menu-elements/MenuIcon/MenuIcon';
 
 export default function HeaderNoBackButton() {
   

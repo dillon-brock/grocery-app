@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { MenuItemStyle } from "../types/styles";
+import { MenuItemStyle } from "../../../types/styles";
 
 export default StyleSheet.create<MenuItemStyle>({
   container: {

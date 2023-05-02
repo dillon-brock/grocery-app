@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
-import PrimaryButton from '../components/buttons/PrimaryButton';
+import PrimaryButton from '../components/buttons/PrimaryButton/PrimaryButton';
 import { entryScreenStyles as styles } from '../styles/screens';
 import { useUserContext } from '../context/UserContext';
 

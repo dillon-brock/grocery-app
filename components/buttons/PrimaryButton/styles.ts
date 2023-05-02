@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { PrimaryButtonStyle } from "../types/styles";
+import { PrimaryButtonStyle } from "../../../types/styles";
 
 export default StyleSheet.create<PrimaryButtonStyle>({
   button: {

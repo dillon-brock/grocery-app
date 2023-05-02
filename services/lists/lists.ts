@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { API_URL } from "../vars";
+import { API_URL } from "../constants";
 import { responseWithSuccessStatus } from "../../utils";
 import { AllListsResponse, CreateListResponse, GetListResponse } from "./types";
 import { DatabaseErrorResponse } from "../../types/types";

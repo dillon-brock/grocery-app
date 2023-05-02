@@ -1,7 +1,7 @@
 import { DatabaseErrorResponse } from "../../types/types";
 import { TokenResponse, UserAuthData, UserResponse, UserSignUpData } from "./types";
 import { responseWithSuccessStatus } from "../../utils";
-import { API_URL } from "../vars";
+import { API_URL } from "../constants";
 
 export async function signUp({ email, password, username }: UserSignUpData): Promise<TokenResponse | DatabaseErrorResponse> {
   const response = await fetch(`${API_URL}/users`, {

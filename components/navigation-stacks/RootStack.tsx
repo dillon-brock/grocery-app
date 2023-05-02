@@ -1,9 +1,9 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/types";
-import EntryScreen from '../screens/EntryScreen';
-import LogInScreen from '../screens/LogInScreen';
-import SignUpScreen from '../screens/SignUpScreen';
+import { RootStackParamList } from "../../types/types";
+import EntryScreen from '../../screens/EntryScreen';
+import LogInScreen from '../../screens/LogInScreen';
+import SignUpScreen from '../../screens/SignUpScreen';
 import HomeStack from "./HomeStack";
 
 

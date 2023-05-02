@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { AuthFormStyle } from "../types/styles";
+import { AuthFormStyle } from "../../../types/styles";
 
 
 export default StyleSheet.create<AuthFormStyle>({

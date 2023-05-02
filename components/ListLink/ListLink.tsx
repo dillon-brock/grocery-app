@@ -3,8 +3,8 @@ import { Pressable, Text, View } from "react-native"
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { List, ListStackParamList } from "../types/types";
-import styles from '../styles/listLink';
+import { List, ListStackParamList } from "../../types/types";
+import styles from './styles';
 
 type Props = {
   list: List;
