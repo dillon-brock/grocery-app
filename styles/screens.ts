@@ -1,18 +1,21 @@
 import { StyleSheet } from "react-native"
-import { CommonScreenStyle, DashboardScreenStyle, EntryScreenStyle } from "../types/styles";
+import { AllListsScreenStyle, CommonScreenStyle, DashboardScreenStyle, EntryScreenStyle } from "../types/styles";
 
 export const commonScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
   title: {
     fontSize: 50,
     fontFamily: 'Avenir-Oblique'
   },
+  titleContainer: {
+    height: 80,
+    justifyContent: 'center',
+  },
   container: {
-    flex: 1,
+    gap: 30,
     alignItems: 'center',
-    justifyContent: 'space-around',
     backgroundColor: '#fff',
     paddingTop: 60,
-    paddingBottom: 60
+    paddingBottom: 60,
   }
 });
 
@@ -40,3 +43,20 @@ export const signUpScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScr
   ...commonScreenStyles
 });
 
+export const allListsScreenStyles: AllListsScreenStyle = StyleSheet.create<AllListsScreenStyle>({
+  ...commonScreenStyles,
+  buttonContainer: {
+    width: '80%',
+    borderColor: 'black',
+  },
+  listsContainer: {
+    width: '100%',
+    padding: 20
+  },
+  subtitle: {
+    fontSize: 30,
+    fontFamily: 'Avenir-Oblique',
+    textAlign: 'left',
+    marginBottom: 10
+  }
+})

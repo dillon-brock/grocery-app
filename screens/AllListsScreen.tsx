@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { List, RootStackParamList } from "../types/types";
 import ListLink from "../components/ListLink";
+import { allListsScreenStyles as styles } from "../styles/screens";
 
 export default function AllListsScreen() {
 
@@ -30,8 +31,10 @@ export default function AllListsScreen() {
   }
 
   return (
-    <View>
-      <Text>Your Lists</Text>
+    <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Your Lists</Text>
+      </View>
       {lists.length == 0 &&
         <Text>You do not have any lists yet!</Text>
       }
@@ -41,12 +44,14 @@ export default function AllListsScreen() {
       {loading &&
         <Text>Loading...</Text>
       }
-      <PrimaryButton 
-        text="Start Shopping"
-        handlePress={handleNewList} />
+      <View style={styles.buttonContainer}>
+        <PrimaryButton 
+          text="Start Shopping"
+          handlePress={handleNewList} />
+      </View>
       {lists.length > 0 &&
-      <>
-        <Text>Previous lists</Text>
+      <View style={styles.listsContainer}>
+        <Text style={styles.subtitle}>Previous lists</Text>
         <FlatList 
           data={lists} 
           renderItem={({ item: list }: ListRenderItemInfo<List>) => (
@@ -54,8 +59,9 @@ export default function AllListsScreen() {
               list={list}
             />)}
           keyExtractor={(list: List) => list.id}
+          style={{ width: '100%' }}
         />
-      </>
+      </View>
       }
     </View>
   );

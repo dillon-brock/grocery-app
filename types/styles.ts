@@ -4,6 +4,7 @@ import { TextStyle, ViewStyle } from "react-native";
 export interface CommonScreenStyle  {
   title: TextStyle;
   container: ViewStyle;
+  titleContainer: ViewStyle;
 }
 
 export interface DashboardScreenStyle extends CommonScreenStyle {
@@ -12,6 +13,12 @@ export interface DashboardScreenStyle extends CommonScreenStyle {
 
 export interface EntryScreenStyle extends CommonScreenStyle {
   buttonContainer: ViewStyle;
+}
+
+export interface AllListsScreenStyle extends CommonScreenStyle {
+  buttonContainer: ViewStyle;
+  listsContainer: ViewStyle;
+  subtitle: TextStyle;
 }
 
 // component styles
