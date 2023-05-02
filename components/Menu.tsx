@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from "react-native";
 import MenuItem from './MenuItem';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList, RootStackParamList } from '../types/types';
+import { HomeStackParamList } from '../types/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUserContext } from '../context/UserContext';
 import styles from '../styles/menu';
@@ -15,7 +15,6 @@ export default function Menu() {
   const { setMenuOpen } = useMenuContext();
 
   const homeNavigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
-  const rootNavigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleGoHome = () => {
     setMenuOpen(false);
@@ -31,7 +30,6 @@ export default function Menu() {
     setMenuOpen(false);
     await AsyncStorage.removeItem('@token');
     setUser(null);
-    rootNavigation.navigate("Entry");
   }
 
   return (
