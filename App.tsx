@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserProvider } from './context/UserContext';
-import RootStack from './components/navigation/RootStack';
+import RootStack from './navigation/RootStack';
 import { MenuProvider } from './context/MenuContext';
 
 

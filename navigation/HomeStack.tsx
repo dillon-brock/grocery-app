@@ -1,9 +1,9 @@
 import React from 'react';
-import DashboardScreen from '../../screens/DashboardScreen/DashboardScreen';
+import DashboardScreen from '../screens/DashboardScreen/DashboardScreen';
 import ListStack from './ListStack';
-import HeaderNoBackButton from '../headers/HeaderNoBackButton/HeaderNoBackButton';
+import HeaderNoBackButton from '../components/headers/HeaderNoBackButton/HeaderNoBackButton';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../../types/types';
+import { HomeStackParamList } from '../types/types';
 
 export default function HomeStack() {
 
