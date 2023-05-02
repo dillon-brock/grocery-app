@@ -2,7 +2,6 @@ import React from 'react';
 import DashboardScreen from '../screens/DashboardScreen';
 import ListStack from './ListStack';
 import HeaderNoBackButton from '../components/HeaderNoBackButton';
-import HeaderWithBackButton from '../components/HeaderWithBackButton';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function HomeStack() {
@@ -22,9 +21,7 @@ export default function HomeStack() {
         <Stack.Screen 
           name="Lists" 
           component={ListStack} 
-          options={{
-            header: () => <HeaderWithBackButton />
-          }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
   )
