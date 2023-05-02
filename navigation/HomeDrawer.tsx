@@ -2,7 +2,7 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import DashboardScreen from '../screens/DashboardScreen';
-import AllListsScreen from '../screens/AllListsScreen';
+import ListStack from './ListStack';
 
 export default function HomeStack() {
 
@@ -15,7 +15,7 @@ export default function HomeStack() {
         screenOptions={{ drawerPosition: 'right' }}
       >
         <Drawer.Screen name="Dashboard" component={DashboardScreen} />
-        <Drawer.Screen name="Lists" component={AllListsScreen} />
+        <Drawer.Screen name="Lists" component={ListStack} />
       </Drawer.Navigator>
     </NavigationContainer>
   )
