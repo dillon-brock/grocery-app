@@ -28,3 +28,7 @@ export type PrimaryButtonStyle = {
   button: ViewStyle;
   buttonText: TextStyle;
 }
+
+export type HeaderStyle = {
+  header: ViewStyle;
+}

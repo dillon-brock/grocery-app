@@ -7,7 +7,6 @@ import { createList } from "../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { List, RootStackParamList } from "../types/types";
-import BackButton from "../components/BackButton";
 import ListLink from "../components/ListLink";
 
 export default function AllListsScreen() {
@@ -32,7 +31,6 @@ export default function AllListsScreen() {
 
   return (
     <View>
-      <BackButton />
       <Text>Your Lists</Text>
       {lists.length == 0 &&
         <Text>You do not have any lists yet!</Text>
