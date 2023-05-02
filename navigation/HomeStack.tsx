@@ -3,10 +3,11 @@ import DashboardScreen from '../screens/DashboardScreen';
 import ListStack from './ListStack';
 import HeaderNoBackButton from '../components/HeaderNoBackButton';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HomeStackParamList } from '../types/types';
 
 export default function HomeStack() {
 
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<HomeStackParamList>();
 
   return (
       <Stack.Navigator 

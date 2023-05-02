@@ -5,6 +5,16 @@ export type RootStackParamList = {
   Home: undefined;
 };
 
+export type HomeStackParamList = {
+  Dashboard: undefined;
+  Lists: undefined;
+}
+
+export type ListStackParamList = {
+  Lists: undefined;
+  ListDetail: { listId: string, type: 'new' | 'existing' }
+}
+
 export type DatabaseErrorResponse = {
   message: string;
   status: number;
