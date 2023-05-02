@@ -3,10 +3,17 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
-  Lists: undefined;
-  Recipes: undefined;
-  ListDetail: { listId: string, type: 'new' | 'existing' };
 };
+
+export type HomeStackParamList = {
+  Dashboard: undefined;
+  ListStack: { screen: keyof ListStackParamList };
+}
+
+export type ListStackParamList = {
+  Lists: undefined;
+  ListDetail: { listId: string, type: 'new' | 'existing' }
+}
 
 export type DatabaseErrorResponse = {
   message: string;

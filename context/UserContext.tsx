@@ -17,7 +17,7 @@ type UserContextType = {
   doneGettingUser: boolean;
 }
 
-const UserContext = createContext({} as UserContextType);
+const UserContext = createContext<UserContextType>({} as UserContextType);
 
 const UserProvider = ({ children }: PropsWithChildren) => {
 
@@ -30,6 +30,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
       const token = await AsyncStorage.getItem('@token');
       if (!token) {
         setDoneGettingUser(true);
+        setUser(null);
         return;
       }
       else {
@@ -46,7 +47,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
       }
     };
     fetchUser();
-  })
+  }, [])
 
   return <UserContext.Provider value={{ user, setUser, doneGettingUser }}>{children}</UserContext.Provider>;
 }

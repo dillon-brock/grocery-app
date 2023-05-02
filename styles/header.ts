@@ -6,7 +6,7 @@ export default StyleSheet.create<HeaderStyle>({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'light gray',
-    zIndex: 100,
+    zIndex: 5,
     top: 0,
     left: 0,
     right: 0,
@@ -16,7 +16,7 @@ export default StyleSheet.create<HeaderStyle>({
     paddingTop: 60,
     paddingBottom: 20,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   headerWithBackButton: {
     justifyContent: 'space-between',

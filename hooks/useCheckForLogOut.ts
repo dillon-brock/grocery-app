@@ -16,5 +16,5 @@ export function useCheckForLogOut() {
         routes: [{ name: 'Entry' }]
       })
     }
-  })
+  }, [user])
 }

@@ -48,3 +48,13 @@ export type ListLinkStyle = {
   title: TextStyle;
   icon: TextStyle;
 }
+
+export type MenuStyle = {
+  container: ViewStyle;
+  menu: ViewStyle;
+}
+
+export type MenuItemStyle = {
+  container: ViewStyle;
+  text: TextStyle;
+}
