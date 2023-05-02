@@ -3,18 +3,19 @@ import { MenuStyle } from "../types/styles";
 
 export default StyleSheet.create<MenuStyle>({
   container: {
-    position: "relative",
+    position: "absolute",
     top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%'
+    right: 0,
+    width: '75%',
+    height: '100%',
+    zIndex: 10,
+    backgroundColor: 'white',
   },
   menu: {
-    position: "absolute",
+    position: "relative",
     right: 0,
     top: 0,
     height: '100%',
-    zIndex: 50,
-    width: '75%'
+    zIndex: 10,
   }
 })

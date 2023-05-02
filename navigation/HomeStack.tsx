@@ -20,7 +20,7 @@ export default function HomeStack() {
             header: () => <HeaderNoBackButton />
           }} />
         <Stack.Screen 
-          name="Lists" 
+          name="ListStack" 
           component={ListStack} 
           options={{ headerShown: false }}
         />

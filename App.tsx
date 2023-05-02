@@ -2,14 +2,18 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserProvider } from './context/UserContext';
 import RootStack from './navigation/RootStack';
+import { MenuProvider } from './context/MenuContext';
 
 
 export default function App() {
+
   return (
     <UserProvider>
-      <NavigationContainer>
-        <RootStack />
-      </NavigationContainer>
+      <MenuProvider>
+        <NavigationContainer>
+          <RootStack />
+        </NavigationContainer>
+      </MenuProvider>
     </UserProvider>
   );
 }

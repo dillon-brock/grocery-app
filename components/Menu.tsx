@@ -7,23 +7,28 @@ import { HomeStackParamList, RootStackParamList } from '../types/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUserContext } from '../context/UserContext';
 import styles from '../styles/menu';
+import { useMenuContext } from '../context/MenuContext';
 
 export default function Menu() {
 
   const { setUser } = useUserContext();
+  const { setMenuOpen } = useMenuContext();
 
   const homeNavigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const rootNavigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleGoHome = () => {
+    setMenuOpen(false);
     homeNavigation.navigate("Dashboard");
   }
 
   const handleGoToLists = () => {
-    homeNavigation.navigate("Lists");
+    setMenuOpen(false);
+    homeNavigation.navigate("ListStack");
   }
 
   const handleLogOut = async () => {
+    setMenuOpen(false);
     await AsyncStorage.removeItem('@token');
     setUser(null);
     rootNavigation.navigate("Entry");
