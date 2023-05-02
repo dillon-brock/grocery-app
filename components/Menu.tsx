@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from "react-native";
 import MenuItem from './MenuItem';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList, ListStackParamList } from '../types/types';
+import { HomeStackParamList } from '../types/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUserContext } from '../context/UserContext';
 import styles from '../styles/menu';
@@ -14,17 +14,16 @@ export default function Menu() {
   const { setUser } = useUserContext();
   const { setMenuOpen } = useMenuContext();
 
-  const homeNavigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
-  const listNavigation = useNavigation<NativeStackNavigationProp<ListStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
   const handleGoHome = () => {
     setMenuOpen(false);
-    homeNavigation.navigate("Dashboard");
+    navigation.navigate("Dashboard");
   }
 
   const handleGoToLists = () => {
     setMenuOpen(false);
-    homeNavigation.navigate("ListStack", { screen: "Lists" });
+    navigation.navigate("ListStack", { screen: "Lists" });
   }
 
   const handleLogOut = async () => {

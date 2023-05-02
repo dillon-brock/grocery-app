@@ -17,5 +17,6 @@ export default StyleSheet.create<MenuStyle>({
     top: 0,
     height: '100%',
     zIndex: 10,
+    paddingTop: 10
   }
 })
