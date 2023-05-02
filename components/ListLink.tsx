@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { List, RootStackParamList } from "../types/types";
+import styles from '../styles/listLink';
 
 type Props = {
   list: List;
@@ -24,9 +25,13 @@ export default function ListLink({ list }: Props) {
 
   return (
     <Pressable onPressOut={handleGoToList}>
-      <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text>{list.title ? list.title : formattedPlaceholderName}</Text>
-        <Ionicons name="chevron-forward-outline" />
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          {list.title ? list.title : formattedPlaceholderName}
+        </Text>
+        <Ionicons 
+          name="chevron-forward-outline"
+          style={styles.icon} />
       </View>
     </Pressable>
   )

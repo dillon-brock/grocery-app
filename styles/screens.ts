@@ -53,6 +53,10 @@ export const allListsScreenStyles: AllListsScreenStyle = StyleSheet.create<AllLi
     width: '100%',
     padding: 20
   },
+  scrollContainer: {
+    width: '100%',
+    padding: 20,
+  },
   subtitle: {
     fontSize: 30,
     fontFamily: 'Avenir-Oblique',

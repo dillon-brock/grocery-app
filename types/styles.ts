@@ -18,6 +18,7 @@ export interface EntryScreenStyle extends CommonScreenStyle {
 export interface AllListsScreenStyle extends CommonScreenStyle {
   buttonContainer: ViewStyle;
   listsContainer: ViewStyle;
+  scrollContainer: ViewStyle;
   subtitle: TextStyle;
 }
 
@@ -40,4 +41,10 @@ export type HeaderStyle = {
   header: ViewStyle;
   headerWithBackButton: ViewStyle;
   headerNoBackButton: ViewStyle;
+}
+
+export type ListLinkStyle = {
+  container: ViewStyle;
+  title: TextStyle;
+  icon: TextStyle;
 }

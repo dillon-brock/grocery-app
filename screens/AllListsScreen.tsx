@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, ListRenderItemInfo, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { useAllLists } from "../hooks/useAllLists";
 import { useCheckForLogOut } from "../hooks/useCheckForLogOut";
 import PrimaryButton from "../components/PrimaryButton";
@@ -50,18 +50,14 @@ export default function AllListsScreen() {
           handlePress={handleNewList} />
       </View>
       {lists.length > 0 &&
-      <View style={styles.listsContainer}>
-        <Text style={styles.subtitle}>Previous lists</Text>
-        <FlatList 
-          data={lists} 
-          renderItem={({ item: list }: ListRenderItemInfo<List>) => (
-            <ListLink 
-              list={list}
-            />)}
-          keyExtractor={(list: List) => list.id}
-          style={{ width: '100%' }}
-        />
-      </View>
+        <View style={styles.listsContainer}>
+          <Text style={styles.subtitle}>Previous lists</Text>
+          <ScrollView style={styles.scrollContainer}>
+            {lists.map((list: List) => (
+              <ListLink key={list.id} list={list} />
+            ))}
+          </ScrollView>
+        </View>
       }
     </View>
   );
