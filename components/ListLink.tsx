@@ -16,10 +16,10 @@ export default function ListLink({ list }: Props) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleGoToList = () => {
-    navigation.navigate('ListDetail', 
-    { list: { ...list, items: [] },
-    type: 'existing'
-  });
+    navigation.navigate('ListDetail', { 
+      listId: list.id,
+      type: 'existing'
+    });
   }
 
   return (

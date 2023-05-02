@@ -21,7 +21,7 @@ export default function AllListsScreen() {
     const newListRes = await createList();
     if (newListRes.success) {
       navigation.navigate('ListDetail', 
-        { list: { ...newListRes.list, items: [] },
+        { listId: newListRes.list.id,
           type: 'new' 
         });
     }

@@ -5,7 +5,7 @@ export type RootStackParamList = {
   Home: undefined;
   Lists: undefined;
   Recipes: undefined;
-  ListDetail: { list: ListWithItems, type: 'new' | 'existing' };
+  ListDetail: { listId: string, type: 'new' | 'existing' };
 };
 
 export type DatabaseErrorResponse = {

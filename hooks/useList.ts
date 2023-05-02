@@ -7,7 +7,7 @@ import { GetListResponse } from "../services/lists/types";
 export function useList(id: string) {
 
   const isFocused: boolean = useIsFocused();
-  const [list, setList] = useState<ListWithItems>();
+  const [list, setList] = useState<ListWithItems>({} as ListWithItems);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
