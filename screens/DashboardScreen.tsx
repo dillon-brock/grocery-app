@@ -28,7 +28,7 @@ export default function DashboardScreen() {
           <PrimaryButton text="My Recipes" />
           <PrimaryButton 
             text="My Lists"
-            handlePress={() => navigation.navigate('ListStack')} />
+            handlePress={() => navigation.navigate('ListStack', { screen: 'Lists' })} />
         </View>
       </View>
     </>

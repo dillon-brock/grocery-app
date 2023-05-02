@@ -7,7 +7,7 @@ export type RootStackParamList = {
 
 export type HomeStackParamList = {
   Dashboard: undefined;
-  ListStack: undefined;
+  ListStack: { screen: string };
 }
 
 export type ListStackParamList = {
