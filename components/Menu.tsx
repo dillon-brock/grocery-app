@@ -6,6 +6,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList, RootStackParamList } from '../types/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUserContext } from '../context/UserContext';
+import styles from '../styles/menu';
 
 export default function Menu() {
 
@@ -29,19 +30,21 @@ export default function Menu() {
   }
 
   return (
-    <View>
-      <MenuItem 
-        text="Home" 
-        handlePress={handleGoHome}
-      />
-      <MenuItem
-        text="My Lists"
-        handlePress={handleGoToLists}
-      />
-      <MenuItem
-        text = "Log out"
-        handlePress={handleLogOut}
-      />
+    <View style={styles.container}>
+      <View style={styles.menu}>
+        <MenuItem 
+          text="Home" 
+          handlePress={handleGoHome}
+        />
+        <MenuItem
+          text="My Lists"
+          handlePress={handleGoToLists}
+        />
+        <MenuItem
+          text = "Log out"
+          handlePress={handleLogOut}
+        />
+      </View>
     </View>
   )
 }
