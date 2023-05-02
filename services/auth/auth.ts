@@ -1,7 +1,7 @@
 import { DatabaseErrorResponse } from "../../types/types";
 import { TokenResponse, UserAuthData, UserResponse, UserSignUpData } from "./types";
 import { responseWithSuccessStatus } from "../../utils";
-const API_URL = 'http://localhost:7890';
+import { API_URL } from "../vars";
 
 export async function signUp({ email, password, username }: UserSignUpData): Promise<TokenResponse | DatabaseErrorResponse> {
   const response = await fetch(`${API_URL}/users`, {
@@ -17,7 +17,7 @@ export async function signUp({ email, password, username }: UserSignUpData): Pro
     }),
   });
 
-  return responseWithSuccessStatus(response);
+  return responseWithSuccessStatus<TokenResponse>(response);
 }
 
 export async function signIn({ email, password }: UserAuthData): Promise<TokenResponse | DatabaseErrorResponse> {
@@ -33,7 +33,7 @@ export async function signIn({ email, password }: UserAuthData): Promise<TokenRe
     })
   });
 
-  return responseWithSuccessStatus(response);
+  return responseWithSuccessStatus<TokenResponse>(response);
 }
 
 export async function getUser(token: string): Promise<UserResponse | DatabaseErrorResponse> {
@@ -45,5 +45,5 @@ export async function getUser(token: string): Promise<UserResponse | DatabaseErr
     credentials: 'include'
   });
 
-  return responseWithSuccessStatus(response);
+  return responseWithSuccessStatus<UserResponse>(response);
 }
