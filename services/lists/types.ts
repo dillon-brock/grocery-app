@@ -9,5 +9,5 @@ export interface AllListsResponse extends SuccessfulResponse {
 }
 
 export interface GetListResponse extends SuccessfulResponse {
-  list: ListWithItems[];
+  list: ListWithItems;
 }
