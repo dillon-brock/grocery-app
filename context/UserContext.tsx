@@ -17,7 +17,7 @@ type UserContextType = {
   doneGettingUser: boolean;
 }
 
-const UserContext = createContext({} as UserContextType);
+const UserContext = createContext<UserContextType>({} as UserContextType);
 
 const UserProvider = ({ children }: PropsWithChildren) => {
 
