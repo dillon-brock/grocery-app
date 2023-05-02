@@ -27,5 +27,5 @@ export function useAllLists()  {
     fetchLists();
   }, []);
 
-  return { lists, loading, errorMessage };
+  return { lists, loading, errorMessage, setErrorMessage };
 }

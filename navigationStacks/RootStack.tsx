@@ -6,6 +6,7 @@ import LogInScreen from '../screens/LogInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import AllListsScreen from "../screens/AllListsScreen";
+import ListDetailScreen from "../screens/ListDetailScreen";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,6 +34,10 @@ export default function RootStack() {
       <Stack.Screen
         name="Lists"
         component={AllListsScreen}
+      />
+      <Stack.Screen
+        name="ListDetail"
+        component={ListDetailScreen}
       />
     </Stack.Navigator>
   )

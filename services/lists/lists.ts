@@ -4,7 +4,7 @@ import { responseWithSuccessStatus } from "../../utils";
 import { AllListsResponse, CreateListResponse } from "./types";
 import { DatabaseErrorResponse } from "../../types/types";
 
-export async function createList(title: string | null): Promise<CreateListResponse | DatabaseErrorResponse> {
+export async function createList(title?: string): Promise<CreateListResponse | DatabaseErrorResponse> {
   const token = await AsyncStorage.getItem('@token');
   const response = await fetch(`${API_URL}/lists`, {
     method: 'POST',
@@ -14,7 +14,7 @@ export async function createList(title: string | null): Promise<CreateListRespon
       'Authorization': `Bearer ${token}`
     },
     credentials: 'include',
-    body: JSON.stringify({ title })
+    body: JSON.stringify({ title: title || null })
   });
 
   return responseWithSuccessStatus(response);

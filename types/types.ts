@@ -5,6 +5,7 @@ export type RootStackParamList = {
   Home: undefined;
   Lists: undefined;
   Recipes: undefined;
+  ListDetail: { list: ListWithItems };
 };
 
 export type DatabaseErrorResponse = {
