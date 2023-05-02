@@ -3,6 +3,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { RootStackParamList } from "../types/types";
 import { useList } from "../hooks/useList";
+import { listDetailScreenStyles as styles } from "../styles/screens";
 
 export default function ListDetailScreen() {
 
@@ -13,10 +14,12 @@ export default function ListDetailScreen() {
   const placeholderTitle = type == 'new' ? 'New List' : dateCreated;
 
   return (
-    <View>
-      <Text>
-          {list.title ? list.title : placeholderTitle}
-      </Text>
+    <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>
+            {list.title ? list.title : placeholderTitle}
+        </Text>
+      </View>
       {errorMessage &&
         <Text>{errorMessage}</Text>
       }

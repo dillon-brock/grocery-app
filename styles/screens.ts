@@ -13,7 +13,6 @@ export const commonScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScr
   container: {
     gap: 30,
     alignItems: 'center',
-    backgroundColor: '#fff',
     paddingTop: 60,
     paddingBottom: 60,
   }
@@ -64,3 +63,20 @@ export const allListsScreenStyles: AllListsScreenStyle = StyleSheet.create<AllLi
     marginBottom: 10
   }
 })
+
+export const listDetailScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
+  title: {
+    fontSize: 20,
+    fontWeight: '800',
+    fontFamily: 'Avenir-Oblique'
+  },
+  titleContainer: {
+    height: 60,
+    justifyContent: 'center',
+  },
+  container: {
+    gap: 30,
+    alignItems: 'center',
+    paddingTop: 16,
+  }
+});
