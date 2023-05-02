@@ -7,12 +7,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCheckForLogOut } from "../hooks/useCheckForLogOut";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/types";
+import { HomeStackParamList } from "../types/types";
 
 export default function DashboardScreen() {
 
   const { user, setUser } = useUserContext();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
   useCheckForLogOut();
 

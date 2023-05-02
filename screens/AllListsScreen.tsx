@@ -6,14 +6,14 @@ import PrimaryButton from "../components/PrimaryButton";
 import { createList } from "../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { List, RootStackParamList } from "../types/types";
+import { List, ListStackParamList } from "../types/types";
 import ListLink from "../components/ListLink";
 import { allListsScreenStyles as styles } from "../styles/screens";
 
 export default function AllListsScreen() {
 
   const { lists, errorMessage, setErrorMessage, loading } = useAllLists();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<ListStackParamList>>();
 
   useCheckForLogOut();
 
