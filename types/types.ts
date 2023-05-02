@@ -3,9 +3,6 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
-  Lists: undefined;
-  Recipes: undefined;
-  ListDetail: { listId: string, type: 'new' | 'existing' };
 };
 
 export type DatabaseErrorResponse = {
