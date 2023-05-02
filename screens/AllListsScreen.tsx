@@ -1,13 +1,14 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { FlatList, ListRenderItemInfo, Text, View } from "react-native";
 import { useAllLists } from "../hooks/useAllLists";
 import { useCheckForLogOut } from "../hooks/useCheckForLogOut";
 import PrimaryButton from "../components/PrimaryButton";
 import { createList } from "../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/types";
+import { List, RootStackParamList } from "../types/types";
 import BackButton from "../components/BackButton";
+import ListLink from "../components/ListLink";
 
 export default function AllListsScreen() {
 
@@ -20,7 +21,9 @@ export default function AllListsScreen() {
     const newListRes = await createList();
     if (newListRes.success) {
       navigation.navigate('ListDetail', 
-        { list: { ...newListRes.list, items: [] } });
+        { list: { ...newListRes.list, items: [] },
+          type: 'new' 
+        });
     }
     else {
       setErrorMessage(`ERR CODE ${newListRes.status}: ${newListRes.message}`);
@@ -46,9 +49,14 @@ export default function AllListsScreen() {
       {lists.length > 0 &&
       <>
         <Text>Previous lists</Text>
-        {lists.map(list => {
-          return <Text key={list.id}>{list.id}</Text>
-        })}
+        <FlatList 
+          data={lists} 
+          renderItem={({ item: list }: ListRenderItemInfo<List>) => (
+            <ListLink 
+              list={list}
+            />)}
+          keyExtractor={(list: List) => list.id}
+        />
       </>
       }
     </View>

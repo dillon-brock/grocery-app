@@ -5,7 +5,7 @@ export type RootStackParamList = {
   Home: undefined;
   Lists: undefined;
   Recipes: undefined;
-  ListDetail: { list: ListWithItems };
+  ListDetail: { list: ListWithItems, type: 'new' | 'existing' };
 };
 
 export type DatabaseErrorResponse = {
@@ -51,10 +51,4 @@ export type ListItem = {
 
 export interface ListWithItems extends List {
   items: ListItem[];
-}
-
-export type RouteParamList = {
-  ListDetail: {
-    list: List
-  }
 }
