@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, Text } from "react-native";
-import styles from '../styles/menuItem';
+import styles from '../../styles/menuItem';
 
 type Props = {
   text: string;

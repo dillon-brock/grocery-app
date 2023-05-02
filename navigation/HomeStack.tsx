@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardScreen from '../screens/DashboardScreen';
 import ListStack from './ListStack';
-import HeaderNoBackButton from '../components/HeaderNoBackButton';
+import HeaderNoBackButton from '../components/header/HeaderNoBackButton';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../types/types';
 

@@ -5,7 +5,7 @@ import { ListStackParamList } from "../types/types";
 import { useList } from "../hooks/useList";
 import { listDetailScreenStyles as styles } from "../styles/screens";
 import { useMenuContext } from "../context/MenuContext";
-import Menu from "../components/Menu";
+import Menu from "../components/menu/Menu";
 
 export default function ListDetailScreen() {
 

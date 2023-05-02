@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { useAllLists } from "../hooks/useAllLists";
 import { useCheckForLogOut } from "../hooks/useCheckForLogOut";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/buttons/PrimaryButton";
 import { createList } from "../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -10,7 +10,7 @@ import { List, ListStackParamList } from "../types/types";
 import ListLink from "../components/ListLink";
 import { allListsScreenStyles as styles } from "../styles/screens";
 import { useMenuContext } from "../context/MenuContext";
-import Menu from "../components/Menu";
+import Menu from "../components/menu/Menu";
 
 export default function AllListsScreen() {
 
