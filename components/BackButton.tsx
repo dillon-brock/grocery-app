@@ -1,8 +1,9 @@
 import React from "react"
-import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/types";
+import { Pressable } from "react-native";
 
 export default function BackButton() {
 
@@ -13,10 +14,11 @@ export default function BackButton() {
   }
 
   return (
-      <AntDesign.Button 
-        name="back"
-        onPressOut={handleGoBack}
-        style={{ width: 50 }}
+    <Pressable onPressOut={handleGoBack}>
+      <Ionicons
+        name="arrow-back-outline"
+        size={30}
       />
+    </Pressable>
   )
 }

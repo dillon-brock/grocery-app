@@ -29,8 +29,8 @@ export default function AllListsScreen() {
 
   return (
     <View>
-      <Text>Your Lists</Text>
       <BackButton />
+      <Text>Your Lists</Text>
       {lists.length == 0 &&
         <Text>You do not have any lists yet!</Text>
       }
