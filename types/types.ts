@@ -1,3 +1,5 @@
+import { TextStyle, ViewStyle } from "react-native";
+
 export type RootStackParamList = {
   Entry: undefined;
   Login: undefined;
@@ -13,6 +15,12 @@ export type HomeStackParamList = {
 export type ListStackParamList = {
   Lists: undefined;
   ListDetail: { listId: string, type: 'new' | 'existing' }
+}
+
+export interface CommonScreenStyle  {
+  title: TextStyle;
+  container: ViewStyle;
+  titleContainer: ViewStyle;
 }
 
 export type DatabaseErrorResponse = {

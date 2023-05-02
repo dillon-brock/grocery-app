@@ -1,5 +1,10 @@
-import { StyleSheet } from "react-native";
-import { HeaderStyle } from "../../types/styles";
+import { StyleSheet, ViewStyle } from "react-native";
+
+export type HeaderStyle = {
+  header: ViewStyle;
+  headerWithBackButton: ViewStyle;
+  headerNoBackButton: ViewStyle;
+}
 
 export default StyleSheet.create<HeaderStyle>({
   header: {

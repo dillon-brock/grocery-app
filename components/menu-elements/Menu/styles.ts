@@ -1,5 +1,9 @@
-import { StyleSheet } from "react-native";
-import { MenuStyle } from "../../../types/styles";
+import { StyleSheet, ViewStyle } from "react-native";
+
+export type MenuStyle = {
+  container: ViewStyle;
+  menu: ViewStyle;
+}
 
 export default StyleSheet.create<MenuStyle>({
   container: {

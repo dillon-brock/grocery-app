@@ -1,6 +1,9 @@
-import { StyleSheet } from "react-native";
-import { AuthFormStyle } from "../../../types/styles";
+import { StyleSheet, ViewStyle } from "react-native";
 
+type AuthFormStyle = {
+  container: ViewStyle;
+  buttonContainer: ViewStyle
+}
 
 export default StyleSheet.create<AuthFormStyle>({
   container: {

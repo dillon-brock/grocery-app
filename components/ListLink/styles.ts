@@ -1,5 +1,10 @@
-import { StyleSheet } from "react-native";
-import { ListLinkStyle } from "../../types/styles";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+
+export type ListLinkStyle = {
+  container: ViewStyle;
+  title: TextStyle;
+  icon: TextStyle;
+}
 
 export default StyleSheet.create<ListLinkStyle>({
   container: {

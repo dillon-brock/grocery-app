@@ -2,12 +2,12 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from "react-native";
-import { RootStackParamList } from '../types/types';
-import PrimaryButton from '../components/buttons/PrimaryButton/PrimaryButton';
-import { loginScreenStyles as styles } from '../styles/screens';
-import SignInForm from '../components/forms/SignInForm/SignInForm';
-import { useUserContext } from '../context/UserContext';
-import { getUser, signIn } from '../services/auth/auth';
+import { RootStackParamList } from '../../types/types';
+import PrimaryButton from '../../components/buttons/PrimaryButton/PrimaryButton';
+import styles from './styles';
+import SignInForm from '../../components/forms/SignInForm/SignInForm';
+import { useUserContext } from '../../context/UserContext';
+import { getUser, signIn } from '../../services/auth/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LogInScreen() {

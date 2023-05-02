@@ -1,11 +1,11 @@
 import React from "react";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { Text, View } from "react-native";
-import { ListStackParamList } from "../types/types";
-import { useList } from "../hooks/useList";
-import { listDetailScreenStyles as styles } from "../styles/screens";
-import { useMenuContext } from "../context/MenuContext";
-import Menu from "../components/menu-elements/Menu/Menu";
+import { ListStackParamList } from "../../types/types";
+import { useList } from "../../hooks/useList";
+import styles from './styles';
+import { useMenuContext } from "../../context/MenuContext";
+import Menu from "../../components/menu-elements/Menu/Menu";
 
 export default function ListDetailScreen() {
 

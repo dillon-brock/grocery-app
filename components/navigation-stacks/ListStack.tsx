@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AllListsScreen from "../../screens/AllListsScreen";
-import ListDetailScreen from "../../screens/ListDetailScreen";
+import AllListsScreen from "../../screens/AllListsScreen/AllListsScreen";
+import ListDetailScreen from "../../screens/ListDetailScreen/ListDetailScreen";
 import HeaderWithBackButton from "../headers/HeaderWithBackButton/HeaderWithBackButton";
 import { ListStackParamList } from "../../types/types";
 
