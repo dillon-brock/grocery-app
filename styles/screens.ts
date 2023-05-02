@@ -40,7 +40,3 @@ export const signUpScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScr
   ...commonScreenStyles
 });
 
-export const listScreenStyle: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
-  ...commonScreenStyles
-});
-

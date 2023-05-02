@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { List } from "../types/types";
+import { DatabaseErrorResponse, List } from "../types/types";
 import { getLists } from "../services/lists/lists";
+import { useIsFocused } from "@react-navigation/native";
+import { AllListsResponse } from "../services/lists/types";
 
 export function useAllLists()  {
-
+  
+  const isFocused: boolean = useIsFocused();
   const [lists, setLists] = useState<List[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -11,7 +14,7 @@ export function useAllLists()  {
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const listsData = await getLists();
+        const listsData: AllListsResponse | DatabaseErrorResponse = await getLists();
         if (listsData.success) {
           setLists(listsData.lists);
         } 
@@ -25,7 +28,7 @@ export function useAllLists()  {
       }
     };
     fetchLists();
-  }, []);
+  }, [isFocused]);
 
   return { lists, loading, errorMessage, setErrorMessage };
 }

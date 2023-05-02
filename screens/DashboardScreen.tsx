@@ -5,10 +5,14 @@ import { dashboardScreenStyles as styles } from '../styles/screens'
 import { useUserContext } from "../context/UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCheckForLogOut } from "../hooks/useCheckForLogOut";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types/types";
 
 export default function DashboardScreen() {
 
   const { user, setUser } = useUserContext();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useCheckForLogOut();
 
@@ -24,7 +28,9 @@ export default function DashboardScreen() {
       <Text style={styles.title}>Dashboard</Text>
       <View style={styles.buttonContainer}>
         <PrimaryButton text="My Recipes" />
-        <PrimaryButton text="My List" />
+        <PrimaryButton 
+          text="My Lists"
+          handlePress={() => navigation.navigate('Lists')} />
       </View>
     </View>
   );

@@ -7,6 +7,7 @@ import { createList } from "../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/types";
+import BackButton from "../components/BackButton";
 
 export default function AllListsScreen() {
 
@@ -29,6 +30,7 @@ export default function AllListsScreen() {
   return (
     <View>
       <Text>Your Lists</Text>
+      <BackButton />
       {lists.length == 0 &&
         <Text>You do not have any lists yet!</Text>
       }
@@ -41,6 +43,14 @@ export default function AllListsScreen() {
       <PrimaryButton 
         text="Start Shopping"
         handlePress={handleNewList} />
+      {lists.length > 0 &&
+      <>
+        <Text>Previous lists</Text>
+        {lists.map(list => {
+          return <Text key={list.id}>{list.id}</Text>
+        })}
+      </>
+      }
     </View>
   );
 }
