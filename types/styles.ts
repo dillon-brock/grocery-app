@@ -31,4 +31,6 @@ export type PrimaryButtonStyle = {
 
 export type HeaderStyle = {
   header: ViewStyle;
+  headerWithBackButton: ViewStyle;
+  headerNoBackButton: ViewStyle;
 }

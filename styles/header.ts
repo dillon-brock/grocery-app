@@ -4,7 +4,6 @@ import { HeaderStyle } from "../types/styles";
 export default StyleSheet.create<HeaderStyle>({
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'light gray',
     zIndex: 100,
@@ -13,11 +12,16 @@ export default StyleSheet.create<HeaderStyle>({
     right: 0,
     elevation: 0,
     shadowOpacity: 0,
-    borderBottomWidth: 0,
-    paddingTop: 50,
+    borderBottomWidth: 2,
+    paddingTop: 60,
     paddingBottom: 20,
     paddingLeft: 20,
-    paddingRight: 20,
-    marginBottom: 30
+    paddingRight: 20
+  },
+  headerWithBackButton: {
+    justifyContent: 'space-between',
+  },
+  headerNoBackButton: {
+    justifyContent: 'flex-end'
   }
 });

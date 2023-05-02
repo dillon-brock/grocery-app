@@ -8,6 +8,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 import AllListsScreen from "../screens/AllListsScreen";
 import ListDetailScreen from "../screens/ListDetailScreen";
 import HeaderWithBackButton from "../components/HeaderWithBackButton";
+import HeaderNoBackButton from "../components/HeaderNoBackButton";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,6 +33,9 @@ export default function RootStack() {
         component={SignUpScreen}
       />
       <Stack.Screen
+        options={{
+          header: () => <HeaderNoBackButton />
+        }}
         name="Home"
         component={DashboardScreen}
       />
