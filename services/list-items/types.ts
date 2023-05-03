@@ -6,6 +6,12 @@ export type NewListItemData = {
   quantity: number;
 }
 
-export interface AddListItemResponse extends SuccessfulResponse {
+export interface ListItemResponse extends SuccessfulResponse {
   item: ListItem;
+}
+
+export type UpdateListItemData = {
+  item?: string;
+  bought?: boolean;
+  quantity?: number;
 }
