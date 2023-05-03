@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Pressable, Text } from "react-native";
-import { PrimaryButtonProps } from "../../../types/props";
+import { PrimaryButtonProps } from "../../types/props";
 import styles from './styles';
 
 export default function PrimaryButton({ text, handlePress }: PrimaryButtonProps) {

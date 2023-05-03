@@ -2,7 +2,7 @@ import React from "react"
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../../types/types";
+import { RootStackParamList } from "../../types/types";
 import { Pressable } from "react-native";
 
 export default function BackButton() {
