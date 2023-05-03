@@ -7,6 +7,7 @@ import styles from './styles';
 import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu/Menu";
 import NewItemInput from "../../components/NewItemInput/NewItemInput";
+import ListItemDisplay from "../../components/ListItemDisplay/ListItemDisplay";
 
 export default function ListDetailScreen() {
 
@@ -33,7 +34,7 @@ export default function ListDetailScreen() {
           <Text>Loading...</Text>
         }
         {list.items?.map((item: ListItem) => (
-          <Text>{`${item.item}, ${item.quantity}`}</Text>
+          <ListItemDisplay key={item.id} { ...item } setList={setList} />
         ))}
         <NewItemInput listId={listId} setList={setList} />
       </View>
