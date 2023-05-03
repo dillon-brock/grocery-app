@@ -28,7 +28,7 @@ export default StyleSheet.create<MenuStyle>({
   closeButton: {
     position: "absolute",
     right: 20,
-    top: -20,
+    top: -28,
     fontWeight: '800'
   }
 })

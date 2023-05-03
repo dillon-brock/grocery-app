@@ -11,6 +11,7 @@ export default function Input({ placeholder, type, value, onChange }: InputProps
       secureTextEntry={type == 'password'}
       value={value}
       onChange={onChange}
+      keyboardType={type == 'number' ? 'numeric' : 'default'}
     />
   )
 }

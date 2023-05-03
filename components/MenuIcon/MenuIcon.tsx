@@ -1,7 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Pressable } from "react-native";
 import { useMenuContext } from "../../context/MenuContext";
+import IconButton from "../IconButton/IconButton";
 
 export default function MenuIcon() {
 
@@ -12,10 +11,8 @@ export default function MenuIcon() {
   }
 
   return (
-    <Pressable onPressOut={handleToggleMenu}>
-      <Ionicons 
-        name="ios-menu-outline"
-        size={30} />
-    </Pressable>
+    <IconButton 
+      name="ios-menu-outline" 
+      handlePress={handleToggleMenu} />
   )
 }

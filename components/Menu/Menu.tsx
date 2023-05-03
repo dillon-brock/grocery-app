@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import MenuItem from '../MenuItem/MenuItem';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../../types/types';
@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUserContext } from '../../context/UserContext';
 import styles from './styles';
 import { useMenuContext } from '../../context/MenuContext';
-import { Ionicons } from '@expo/vector-icons';
+import IconButton from '../IconButton/IconButton';
 
 export default function Menu() {
 
@@ -38,9 +38,10 @@ export default function Menu() {
     {menuOpen &&
       <View style={styles.container}>
         <View style={styles.menu}>
-          <Pressable style={styles.closeButton} onPressOut={() => setMenuOpen(false)}>
-            <Ionicons name="close-outline" size={30} />
-          </Pressable>
+          <IconButton
+            style={styles.closeButton}
+            name="close-outline" 
+            handlePress={() => setMenuOpen(false)} />
           <MenuItem 
             text="Home" 
             handlePress={handleGoHome}
