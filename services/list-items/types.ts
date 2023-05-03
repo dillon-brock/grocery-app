@@ -3,7 +3,7 @@ import { ListItem, SuccessfulResponse } from "../../types/types";
 export type NewListItemData = {
   listId: string;
   item: string;
-  quantity: number;
+  quantity: number | null;
 }
 
 export interface ListItemResponse extends SuccessfulResponse {
