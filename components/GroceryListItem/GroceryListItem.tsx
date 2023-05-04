@@ -11,7 +11,7 @@ type Props = {
   setList: Dispatch<SetStateAction<ListWithItems>>;
 }
 
-export default function ListItemDisplay({ id, item, quantity, bought, setList }: Props) {
+export default function GroceryListItem({ id, item, quantity, bought, setList }: Props) {
 
   const handleDeleteItem = async (): Promise<void> => {
     await deleteItem(id);

@@ -1,13 +1,13 @@
 import React from "react";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { Text, View } from "react-native";
-import { ListItem, ListStackParamList } from "../../types/types";
+import { ListStackParamList } from "../../types/types";
 import { useList } from "../../hooks/useList";
 import styles from './styles';
 import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu/Menu";
 import NewItemInput from "../../components/NewItemInput/NewItemInput";
-import ListItemDisplay from "../../components/ListItemDisplay/ListItemDisplay";
+import GroceryList from "../../components/GroceryList/GroceryList";
 
 export default function ListDetailScreen() {
 
@@ -33,9 +33,7 @@ export default function ListDetailScreen() {
         {loading &&
           <Text>Loading...</Text>
         }
-        {list.items?.map((item: ListItem) => (
-          <ListItemDisplay key={item.id} { ...item } setList={setList} />
-        ))}
+        <GroceryList listItems={list.items} setList={setList} />
         <NewItemInput listId={listId} setList={setList} />
       </View>
     </>
