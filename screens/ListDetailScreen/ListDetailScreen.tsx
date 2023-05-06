@@ -6,7 +6,6 @@ import { useList } from "../../hooks/useList";
 import styles from './styles';
 import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu/Menu";
-import NewItemInput from "../../components/NewItemInput/NewItemInput";
 import GroceryList from "../../components/GroceryList/GroceryList";
 
 export default function ListDetailScreen() {

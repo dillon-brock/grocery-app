@@ -32,13 +32,16 @@ export default function NewItemInput({ listId, setList, categoryId }: Props) {
           ...category, 
           items: [ 
             ...category.items, 
-            addItemRes.item 
+            addItemRes.listItem 
           ]
         }
 
         return { 
           ...prev,
-          updatedCategory
+          categories: [
+            ...prev.categories.filter(c => c.id != categoryId),
+            updatedCategory
+          ]
         }
       });
       setItem('');

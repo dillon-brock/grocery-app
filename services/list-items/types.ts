@@ -8,7 +8,7 @@ export type NewListItemData = {
 }
 
 export interface ListItemResponse extends SuccessfulResponse {
-  item: ListItem;
+  listItem: ListItem;
 }
 
 export type UpdateListItemData = {

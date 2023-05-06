@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { View } from "react-native";
 import { CategoryInList, ListWithDetail } from "../../types/types";
 import ListCategorySection from "../ListCategorySection/ListCategorySection";
+import { ScrollView } from "react-native-gesture-handler";
 
 type Props = {
   list: ListWithDetail;
@@ -11,8 +11,13 @@ type Props = {
 export default function GroceryList({ list, setList }: Props) {
 
   return (
-    <View>
-      {list.categories.map((category: CategoryInList) => <ListCategorySection { ...category } setList={setList} />)}
-    </View>
+    <ScrollView>
+      {list.categories
+      .sort((a, b) => (a.name > b.name) ? 1 : -1)
+      .map((category: CategoryInList) => (
+        <ListCategorySection key={category.id} { ...category } 
+        setList={setList} listId={list.id} />
+      ))}
+    </ScrollView>
   )
 }

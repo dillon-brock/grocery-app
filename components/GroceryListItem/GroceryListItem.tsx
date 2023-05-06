@@ -18,16 +18,18 @@ export default function GroceryListItem({ id, item, quantity, bought, categoryId
     await deleteItem(id);
     setList((prev: ListWithDetail) => {
       const category = prev.categories.find(category => category.id == categoryId);
+      if (!category) return prev;
       const updatedCategory = {
         ...category,
         items: category?.items.filter(item => item.id != id)
       };
+      if (!updatedCategory) return prev;
       return {
       ...prev,
-      categories: { 
+      categories: [
         ...prev.categories.filter(category => category.id != categoryId),
         updatedCategory 
-      }
+      ]
     }});
   }
 
