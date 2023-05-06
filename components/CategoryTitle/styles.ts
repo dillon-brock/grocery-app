@@ -12,7 +12,7 @@ export default StyleSheet.create<CategoryTitleStyle>({
     alignItems: 'center'
   },
   textContainer: {
-    width: '90%',
+    width: '100%',
     borderTopWidth: 3,
     borderBottomWidth: 3,
     borderTopColor: 'black',

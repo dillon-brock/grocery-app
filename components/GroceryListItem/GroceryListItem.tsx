@@ -6,7 +6,7 @@ import { type ListItem, ListWithDetail } from "../../types/types";
 type Props = {
   id: string;
   item: string;
-  quantity: number | null;
+  quantity: string | null;
   bought: boolean;
   categoryId: string | null;
   setList: Dispatch<SetStateAction<ListWithDetail>>;

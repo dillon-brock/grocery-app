@@ -32,7 +32,7 @@ export default function ListDetailScreen() {
         {loading &&
           <Text>Loading...</Text>
         }
-        <GroceryList list={list} setList={setList} />
+        <GroceryList list={list} setList={setList} loading={loading} />
       </View>
     </>
   )
