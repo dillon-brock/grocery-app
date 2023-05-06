@@ -67,7 +67,7 @@ export type ListItem = {
 
 export interface CategoryInList {
   id: string;
-  listId: string;
+  name: string;
   items: ListItem[];
 }
 

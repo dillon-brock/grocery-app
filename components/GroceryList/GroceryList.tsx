@@ -1,24 +1,18 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { FlatList, View } from "react-native";
-import { ListItem, ListWithDetail } from "../../types/types";
-import GroceryListItem from "../GroceryListItem/GroceryListItem";
+import { View } from "react-native";
+import { CategoryInList, ListWithDetail } from "../../types/types";
+import ListCategorySection from "../ListCategorySection/ListCategorySection";
 
 type Props = {
-  listItems: ListItem[];
+  list: ListWithDetail;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
 }
 
-export default function GroceryList({ listItems, setList }: Props) {
+export default function GroceryList({ list, setList }: Props) {
 
   return (
     <View>
-      <FlatList
-        data={listItems}
-        renderItem={({ item: listItem }: { item: ListItem }) => (
-          <GroceryListItem { ...listItem } setList={setList} />
-        )}
-        keyExtractor={item => item.id}
-      />
+      {list.categories.map((category: CategoryInList) => <ListCategorySection { ...category } setList={setList} />)}
     </View>
   )
 }

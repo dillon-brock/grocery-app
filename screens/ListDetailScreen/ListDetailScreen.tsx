@@ -33,8 +33,7 @@ export default function ListDetailScreen() {
         {loading &&
           <Text>Loading...</Text>
         }
-        <GroceryList listItems={list.items} setList={setList} />
-        <NewItemInput listId={listId} setList={setList} />
+        <GroceryList list={list} setList={setList} />
       </View>
     </>
   )
