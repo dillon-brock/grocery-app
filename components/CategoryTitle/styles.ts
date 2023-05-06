@@ -9,14 +9,9 @@ type CategoryTitleStyle = {
 export default StyleSheet.create<CategoryTitleStyle>({
   outerContainer: {
     justifyContent: 'center',
-    alignItems: 'center'
+
   },
   textContainer: {
-    width: '100%',
-    borderTopWidth: 3,
-    borderBottomWidth: 3,
-    borderTopColor: 'black',
-    borderBottomColor: 'black',
     paddingLeft: 15,
   },
   title: {

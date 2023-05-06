@@ -6,16 +6,17 @@ import glyphs from "@expo/vector-icons/build/vendor/react-native-vector-icons/gl
 type Props = {
   name: keyof typeof glyphs;
   handlePress: () => void;
-  style?: ViewStyle
+  style?: ViewStyle,
+  size?: number
 }
 
-export default function IconButton({ name, handlePress, style }: Props) {
+export default function IconButton({ name, handlePress, style, size }: Props) {
   return (
     <Pressable onPressOut={handlePress}>
       <Ionicons
         style={style || {}}
         name={name}
-        size={30}
+        size={size || 30}
       />
     </Pressable>
   )
