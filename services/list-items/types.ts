@@ -4,6 +4,7 @@ export type NewListItemData = {
   listId: string;
   item: string;
   quantity: number | null;
+  categoryId: string;
 }
 
 export interface ListItemResponse extends SuccessfulResponse {
@@ -14,4 +15,5 @@ export type UpdateListItemData = {
   item?: string;
   bought?: boolean;
   quantity?: number;
+  categoryId?: string;
 }

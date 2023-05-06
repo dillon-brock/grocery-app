@@ -7,10 +7,11 @@ import { ListWithDetail } from "../../types/types";
 
 type Props = {
   listId: string;
+  categoryId: string;
   setList: Dispatch<SetStateAction<ListWithDetail>>
 }
 
-export default function NewItemInput({ listId, setList }: Props) {
+export default function NewItemInput({ listId, setList, categoryId }: Props) {
 
   const [item, setItem] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
@@ -19,13 +20,27 @@ export default function NewItemInput({ listId, setList }: Props) {
     const addItemRes = await addItemToList({ 
       listId, 
       item, 
-      quantity: quantity > 0 ? quantity : null 
+      quantity: quantity > 0 ? quantity : null,
+      categoryId
     });
+
     if (addItemRes.success) {
-      setList((prev: ListWithDetail) => ({ 
-        ...prev, 
-        items: [...prev.items, addItemRes.item] 
-      }));
+      setList((prev: ListWithDetail) => {
+        const category = prev.categories.find(c => c.id == categoryId);
+        if (!category) return prev;
+        const updatedCategory = { 
+          ...category, 
+          items: [ 
+            ...category.items, 
+            addItemRes.item 
+          ]
+        }
+
+        return { 
+          ...prev,
+          updatedCategory
+        }
+      });
       setItem('');
       setQuantity(1);
     }

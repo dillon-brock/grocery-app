@@ -4,7 +4,7 @@ import { ListItemResponse, NewListItemData, UpdateListItemData } from "./types";
 import { API_URL } from "../constants";
 import { responseWithSuccessStatus } from "../../utils";
 
-export async function addItemToList({ listId, item, quantity }: NewListItemData): Promise<ListItemResponse | DatabaseErrorResponse> {
+export async function addItemToList({ listId, item, quantity, categoryId }: NewListItemData): Promise<ListItemResponse | DatabaseErrorResponse> {
   const token = await AsyncStorage.getItem('@token');
   const response = await fetch(`${API_URL}/list-items`, {
     method: 'POST',
@@ -17,7 +17,8 @@ export async function addItemToList({ listId, item, quantity }: NewListItemData)
     body: JSON.stringify({
       listId,
       item,
-      quantity
+      quantity,
+      categoryId
     })
   });
 
