@@ -1,36 +1,53 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Pressable, Text } from "react-native";
 import { deleteItem, updateItem } from "../../services/list-items/list-items";
-import { type ListItem, ListWithItems } from "../../types/types";
+import { type ListItem, ListWithDetail } from "../../types/types";
 
 type Props = {
   id: string;
   item: string;
   quantity: number | null;
   bought: boolean;
-  setList: Dispatch<SetStateAction<ListWithItems>>;
+  categoryId: string | null;
+  setList: Dispatch<SetStateAction<ListWithDetail>>;
 }
 
-export default function GroceryListItem({ id, item, quantity, bought, setList }: Props) {
+export default function GroceryListItem({ id, item, quantity, bought, categoryId, setList }: Props) {
 
   const handleDeleteItem = async (): Promise<void> => {
     await deleteItem(id);
-    setList((prev: ListWithItems) => ({
+    setList((prev: ListWithDetail) => {
+      const category = prev.categories.find(category => category.id == categoryId);
+      const updatedCategory = {
+        ...category,
+        items: category?.items.filter(item => item.id != id)
+      };
+      return {
       ...prev,
-      items: prev.items.filter((listItem: ListItem) => listItem.id != id)
-    }));
+      categories: { 
+        ...prev.categories.filter(category => category.id != categoryId),
+        updatedCategory 
+      }
+    }});
   }
 
   const handleToggleBought = async (): Promise<void> => {
     await updateItem(id, { bought: !bought });
-    setList((prev: ListWithItems): ListWithItems => {
-      const itemToBeUpdated = prev.items.find((i: ListItem) => i.id == id);
-      if (!itemToBeUpdated) return prev;
+    setList((prev: ListWithDetail): ListWithDetail => {
+      const category = prev.categories.find(category => category.id == categoryId);
+      const itemToBeUpdated = category?.items.find((i: ListItem) => i.id == id);
+      if (!itemToBeUpdated || !category) return prev;
+      const updatedCategory = { 
+        ...category, 
+        items: [
+          ...category.items.filter(i => i.id != id), 
+          { ...itemToBeUpdated, bought: !bought }
+        ]}
       return {
       ...prev,
-      items: [
-        ...prev.items.filter((i: ListItem) => i.id != id),
-        { ...itemToBeUpdated, bought: !bought }
+      categories: [
+        ...prev.categories.filter(c => c.id != categoryId),
+        updatedCategory
       ]
     }})
   }

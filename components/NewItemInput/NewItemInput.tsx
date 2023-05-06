@@ -3,11 +3,11 @@ import { View } from "react-native";
 import Input from "../Input/Input";
 import IconButton from "../IconButton/IconButton";
 import { addItemToList } from "../../services/list-items/list-items";
-import { ListWithItems } from "../../types/types";
+import { ListWithDetail } from "../../types/types";
 
 type Props = {
   listId: string;
-  setList: Dispatch<SetStateAction<ListWithItems>>
+  setList: Dispatch<SetStateAction<ListWithDetail>>
 }
 
 export default function NewItemInput({ listId, setList }: Props) {
@@ -22,7 +22,7 @@ export default function NewItemInput({ listId, setList }: Props) {
       quantity: quantity > 0 ? quantity : null 
     });
     if (addItemRes.success) {
-      setList((prev: ListWithItems) => ({ 
+      setList((prev: ListWithDetail) => ({ 
         ...prev, 
         items: [...prev.items, addItemRes.item] 
       }));

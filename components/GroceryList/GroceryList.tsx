@@ -1,11 +1,11 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { FlatList, View } from "react-native";
-import { ListItem, ListWithItems } from "../../types/types";
+import { ListItem, ListWithDetail } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
 
 type Props = {
   listItems: ListItem[];
-  setList: Dispatch<SetStateAction<ListWithItems>>;
+  setList: Dispatch<SetStateAction<ListWithDetail>>;
 }
 
 export default function GroceryList({ listItems, setList }: Props) {
