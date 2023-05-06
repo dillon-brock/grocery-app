@@ -62,8 +62,15 @@ export type ListItem = {
   listId: string;
   bought: boolean;
   quantity: number | null;
+  categoryId: string | null;
 }
 
-export interface ListWithItems extends List {
+export interface CategoryInList {
+  id: string;
+  name: string;
   items: ListItem[];
+}
+
+export interface ListWithDetail extends List {
+  categories: CategoryInList[];
 }

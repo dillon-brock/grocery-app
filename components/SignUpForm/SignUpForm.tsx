@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import Input from "../Input/Input";
 import styles from "./styles";
-import { SignUpFormProps } from "../../../types/props";
+import { SignUpFormProps } from "../../types/props";
 
 export default function SignUpForm({
   email, setEmail,

@@ -3,16 +3,17 @@ import React from 'react';
 import { View } from "react-native";
 import MenuItem from '../MenuItem/MenuItem';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../../../types/types';
+import { HomeStackParamList } from '../../types/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useUserContext } from '../../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 import styles from './styles';
-import { useMenuContext } from '../../../context/MenuContext';
+import { useMenuContext } from '../../context/MenuContext';
+import IconButton from '../IconButton/IconButton';
 
 export default function Menu() {
 
   const { setUser } = useUserContext();
-  const { setMenuOpen } = useMenuContext();
+  const { menuOpen, setMenuOpen } = useMenuContext();
 
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
@@ -33,21 +34,29 @@ export default function Menu() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.menu}>
-        <MenuItem 
-          text="Home" 
-          handlePress={handleGoHome}
-        />
-        <MenuItem
-          text="My Lists"
-          handlePress={handleGoToLists}
-        />
-        <MenuItem
-          text = "Log out"
-          handlePress={handleLogOut}
-        />
+    <>
+    {menuOpen &&
+      <View style={styles.container}>
+        <View style={styles.menu}>
+          <IconButton
+            style={styles.closeButton}
+            name="close-outline" 
+            handlePress={() => setMenuOpen(false)} />
+          <MenuItem 
+            text="Home" 
+            handlePress={handleGoHome}
+          />
+          <MenuItem
+            text="My Lists"
+            handlePress={handleGoToLists}
+          />
+          <MenuItem
+            text = "Log out"
+            handlePress={handleLogOut}
+          />
+        </View>
       </View>
-    </View>
-  )
+    }
+    </>
+    )
 }

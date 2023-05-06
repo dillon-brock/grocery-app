@@ -1,9 +1,8 @@
 import React from "react"
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../../types/types";
-import { Pressable } from "react-native";
+import { RootStackParamList } from "../../types/types";
+import IconButton from "../IconButton/IconButton";
 
 export default function BackButton() {
 
@@ -14,11 +13,8 @@ export default function BackButton() {
   }
 
   return (
-    <Pressable onPressOut={handleGoBack}>
-      <Ionicons
-        name="arrow-back-outline"
-        size={30}
-      />
-    </Pressable>
+    <IconButton 
+      name="arrow-back-outline"
+      handlePress={handleGoBack} />
   )
 }

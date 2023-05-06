@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import Input from "../Input/Input";
-import { SignInFormProps } from "../../../types/props";
+import { SignInFormProps } from "../../types/props";
 
 export default function SignInForm({
   email, setEmail,
