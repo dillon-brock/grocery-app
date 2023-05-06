@@ -3,6 +3,8 @@ import { TextInput, View } from "react-native";
 import IconButton from "../IconButton/IconButton";
 import { addItemToList } from "../../services/list-items/list-items";
 import { ListWithDetail } from "../../types/types";
+import styles from './styles';
+
 
 type Props = {
   listId: string;
@@ -49,20 +51,20 @@ export default function NewItemInput({ listId, setList, categoryId }: Props) {
   }
 
   return (
-    <View style={{ flexDirection: 'row', gap: 0, alignItems: 'center' }}>
-      <View style={{ width: '15%', borderRightColor: 'gray', borderRightWidth: 1, paddingLeft: 10 }}>
+    <View style={styles.container}>
+      <View style={styles.qtyContainer}>
         <TextInput 
           placeholder='amt' 
           value={quantity} 
           onChange={(e) => setQuantity(e.nativeEvent.text)}
-          style={{ width: '100%', borderWidth: 0 }} />
+          style={styles.input} />
       </View>
-      <View style={{ width: '70%', paddingLeft: 10 }}>
+      <View style={styles.itemContainer}>
       <TextInput 
           placeholder='item' 
           value={item} 
           onChange={(e) => setItem(e.nativeEvent.text)}
-          style={{ width: '100%', borderWidth: 0 }} />
+          style={styles.input} />
       </View>
       <View>
         <IconButton name="add-circle" handlePress={handleAddItem} size={32} />
