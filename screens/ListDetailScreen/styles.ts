@@ -8,11 +8,11 @@ export default StyleSheet.create<CommonScreenStyle>({
     fontFamily: 'Avenir-Oblique'
   },
   titleContainer: {
-    height: 60,
+    // height: 60,
     justifyContent: 'center',
   },
   container: {
-    gap: 30,
+    gap: 16,
     alignItems: 'center',
     paddingTop: 16,
   }

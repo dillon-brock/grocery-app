@@ -11,7 +11,7 @@ type Props = {
 export default function GroceryList({ list, setList }: Props) {
 
   return (
-    <ScrollView>
+    <ScrollView style={{ width: '100%' }}>
       {list.categories
       .sort((a, b) => (a.name > b.name) ? 1 : -1)
       .map((category: CategoryInList) => (

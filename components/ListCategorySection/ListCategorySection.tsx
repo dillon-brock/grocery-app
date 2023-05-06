@@ -1,8 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { ListItem, ListWithDetail } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
+import CategoryTitle from "../CategoryTitle/CategoryTitle";
 
 type Props = {
   id: string;
@@ -16,7 +17,7 @@ export default function ListCategorySection({ id, name, items, listId, setList }
 
   return (
     <View>
-      <Text>{name}</Text>
+      <CategoryTitle name={name} />
       {items.map(item => (
         <GroceryListItem key={item.id} { ...item } setList={setList} />
       ))}
