@@ -16,7 +16,8 @@ export default StyleSheet.create<CategoryTitleStyle>({
   },
   title: {
     fontFamily: 'AvenirNextCondensed-Bold',
-    fontSize: 28,
+    fontSize: 22,
+    color: '#4A757E',
     textAlign: 'left'
   }
 })
