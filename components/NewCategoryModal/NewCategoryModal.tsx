@@ -51,13 +51,16 @@ export default function NewCategoryModal({ visible, setVisible, listId, setList 
               type="text" 
               placeholder="Name"
               onChange={(e) => setCategoryName(e.nativeEvent.text)} />
-            <View>
+            <View style={styles.buttonsContainer}>
               <Pressable
+                style={[styles.button, styles.cancelButton]}
                 onPress={() => setVisible(!visible)}>
-                <Text>Cancel</Text>
+                <Text style={[styles.buttonText, styles.cancelButtonText]}>CANCEL</Text>
               </Pressable>
-              <Pressable onPress={handleAddCategory}>
-                <Text>Add</Text>
+              <Pressable 
+              style={[styles.button, styles.addButton]}
+              onPress={handleAddCategory}>
+                <Text style={[styles.buttonText, styles.addButtonText]}>ADD</Text>
               </Pressable>
             </View>
           </View>

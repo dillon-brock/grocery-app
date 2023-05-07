@@ -1,6 +1,18 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-export default StyleSheet.create({
+type NewCategoryModalStyle = {
+  centeredView: ViewStyle;
+  modalView: ViewStyle;
+  buttonsContainer: ViewStyle;
+  button: ViewStyle;
+  addButton: ViewStyle;
+  cancelButton: ViewStyle;
+  buttonText: TextStyle;
+  addButtonText: TextStyle;
+  cancelButtonText: TextStyle;
+}
+
+export default StyleSheet.create<NewCategoryModalStyle>({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -24,7 +36,34 @@ export default StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  modalTitle: {
-
+  buttonsContainer: {
+    flexDirection: 'row',
+    marginTop: 4,
+    gap: 40,
+    justifyContent: 'space-between'
+  },
+  button: {
+    borderRadius: 8,
+    borderWidth: 2,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderColor: '#E16A64',
+  },
+  buttonText: {
+    fontWeight: '800'
+  },
+  cancelButton: {
+    backgroundColor: 'transparent',
+  },
+  addButton: {
+    backgroundColor: '#E16A64',
+  },
+  cancelButtonText: {
+    color: '#E16A64'
+  },
+  addButtonText: {
+    color: '#F8EBD5'
   }
 })
