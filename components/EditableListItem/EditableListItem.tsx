@@ -3,7 +3,8 @@ import { View } from "react-native";
 import styles from './styles';
 import { TextInput } from "react-native-gesture-handler";
 import { updateItem } from "../../services/list-items/list-items";
-import { ListItem, ListWithDetail } from "../../types/types";
+import { ListWithDetail } from "../../types/types";
+import { updateItemInState } from "../../utils";
 
 type Props = {
   id: string;
@@ -22,24 +23,15 @@ export default function EditableListItem({ id, quantity, item, categoryId, setLi
     const updateRes = await updateItem(id, { quantity: currentQuantity });
     if (updateRes.success) {
       setList(prev => {
-        const category = prev.categories.find(c => c.id == categoryId);
-        const itemToBeUpdated = category?.items.find(item => item.id == id);
-        if (!itemToBeUpdated || !category) return prev;
-        const updatedItem: ListItem = { ...itemToBeUpdated, quantity: currentQuantity };
-        const updatedCategory = {
-          ...category,
-          items: [
-            ...category.items.filter(item => item.id != id),
-            updatedItem
-          ]
-        }
-        return {
-          ...prev,
-          categories: [
-            ...prev.categories.filter(c => c.id != categoryId),
-            updatedCategory
-          ]
-        };
+        const newListState = updateItemInState({
+          prev,
+          categoryId,
+          itemId: id,
+          prop: 'quantity',
+          val: currentQuantity || null
+        });
+        
+        return newListState;
       })
     }
   }
@@ -48,24 +40,15 @@ export default function EditableListItem({ id, quantity, item, categoryId, setLi
     const updateRes = await updateItem(id, { item: currentItem });
     if (updateRes.success) {
       setList(prev => {
-        const category = prev.categories.find(c => c.id == categoryId);
-        const itemToBeUpdated = category?.items.find(item => item.id == id);
-        if (!itemToBeUpdated || !category) return prev;
-        const updatedItem: ListItem = { ...itemToBeUpdated, item: currentItem };
-        const updatedCategory = {
-          ...category,
-          items: [
-            ...category.items.filter(item => item.id != id),
-            updatedItem
-          ]
-        }
-        return {
-          ...prev,
-          categories: [
-            ...prev.categories.filter(c => c.id != categoryId),
-            updatedCategory
-          ]
-        };
+        const newListState = updateItemInState({
+          prev,
+          categoryId,
+          itemId: id,
+          prop: 'item',
+          val: currentItem
+        });
+
+        return newListState;
       })
     }
   }

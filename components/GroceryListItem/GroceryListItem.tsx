@@ -39,8 +39,11 @@ export default function GroceryListItem({ id, item, quantity, bought, categoryId
     setList((prev: ListWithDetail): ListWithDetail => {
 
       const newListState = updateItemInState({ 
-        prev, categoryId, itemId: id, 
-        prop: 'bought', val: !bought
+        prev, 
+        categoryId, 
+        itemId: id, 
+        prop: 'bought', 
+        val: !bought
       });
 
       return newListState;
