@@ -1,8 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { deleteItem, updateItem } from "../../services/list-items/list-items";
 import { type ListWithDetail } from "../../types/types";
 import { updateItemInState } from "../../utils";
+import styles from './styles';
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
   id: string;
@@ -51,8 +53,13 @@ export default function GroceryListItem({ id, item, quantity, bought, categoryId
   }
 
   return (
-    <Pressable onLongPress={handleDeleteItem} onPress={handleToggleBought}>
-      <Text>{`${quantity}   ${item}: ${bought}`}</Text>
+    <Pressable onLongPress={handleDeleteItem} onPress={handleToggleBought} style={styles.container}>
+      <View style={styles.checkmarkContainer}>
+        {bought &&
+          <Ionicons name="checkmark-circle-outline" size={18} />
+        }
+      </View>
+      <Text style={styles.text}>{`${quantity} ${item}`}</Text>
     </Pressable>
   )
 }
