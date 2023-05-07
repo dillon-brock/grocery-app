@@ -4,6 +4,7 @@ import { ListItem, ListWithDetail } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import CategoryTitle from "../CategoryTitle/CategoryTitle";
+import EditableListItem from "../EditableListItem/EditableListItem";
 
 type Props = {
   id: string;
@@ -11,16 +12,23 @@ type Props = {
   items: ListItem[];
   listId: string;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
+  editable: boolean;
 }
 
-export default function ListCategorySection({ id, name, items, listId, setList }: Props) {
+export default function ListCategorySection({ id, name, items, listId, setList, editable }: Props) {
 
   return (
     <View>
       <CategoryTitle name={name} />
-      {items.map(item => (
-        <GroceryListItem key={item.id} { ...item } setList={setList} />
-      ))}
+      {items.map(item => {
+        if (editable) {
+          return (
+            <EditableListItem key={item.id} 
+            { ...item } setList={setList} />
+          );
+        }
+        return <GroceryListItem key={item.id} { ...item } setList={setList} />
+      })}
       <NewItemInput categoryId={id} setList={setList} listId={listId} />
     </View>
   )

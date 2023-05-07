@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Text, View } from "react-native";
+import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 import { ListStackParamList } from "../../types/types";
 import { useList } from "../../hooks/useList";
 import styles from './styles';
@@ -25,23 +25,25 @@ export default function ListDetailScreen() {
       <View style={{ position: 'absolute', top: 16, right: 30, zIndex: 1 }}>
         <IconButton 
           name={editable ? 'lock-closed' : 'lock-open'} 
-          handlePress={() => {setEditable(prev => !prev); console.log('pressed')}} 
+          handlePress={() => setEditable(prev => !prev)} 
           />
       </View>
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>
-              {list.title ? list.title : placeholderTitle}
-          </Text>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.container}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>
+                {list.title ? list.title : placeholderTitle}
+            </Text>
+          </View>
+          {errorMessage &&
+            <Text>{errorMessage}</Text>
+          }
+          {loading &&
+            <Text>Loading...</Text>
+          }
+          <GroceryList list={list} setList={setList} loading={loading} editable={editable} />
         </View>
-        {errorMessage &&
-          <Text>{errorMessage}</Text>
-        }
-        {loading &&
-          <Text>Loading...</Text>
-        }
-        <GroceryList list={list} setList={setList} loading={loading} />
-      </View>
+      </TouchableWithoutFeedback>
     </>
   )
 }

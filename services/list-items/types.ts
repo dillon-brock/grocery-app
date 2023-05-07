@@ -14,6 +14,6 @@ export interface ListItemResponse extends SuccessfulResponse {
 export type UpdateListItemData = {
   item?: string;
   bought?: boolean;
-  quantity?: number;
+  quantity?: string;
   categoryId?: string;
 }

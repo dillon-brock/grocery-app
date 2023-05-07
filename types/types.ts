@@ -62,7 +62,7 @@ export type ListItem = {
   listId: string;
   bought: boolean;
   quantity: string | null;
-  categoryId: string | null;
+  categoryId: string;
 }
 
 export interface CategoryInList {
