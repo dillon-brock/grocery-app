@@ -44,6 +44,32 @@ export default function EditableListItem({ id, quantity, item, categoryId, setLi
     }
   }
 
+  const handleUpdateItem = async () => {
+    const updateRes = await updateItem(id, { item: currentItem });
+    if (updateRes.success) {
+      setList(prev => {
+        const category = prev.categories.find(c => c.id == categoryId);
+        const itemToBeUpdated = category?.items.find(item => item.id == id);
+        if (!itemToBeUpdated || !category) return prev;
+        const updatedItem: ListItem = { ...itemToBeUpdated, item: currentItem };
+        const updatedCategory = {
+          ...category,
+          items: [
+            ...category.items.filter(item => item.id != id),
+            updatedItem
+          ]
+        }
+        return {
+          ...prev,
+          categories: [
+            ...prev.categories.filter(c => c.id != categoryId),
+            updatedCategory
+          ]
+        };
+      })
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.qtyContainer}>
@@ -58,6 +84,7 @@ export default function EditableListItem({ id, quantity, item, categoryId, setLi
       <TextInput 
           value={currentItem} 
           onChange={(e) => setCurrentItem(e.nativeEvent.text)}
+          onBlur={handleUpdateItem}
           style={styles.input} />
       </View>
     </View>
