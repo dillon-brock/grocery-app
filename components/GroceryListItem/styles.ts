@@ -1,6 +1,12 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-export default StyleSheet.create({
+type ListItemStyle = {
+  container: ViewStyle;
+  checkmarkContainer: ViewStyle;
+  text: TextStyle;
+}
+
+export default StyleSheet.create<ListItemStyle>({
   container: {
     flexDirection: 'row',
     paddingLeft: 10,
