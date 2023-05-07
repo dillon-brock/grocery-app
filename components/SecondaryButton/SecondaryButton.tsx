@@ -21,7 +21,7 @@ export default function SecondaryButton({ text, handlePress }: Props) {
         onPressOut={() => setPressed(false)}
         onPress={handlePress}
       >
-        <Text style={{ ...styles.buttonText, color: pressed ? 'transparent' : '#E16A64' }}>
+        <Text style={{ ...styles.buttonText, color: pressed ? 'rgb(243, 207, 198)' : '#E16A64' }}>
           {text}
         </Text>
       </Pressable>

@@ -8,6 +8,8 @@ import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu/Menu";
 import GroceryList from "../../components/GroceryList/GroceryList";
 import IconButton from "../../components/IconButton/IconButton";
+import SecondaryButton from "../../components/SecondaryButton/SecondaryButton";
+import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal";
 
 export default function ListDetailScreen() {
 
@@ -15,9 +17,14 @@ export default function ListDetailScreen() {
   const { menuOpen } = useMenuContext();
   const { list, setList, loading, errorMessage } = useList(listId);
   const [editable, setEditable] = useState<boolean>(false);
+  const [userWantsToAddCategory, setUserWantsToAddCategory] = useState<boolean>(false);
   const dateCreated = new Date(list.createdAt).toDateString();
 
   const placeholderTitle = type == 'new' ? 'New List' : dateCreated;
+
+  const handleAddCategory = () => {
+    setUserWantsToAddCategory(true);
+  }
 
   return (
     <>
@@ -42,6 +49,12 @@ export default function ListDetailScreen() {
             <Text>Loading...</Text>
           }
           <GroceryList list={list} setList={setList} loading={loading} editable={editable} />
+          <SecondaryButton text='+ ADD CATEGORY' handlePress={handleAddCategory}/>
+          <NewCategoryModal 
+            visible={userWantsToAddCategory} 
+            setVisible={setUserWantsToAddCategory}
+            setList={setList}
+            />
         </View>
       </TouchableWithoutFeedback>
     </>
