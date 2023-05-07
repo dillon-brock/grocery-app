@@ -3,7 +3,7 @@ import { ListItem, SuccessfulResponse } from "../../types/types";
 export type NewListItemData = {
   listId: string;
   item: string;
-  quantity: number | null;
+  quantity: string | null;
   categoryId: string;
 }
 
@@ -14,6 +14,6 @@ export interface ListItemResponse extends SuccessfulResponse {
 export type UpdateListItemData = {
   item?: string;
   bought?: boolean;
-  quantity?: number;
+  quantity?: string;
   categoryId?: string;
 }

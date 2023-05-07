@@ -5,15 +5,17 @@ export default StyleSheet.create<CommonScreenStyle>({
   title: {
     fontSize: 20,
     fontWeight: '800',
-    fontFamily: 'Avenir-Oblique'
+    fontFamily: 'Avenir-Oblique',
+    color: '#E16A64'
   },
   titleContainer: {
-    height: 60,
     justifyContent: 'center',
   },
   container: {
     gap: 30,
     alignItems: 'center',
-    paddingTop: 16,
+    paddingTop: 20,
+    backgroundColor: 'rgba(243, 207, 198, 0.6)',
+    height: '100%'
   }
 });

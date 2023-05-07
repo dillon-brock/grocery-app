@@ -1,14 +1,17 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { deleteItem, updateItem } from "../../services/list-items/list-items";
-import { type ListItem, ListWithDetail } from "../../types/types";
+import { type ListWithDetail } from "../../types/types";
+import { updateItemInState } from "../../utils";
+import styles from './styles';
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
   id: string;
   item: string;
-  quantity: number | null;
+  quantity: string | null;
   bought: boolean;
-  categoryId: string | null;
+  categoryId: string;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
 }
 
@@ -36,27 +39,27 @@ export default function GroceryListItem({ id, item, quantity, bought, categoryId
   const handleToggleBought = async (): Promise<void> => {
     await updateItem(id, { bought: !bought });
     setList((prev: ListWithDetail): ListWithDetail => {
-      const category = prev.categories.find(category => category.id == categoryId);
-      const itemToBeUpdated = category?.items.find((i: ListItem) => i.id == id);
-      if (!itemToBeUpdated || !category) return prev;
-      const updatedCategory = { 
-        ...category, 
-        items: [
-          ...category.items.filter(i => i.id != id), 
-          { ...itemToBeUpdated, bought: !bought }
-        ]}
-      return {
-      ...prev,
-      categories: [
-        ...prev.categories.filter(c => c.id != categoryId),
-        updatedCategory
-      ]
-    }})
+
+      const newListState = updateItemInState({ 
+        prev, 
+        categoryId, 
+        itemId: id, 
+        prop: 'bought', 
+        val: !bought
+      });
+
+      return newListState;
+    })
   }
 
   return (
-    <Pressable onLongPress={handleDeleteItem} onPress={handleToggleBought}>
-      <Text>{`${quantity}   ${item}: ${bought}`}</Text>
+    <Pressable onLongPress={handleDeleteItem} onPress={handleToggleBought} style={styles.container}>
+      <View style={styles.checkmarkContainer}>
+        {bought &&
+          <Ionicons name="checkmark-circle-outline" size={18} />
+        }
+      </View>
+      <Text style={styles.text}>{`${quantity} ${item}`}</Text>
     </Pressable>
   )
 }
