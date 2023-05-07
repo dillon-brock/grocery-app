@@ -53,6 +53,7 @@ export default function ListDetailScreen() {
           <NewCategoryModal 
             visible={userWantsToAddCategory} 
             setVisible={setUserWantsToAddCategory}
+            listId={list.id}
             setList={setList}
             />
         </View>
