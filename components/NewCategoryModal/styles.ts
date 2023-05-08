@@ -3,6 +3,7 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 type NewCategoryModalStyle = {
   centeredView: ViewStyle;
   modalView: ViewStyle;
+  title: TextStyle;
   buttonsContainer: ViewStyle;
   button: ViewStyle;
   addButton: ViewStyle;
@@ -35,6 +36,12 @@ export default StyleSheet.create<NewCategoryModalStyle>({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  title: {
+    fontFamily: 'AvenirNextCondensed-Bold',
+    fontSize: 22,
+    color: '#4A757E',
+    textAlign: 'left'
   },
   buttonsContainer: {
     flexDirection: 'row',

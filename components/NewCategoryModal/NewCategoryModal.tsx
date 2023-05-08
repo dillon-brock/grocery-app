@@ -4,7 +4,6 @@ import Input from "../Input/Input";
 import { addCategory } from "../../services/categories/categories";
 import { ListWithDetail } from "../../types/types";
 import styles from './styles';
-import CategoryTitle from "../CategoryTitle/CategoryTitle";
 
 type Props = {
   visible: boolean;
@@ -46,7 +45,7 @@ export default function NewCategoryModal({ visible, setVisible, listId, setList 
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <CategoryTitle name="New Category" />
+            <Text style={styles.title}>New Category</Text>
             <Input 
               type="text" 
               placeholder="Name"

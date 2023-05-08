@@ -1,14 +1,25 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { TextInput, View } from "react-native";
 import styles from './styles';
+import { ListWithDetail } from "../../types/types";
 
-type Props = { name: string};
+type Props = { 
+  name: string;
+  setList: Dispatch<SetStateAction<ListWithDetail>>;
+};
 
-export default function CategoryTitle({ name }: Props) {
+export default function CategoryTitle({ name, setList }: Props) {
+
+  const [currentName, setCurrentName] = useState<string>(name.toUpperCase());
+
   return (
     <View style={styles.outerContainer}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{name.toUpperCase()}</Text>
+        <TextInput
+          value={currentName}
+          onChange={(e) => setCurrentName(e.nativeEvent.text.toUpperCase())}
+          style={styles.title}
+        />
       </View>
     </View>
   )
