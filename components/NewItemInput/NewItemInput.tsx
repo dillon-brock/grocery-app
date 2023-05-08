@@ -67,7 +67,7 @@ export default function NewItemInput({ listId, setList, categoryId }: Props) {
           style={styles.input} />
       </View>
       <View>
-        <IconButton name="add-circle" handlePress={handleAddItem} size={32} />
+        <IconButton name="add-circle" handlePress={handleAddItem} size={32} style={{ color: '#E16A64' }} />
       </View>
     </View>
   )

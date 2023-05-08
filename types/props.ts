@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { TextInputProps } from "react-native";
+import { NativeSyntheticEvent, TextInputChangeEventData, TextInputProps, TextStyle, ViewStyle } from "react-native";
 
 export type AuthFormProps = {
   method: string
@@ -12,6 +12,10 @@ export type PrimaryButtonProps = {
 
 export interface InputProps extends TextInputProps {
   type: string;
+  placeholder?: string;
+  value?: string;
+  onChange: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  style?: ViewStyle | TextStyle;
 }
 
 export type SignUpFormProps = {

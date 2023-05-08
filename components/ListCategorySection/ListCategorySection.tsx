@@ -19,7 +19,7 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
 
   return (
     <View>
-      <CategoryTitle name={name} />
+      <CategoryTitle categoryId={id} name={name} setList={setList} />
       {items.map(item => {
         if (editable) {
           return (
