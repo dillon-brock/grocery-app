@@ -40,6 +40,7 @@ export default function Menu() {
         <View style={styles.menu}>
           <IconButton
             style={styles.closeButton}
+            size={32}
             name="close-outline" 
             handlePress={() => setMenuOpen(false)} />
           <MenuItem 

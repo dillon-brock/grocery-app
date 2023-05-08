@@ -1,7 +1,6 @@
 import React from 'react';
 import DashboardScreen from '../screens/DashboardScreen/DashboardScreen';
 import ListStack from './ListStack';
-import HeaderNoBackButton from '../components/headers/HeaderNoBackButton/HeaderNoBackButton';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../types/types';
 
@@ -16,9 +15,8 @@ export default function HomeStack() {
         <Stack.Screen 
           name="Dashboard" 
           component={DashboardScreen}
-          options={{
-            header: () => <HeaderNoBackButton />
-          }} />
+          options={{ headerShown: false }}
+        />
         <Stack.Screen 
           name="ListStack" 
           component={ListStack} 

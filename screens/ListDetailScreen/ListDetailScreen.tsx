@@ -10,6 +10,7 @@ import GroceryList from "../../components/GroceryList/GroceryList";
 import IconButton from "../../components/IconButton/IconButton";
 import SecondaryButton from "../../components/SecondaryButton/SecondaryButton";
 import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal";
+import Header from "../../components/Header/Header";
 
 export default function ListDetailScreen() {
 
@@ -27,9 +28,10 @@ export default function ListDetailScreen() {
   }
 
   return (
-    <>
+    <View style={styles.pageContainer}>
+      <Header showBackButton showMenuButton />
       {menuOpen && <Menu />}
-      <View style={{ position: 'absolute', top: 16, right: 30, zIndex: 1 }}>
+      <View style={styles.lockButtonContainer}>
         <IconButton 
           name={editable ? 'lock-closed' : 'lock-open'} 
           handlePress={() => setEditable(prev => !prev)} 
@@ -58,6 +60,6 @@ export default function ListDetailScreen() {
             />
         </View>
       </TouchableWithoutFeedback>
-    </>
+    </View>
   )
 }

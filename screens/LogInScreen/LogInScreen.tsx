@@ -9,6 +9,7 @@ import SignInForm from '../../components/SignInForm/SignInForm';
 import { useUserContext } from '../../context/UserContext';
 import { getUser, signIn } from '../../services/auth/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from '../../components/Header/Header';
 
 export default function LogInScreen() {
 
@@ -38,14 +39,20 @@ export default function LogInScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Log In</Text>
-      <SignInForm 
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword} />
-      <PrimaryButton text="Log In" handlePress={handleLogin} />
-    </View>
+    <>
+      <Header
+        showBackButton
+        showMenuButton={false}
+      />
+      <View style={styles.container}>
+        <Text style={styles.title}>Log In</Text>
+        <SignInForm 
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword} />
+        <PrimaryButton text="Log In" handlePress={handleLogin} />
+      </View>
+    </>
   )
 }

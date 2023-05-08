@@ -13,6 +13,7 @@ export default function MenuIcon() {
   return (
     <IconButton 
       name="ios-menu-outline" 
-      handlePress={handleToggleMenu} />
+      handlePress={handleToggleMenu}
+      size={32} />
   )
 }
