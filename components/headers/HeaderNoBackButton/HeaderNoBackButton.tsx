@@ -6,7 +6,7 @@ import MenuIcon from '../../MenuIcon/MenuIcon';
 export default function HeaderNoBackButton() {
   
   return (
-    <View style={{...styles.header, ...styles.headerNoBackButton}}>
+    <View style={[styles.header, styles.headerNoBackButton]}>
       <MenuIcon />
     </View>
   )
