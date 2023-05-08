@@ -11,6 +11,7 @@ import ListLink from "../../components/ListLink/ListLink";
 import styles from './styles';
 import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu/Menu";
+import Header from "../../components/Header/Header";
 
 export default function AllListsScreen() {
 
@@ -36,6 +37,7 @@ export default function AllListsScreen() {
   return (
     <>
       {menuOpen && <Menu />}
+      <Header showBackButton showMenuButton />
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Your Lists</Text>

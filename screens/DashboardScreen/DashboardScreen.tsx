@@ -9,6 +9,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../types/types";
 import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu/Menu";
+import Header from "../../components/Header/Header";
 
 export default function DashboardScreen() {
 
@@ -20,6 +21,10 @@ export default function DashboardScreen() {
 
   return (
     <>
+      <Header 
+        showBackButton={false}
+        showMenuButton
+      />
       {menuOpen && <Menu />}
       <View style={styles.container}>
         <Text>{`Welcome, ${user?.username}`}</Text>

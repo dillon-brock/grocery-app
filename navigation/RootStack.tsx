@@ -14,16 +14,16 @@ export default function RootStack() {
   return (
     <Stack.Navigator 
       initialRouteName="Entry"
+      screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
         name="Entry"
         component={EntryScreen}
-        options={{ headerShown: false }}
+        
       />
       <Stack.Screen
         name="Login"
         component={LogInScreen}
-
       />
       <Stack.Screen
         name="SignUp"
@@ -32,7 +32,6 @@ export default function RootStack() {
       <Stack.Screen
         name="Home"
         component={HomeStack}
-        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   )

@@ -9,6 +9,7 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import { getUser, signUp } from '../../services/auth/auth';
 import { useUserContext } from '../../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from '../../components/Header/Header';
 
 export default function SignUpScreen() {
 
@@ -40,19 +41,25 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-      <SignUpForm
-        email={email}
-        setEmail={setEmail}
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
-        passwordConfirmation={passwordConfirmation}
-        setPasswordConfirmation={setPasswordConfirmation}
+    <>
+      <Header
+        showBackButton
+        showMenuButton={false}
       />
-      <PrimaryButton text="Sign Up" handlePress={handleSubmit} />
-    </View>
+      <View style={styles.container}>
+        <Text style={styles.title}>Sign Up</Text>
+        <SignUpForm
+          email={email}
+          setEmail={setEmail}
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+          passwordConfirmation={passwordConfirmation}
+          setPasswordConfirmation={setPasswordConfirmation}
+        />
+        <PrimaryButton text="Sign Up" handlePress={handleSubmit} />
+      </View>
+    </>
   )
 }
