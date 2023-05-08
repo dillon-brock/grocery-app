@@ -11,9 +11,9 @@ export default StyleSheet.create({
     right: 0,
     elevation: 0,
     shadowOpacity: 0,
-    paddingTop: 60,
+    paddingTop: 75,
     paddingBottom: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 25,
+    paddingRight: 25
   }
 })

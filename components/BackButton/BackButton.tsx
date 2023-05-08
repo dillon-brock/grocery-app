@@ -15,6 +15,7 @@ export default function BackButton() {
   return (
     <IconButton 
       name="arrow-back-outline"
-      handlePress={handleGoBack} />
+      handlePress={handleGoBack}
+      size={32} />
   )
 }

@@ -28,10 +28,10 @@ export default function ListDetailScreen() {
   }
 
   return (
-    <>
+    <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
       {menuOpen && <Menu />}
-      <View style={{ position: 'absolute', top: 16, right: 30, zIndex: 1 }}>
+      <View style={styles.lockButtonContainer}>
         <IconButton 
           name={editable ? 'lock-closed' : 'lock-open'} 
           handlePress={() => setEditable(prev => !prev)} 
@@ -60,6 +60,6 @@ export default function ListDetailScreen() {
             />
         </View>
       </TouchableWithoutFeedback>
-    </>
+    </View>
   )
 }
