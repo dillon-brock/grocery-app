@@ -17,6 +17,11 @@ export type ListStackParamList = {
   ListDetail: { listId: string, type: 'new' | 'existing' }
 }
 
+export type RecipeStackParamList = {
+  Recipes: undefined;
+  RecipeDetail: { recipeId: string, type: 'new' | 'existing' }
+}
+
 export interface CommonScreenStyle  {
   title: TextStyle;
   container: ViewStyle;
