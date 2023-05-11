@@ -10,6 +10,7 @@ export type RootStackParamList = {
 export type HomeStackParamList = {
   Dashboard: undefined;
   ListStack: { screen: keyof ListStackParamList };
+  RecipeStack: { screen: keyof RecipeStackParamList };
 }
 
 export type ListStackParamList = {
