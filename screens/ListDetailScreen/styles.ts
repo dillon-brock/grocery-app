@@ -22,7 +22,7 @@ export default StyleSheet.create<ListDetailScreenStyle>({
     paddingTop: 20,
   },
   pageContainer: {
-    backgroundColor: 'rgba(243, 207, 198, 0.6)',
+    backgroundColor: '#F7EBE8',
     height: '100%'
   },
   lockButtonContainer: {
