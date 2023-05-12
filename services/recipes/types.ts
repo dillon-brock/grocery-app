@@ -19,6 +19,5 @@ export interface MultipleRecipeResponse extends SuccessfulResponse {
 
 export interface NewRecipeData {
   name: string;
-  description: string | null;
 }
 
