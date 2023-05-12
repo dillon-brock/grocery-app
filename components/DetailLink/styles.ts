@@ -1,12 +1,12 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-export type ListLinkStyle = {
+export type DetailLinkStyle = {
   container: ViewStyle;
   title: TextStyle;
   icon: TextStyle;
 }
 
-export default StyleSheet.create<ListLinkStyle>({
+export default StyleSheet.create<DetailLinkStyle>({
   container: {
     height: 50,
     flexDirection: 'row',

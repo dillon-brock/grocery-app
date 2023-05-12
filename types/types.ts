@@ -10,11 +10,17 @@ export type RootStackParamList = {
 export type HomeStackParamList = {
   Dashboard: undefined;
   ListStack: { screen: keyof ListStackParamList };
+  RecipeStack: { screen: keyof RecipeStackParamList };
 }
 
 export type ListStackParamList = {
   Lists: undefined;
   ListDetail: { listId: string, type: 'new' | 'existing' }
+}
+
+export type RecipeStackParamList = {
+  Recipes: undefined;
+  RecipeDetail: { recipeId: string, type: 'new' | 'existing' }
 }
 
 export interface CommonScreenStyle  {

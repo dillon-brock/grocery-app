@@ -7,21 +7,18 @@ import { createList } from "../../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { List, ListStackParamList } from "../../types/types";
-import ListLink from "../../components/ListLink/ListLink";
 import styles from './styles';
-import { useMenuContext } from "../../context/MenuContext";
-import Menu from "../../components/Menu/Menu";
 import Header from "../../components/Header/Header";
+import DetailLink from "../../components/DetailLink/DetailLink";
 
 export default function AllListsScreen() {
 
   const { lists, errorMessage, setErrorMessage, loading } = useAllLists();
   const navigation = useNavigation<NativeStackNavigationProp<ListStackParamList>>();
-  const { menuOpen } = useMenuContext();
 
   useCheckForLogOut();
 
-  const handleNewList = async () => {
+  const handleCreateList = async () => {
     const newListRes = await createList();
     if (newListRes.success) {
       navigation.navigate('ListDetail', 
@@ -36,7 +33,6 @@ export default function AllListsScreen() {
 
   return (
     <>
-      {menuOpen && <Menu />}
       <Header showBackButton showMenuButton />
       <View style={styles.container}>
         <View style={styles.titleContainer}>
@@ -54,15 +50,20 @@ export default function AllListsScreen() {
         <View style={styles.buttonContainer}>
           <PrimaryButton 
             text="Start Shopping"
-            handlePress={handleNewList} />
+            handlePress={handleCreateList} />
         </View>
         {lists.length > 0 &&
           <View style={styles.listsContainer}>
             <Text style={styles.subtitle}>Previous lists</Text>
             <ScrollView style={styles.scrollContainer}>
-              {lists.map((list: List) => (
-                <ListLink key={list.id} list={list} />
-              ))}
+              {lists.map((list: List) => {
+                const createdAtFormatted: string = (new Date(list.createdAt)).toDateString();
+                const formattedPlaceholderName = `${createdAtFormatted} (${list.id})`;
+                const title = list.title ? list.title : formattedPlaceholderName;
+                return (
+                  <DetailLink key={list.id} id={list.id} text={title} type='List' />
+                )
+              })}
             </ScrollView>
           </View>
         }
