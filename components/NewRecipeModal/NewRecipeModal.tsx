@@ -36,7 +36,8 @@ export default function NewRecipeModal({ visible, setVisible }: Props) {
 
   return (
     <Modal 
-    visible={visible} 
+    visible={visible}
+    transparent={true}
     onRequestClose={() => {
       setVisible(prev => !prev);
     }}>
