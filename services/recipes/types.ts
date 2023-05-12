@@ -9,6 +9,11 @@ export type Recipe = {
   updatedAt: string;
 }
 
-export interface GetRecipesResponse extends SuccessfulResponse {
+export interface RecipeResponse extends SuccessfulResponse {
+  recipe: Recipe;
+}
+
+export interface MultipleRecipeResponse extends SuccessfulResponse {
   recipes: Recipe[]
 }
+

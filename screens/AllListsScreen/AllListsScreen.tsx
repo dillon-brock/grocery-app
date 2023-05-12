@@ -18,7 +18,7 @@ export default function AllListsScreen() {
 
   useCheckForLogOut();
 
-  const handleNewList = async () => {
+  const handleCreateList = async () => {
     const newListRes = await createList();
     if (newListRes.success) {
       navigation.navigate('ListDetail', 
@@ -50,7 +50,7 @@ export default function AllListsScreen() {
         <View style={styles.buttonContainer}>
           <PrimaryButton 
             text="Start Shopping"
-            handlePress={handleNewList} />
+            handlePress={handleCreateList} />
         </View>
         {lists.length > 0 &&
           <View style={styles.listsContainer}>
