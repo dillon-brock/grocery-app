@@ -23,7 +23,7 @@ export default function DetailLink({ text, id, type }: Props) {
         type: 'existing'
       })
     }
-    else {
+    else if (type == 'Recipe') {
       const navigation = useNavigation<NativeStackNavigationProp<RecipeStackParamList>>();
       navigation.navigate('RecipeDetail', {
         recipeId: id,
