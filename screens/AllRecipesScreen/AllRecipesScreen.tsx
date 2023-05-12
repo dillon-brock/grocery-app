@@ -34,7 +34,7 @@ export default function AllRecipesScreen() {
         }
         <View>
           <PrimaryButton 
-            text="Start Shopping"
+            text="Create Recipe"
             handlePress={() => setUserWantsToCreateRecipe(true)}
           />
         </View>

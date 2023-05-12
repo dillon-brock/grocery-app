@@ -3,8 +3,6 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 import styles from './styles';
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { ListStackParamList, RecipeStackParamList } from "../../types/types";
 
 type Props = {
   text: string;
@@ -14,21 +12,20 @@ type Props = {
 
 export default function DetailLink({ text, id, type }: Props) {
 
+  const navigation = useNavigation();
 
   const handleGoToDetail = () => {
-    const navigation = useNavigation<NativeStackNavigationProp<ListStackParamList>>();
     if (type == 'List') {
-      navigation.navigate('ListDetail', {
+      navigation.navigate('ListDetail' as never, {
         listId: id,
         type: 'existing'
-      })
+      } as never)
     }
     else if (type == 'Recipe') {
-      const navigation = useNavigation<NativeStackNavigationProp<RecipeStackParamList>>();
-      navigation.navigate('RecipeDetail', {
+      navigation.navigate('RecipeDetail' as never, {
         recipeId: id,
         type: 'existing'
-      })
+      } as never)
     }
   }
 

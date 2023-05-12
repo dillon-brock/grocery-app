@@ -27,7 +27,9 @@ export default function NewRecipeModal({ visible, setVisible }: Props) {
       description: description || null,
       name
     });
+    
     if (newRecipeRes.success) {
+      setVisible(prev => !prev);
       navigation.navigate('RecipeDetail', {
         recipeId: newRecipeRes.recipe.id,
         type: 'new'
