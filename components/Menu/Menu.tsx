@@ -27,6 +27,11 @@ export default function Menu() {
     navigation.navigate("ListStack", { screen: "Lists" });
   }
 
+  const handleGoToRecipes = () => {
+    setMenuOpen(false);
+    navigation.navigate('RecipeStack', { screen: 'Recipes' });
+  }
+
   const handleLogOut = async () => {
     setMenuOpen(false);
     await AsyncStorage.removeItem('@token');
@@ -51,6 +56,9 @@ export default function Menu() {
             text="My Lists"
             handlePress={handleGoToLists}
           />
+          <MenuItem
+            text="My Recipes"
+            handlePress={handleGoToRecipes} />
           <MenuItem
             text = "Log out"
             handlePress={handleLogOut}
