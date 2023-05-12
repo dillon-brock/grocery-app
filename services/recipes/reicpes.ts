@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../constants';
 import { responseWithSuccessStatus } from '../../utils';
-import { MultipleRecipeResponse } from './types';
+import { MultipleRecipeResponse, NewRecipeData, RecipeResponse } from './types';
 import { DatabaseErrorResponse } from '../../types/types';
 
 export async function getOwnedRecipes(): Promise<MultipleRecipeResponse | DatabaseErrorResponse> {
@@ -15,5 +15,22 @@ export async function getOwnedRecipes(): Promise<MultipleRecipeResponse | Databa
     credentials: 'include'
   });
 
-  return responseWithSuccessStatus<MultipleRecipeResponse>(response);
+  return await responseWithSuccessStatus<MultipleRecipeResponse>(response);
+}
+
+export async function createRecipe(data: NewRecipeData): Promise<RecipeResponse | DatabaseErrorResponse> {
+  const token = await AsyncStorage.getItem('@token');
+
+  const response = await fetch(`${API_URL}/recipes`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    credentials: 'include',
+    body: JSON.stringify(data)
+  });
+
+  return await responseWithSuccessStatus<RecipeResponse>(response);
 }

@@ -30,7 +30,8 @@ export default function DashboardScreen() {
         <Text>{`Welcome, ${user?.username}`}</Text>
         <Text style={styles.title}>Dashboard</Text>
         <View style={styles.buttonContainer}>
-          <PrimaryButton text="My Recipes" />
+          <PrimaryButton text="My Recipes"
+            handlePress={() => navigation.navigate('RecipeStack', { screen: 'Recipes' })} />
           <PrimaryButton 
             text="My Lists"
             handlePress={() => navigation.navigate('ListStack', { screen: 'Lists' })} />

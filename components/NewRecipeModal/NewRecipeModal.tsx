@@ -4,6 +4,10 @@ import { Modal, Pressable, Text, TextInput, View } from "react-native";
 import { modalStyles } from "../../styles/universal";
 import Input from "../Input/Input";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import { createRecipe } from "../../services/recipes/reicpes";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RecipeStackParamList } from "../../types/types";
 
 type Props = {
   visible: boolean;
@@ -12,9 +16,27 @@ type Props = {
 
 export default function NewRecipeModal({ visible, setVisible }: Props) {
 
-  const [recipeName, setRecipeName] = useState<string>('');
+  const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [showDescriptionInput, setShowDescriptionInput] = useState<boolean>(false);
+  const [error, setError] = useState('');
+  const navigation = useNavigation<NativeStackNavigationProp<RecipeStackParamList>>();
+
+  const handleCreateRecipe = async (): Promise<void> => {
+    const newRecipeRes = await createRecipe({ 
+      description: description || null,
+      name
+    });
+    if (newRecipeRes.success) {
+      navigation.navigate('RecipeDetail', {
+        recipeId: newRecipeRes.recipe.id,
+        type: 'new'
+      });
+    }
+    else {
+      setError(newRecipeRes.message);
+    }
+  }
 
   return (
     <Modal 
@@ -28,7 +50,7 @@ export default function NewRecipeModal({ visible, setVisible }: Props) {
             <Input 
               type="text" 
               placeholder="Name"
-              onChange={(e) => setRecipeName(e.nativeEvent.text)} />
+              onChange={(e) => setName(e.nativeEvent.text)} />
             {!showDescriptionInput &&
               <PrimaryButton 
                 text="Add description"
@@ -42,6 +64,9 @@ export default function NewRecipeModal({ visible, setVisible }: Props) {
                 onChange={(e) => setDescription(e.nativeEvent.text)}
               />
             }
+            {error &&
+              <Text>{error}</Text>
+            }
             <View style={modalStyles.buttonsContainer}>
               <Pressable
                 style={[modalStyles.button, modalStyles.cancelButton]}
@@ -50,7 +75,7 @@ export default function NewRecipeModal({ visible, setVisible }: Props) {
               </Pressable>
               <Pressable 
               style={[modalStyles.button, modalStyles.addButton]}
-              onPress={() => {null}}>
+              onPress={handleCreateRecipe}>
                 <Text style={[modalStyles.buttonText, modalStyles.addButtonText]}>ADD</Text>
               </Pressable>
             </View>
