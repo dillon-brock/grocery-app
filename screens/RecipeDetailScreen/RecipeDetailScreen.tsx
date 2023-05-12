@@ -5,11 +5,17 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RecipeStackParamList } from "../../types/types";
 import { useRecipe } from "../../hooks/useRecipe";
+import NewItemInput from "../../components/NewItemInput/NewItemInput";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RecipeDetailScreen() {
 
   const { recipeId } = useRoute<RouteProp<RecipeStackParamList, 'RecipeDetail'>>().params;
   const { recipe, loading } = useRecipe(recipeId);
+
+  const handleAddIngredient = async (ingredient: string, amount: string): Promise<void> => {
+    const token = await AsyncStorage.getItem('@token');
+  }
 
   return (
     <View>
@@ -24,6 +30,7 @@ export default function RecipeDetailScreen() {
               {recipe.ingredients.map(ingredients => (
                 <Text>{ingredients.name}</Text>
               ))}
+              <NewItemInput handleAdd={handleAddIngredient} />
             </View>
             <View>
               <Text>Steps</Text>

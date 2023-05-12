@@ -1,53 +1,21 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import IconButton from "../IconButton/IconButton";
-import { addItemToList } from "../../services/list-items/list-items";
-import { ListWithDetail } from "../../types/types";
 import styles from './styles';
 
-
 type Props = {
-  listId: string;
-  categoryId: string;
-  setList: Dispatch<SetStateAction<ListWithDetail>>
+  handleAdd: (item: string, quantity: string) => Promise<void> 
 }
 
-export default function NewItemInput({ listId, setList, categoryId }: Props) {
+export default function NewItemInput({ handleAdd }: Props) {
 
   const [item, setItem] = useState<string>('');
   const [quantity, setQuantity] = useState<string>('');
 
-  const handleAddItem = async (): Promise<void> => {
-    const addItemRes = await addItemToList({ 
-      listId, 
-      item, 
-      quantity: quantity || null,
-      categoryId
-    });
-
-    if (addItemRes.success) {
-      setList((prev: ListWithDetail) => {
-        const category = prev.categories.find(c => c.id == categoryId);
-        if (!category) return prev;
-        const updatedCategory = { 
-          ...category, 
-          items: [ 
-            ...category.items, 
-            addItemRes.listItem 
-          ]
-        }
-
-        return { 
-          ...prev,
-          categories: [
-            ...prev.categories.filter(c => c.id != categoryId),
-            updatedCategory
-          ]
-        }
-      });
-      setItem('');
-      setQuantity('');
-    }
+  const addItem = async (): Promise<void> => {
+    await handleAdd(item, quantity);
+    setItem('');
+    setQuantity('');
   }
 
   return (
@@ -67,7 +35,7 @@ export default function NewItemInput({ listId, setList, categoryId }: Props) {
           style={styles.input} />
       </View>
       <View>
-        <IconButton name="add-circle" handlePress={handleAddItem} size={32} style={{ color: '#E16A64' }} />
+        <IconButton name="add-circle" handlePress={addItem} size={32} style={{ color: '#E16A64' }} />
       </View>
     </View>
   )
