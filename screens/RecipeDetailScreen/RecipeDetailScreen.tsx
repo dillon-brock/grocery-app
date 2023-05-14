@@ -6,6 +6,7 @@ import { RecipeStackParamList } from "../../types/types";
 import { useRecipe } from "../../hooks/useRecipe";
 import NewItemInput from "../../components/NewItemInput/NewItemInput";
 import { addIngredient } from "../../services/ingredients/ingredients";
+import Ingredient from "../../components/Ingredient/Ingredient";
 
 export default function RecipeDetailScreen() {
 
@@ -35,8 +36,10 @@ export default function RecipeDetailScreen() {
             <Text>{recipe.name}</Text>
             <View>
               <Text>Ingredients</Text>
-              {recipe.ingredients.map(ingredients => (
-                <Text>{ingredients.name}</Text>
+              {recipe.ingredients.map(ingredient => (
+                <Ingredient
+                  name={ingredient.name}
+                  amount={ingredient.amount} />
               ))}
               <NewItemInput handleAdd={handleAddIngredient} />
             </View>
