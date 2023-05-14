@@ -15,3 +15,8 @@ export interface NewIngredientData {
   name: string;
   amount: string;
 }
+
+export type IngredientUpdateData = {
+  name?: string;
+  amount?: string;
+}

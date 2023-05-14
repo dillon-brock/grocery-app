@@ -39,7 +39,8 @@ export default function RecipeDetailScreen() {
             <IngredientList
               ingredients={recipe.ingredients}
               locked={locked}
-              handleAddIngredient={handleAddIngredient} />
+              handleAddIngredient={handleAddIngredient}
+              setRecipe={setRecipe} />
             <View>
               <Text>Steps</Text>
               {recipe.steps
