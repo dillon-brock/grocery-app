@@ -7,6 +7,7 @@ import { useRecipe } from "../../hooks/useRecipe";
 import { addIngredient } from "../../services/ingredients/ingredients";
 import LockButton from "../../components/LockButton/LockButton";
 import IngredientList from "../../components/IngredientList/IngredientList";
+import StepList from "../../components/StepList/StepList";
 
 export default function RecipeDetailScreen() {
 
@@ -41,14 +42,7 @@ export default function RecipeDetailScreen() {
               locked={locked}
               handleAddIngredient={handleAddIngredient}
               setRecipe={setRecipe} />
-            <View>
-              <Text>Steps</Text>
-              {recipe.steps
-                .sort((a, b) => a.num - b.num)
-                .map(step => (
-                <Text>{step.detail}</Text>
-              ))}
-            </View>
+            <StepList steps={recipe.steps} />
           </View>
         }
       </ScrollView>

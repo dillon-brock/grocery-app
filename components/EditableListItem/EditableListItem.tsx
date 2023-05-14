@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import styles from './styles';
 import { TextInput } from "react-native-gesture-handler";
 

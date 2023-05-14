@@ -5,7 +5,7 @@ import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import CategoryTitle from "../CategoryTitle/CategoryTitle";
 import EditableListItem from "../EditableListItem/EditableListItem";
-import { addItemToList, updateItem } from "../../services/list-items/list-items";
+import { addItemToList, deleteItem, updateItem } from "../../services/list-items/list-items";
 import { updateItemInState } from "../../utils";
 
 type Props = {
@@ -84,6 +84,25 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
     }
   }
 
+  const handleDeleteItem = async (itemId: string): Promise<void> => {
+    await deleteItem(itemId);
+    setList((prev: ListWithDetail) => {
+      const category = prev.categories.find(category => category.id == id);
+      if (!category) return prev;
+      const updatedCategory = {
+        ...category,
+        items: category?.items.filter(item => item.id != itemId)
+      };
+      if (!updatedCategory) return prev;
+      return {
+      ...prev,
+      categories: [
+        ...prev.categories.filter(category => category.id != id),
+        updatedCategory 
+      ]
+    }});
+  }
+
   return (
     <View>
       <CategoryTitle categoryId={id} name={name} setList={setList} />
@@ -94,7 +113,8 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
             key={item.id} 
             { ...item }
             handleUpdateItem={handleUpdateItem}
-            handleUpdateQuantity={handleUpdateQuantity} />
+            handleUpdateQuantity={handleUpdateQuantity}
+            handleDeleteItem={handleDeleteItem} />
           );
         }
         return <GroceryListItem key={item.id} { ...item } setList={setList} />
