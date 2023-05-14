@@ -5,7 +5,8 @@ import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import CategoryTitle from "../CategoryTitle/CategoryTitle";
 import EditableListItem from "../EditableListItem/EditableListItem";
-import { addItemToList } from "../../services/list-items/list-items";
+import { addItemToList, updateItem } from "../../services/list-items/list-items";
+import { updateItemInState } from "../../utils";
 
 type Props = {
   id: string;
@@ -49,14 +50,51 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
     }
   }
 
+  const handleUpdateQuantity = async (itemId: string, quantity: string) => {
+    const updateRes = await updateItem(itemId, { quantity });
+    if (updateRes.success) {
+      setList(prev => {
+        const newListState = updateItemInState({
+          prev,
+          categoryId: id,
+          itemId,
+          prop: 'quantity',
+          val: quantity || null
+        });
+        
+        return newListState;
+      })
+    }
+  }
+
+  const handleUpdateItem = async (itemId: string, item: string) => {
+    const updateRes = await updateItem(id, { item });
+    if (updateRes.success) {
+      setList(prev => {
+        const newListState = updateItemInState({
+          prev,
+          categoryId: id,
+          itemId,
+          prop: 'item',
+          val: item
+        });
+
+        return newListState;
+      })
+    }
+  }
+
   return (
     <View>
       <CategoryTitle categoryId={id} name={name} setList={setList} />
       {items.map(item => {
         if (editable) {
           return (
-            <EditableListItem key={item.id} 
-            { ...item } setList={setList} />
+            <EditableListItem 
+            key={item.id} 
+            { ...item }
+            handleUpdateItem={handleUpdateItem}
+            handleUpdateQuantity={handleUpdateQuantity} />
           );
         }
         return <GroceryListItem key={item.id} { ...item } setList={setList} />

@@ -1,57 +1,20 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import styles from './styles';
 import { TextInput } from "react-native-gesture-handler";
-import { updateItem } from "../../services/list-items/list-items";
-import { ListWithDetail } from "../../types/types";
-import { updateItemInState } from "../../utils";
 
 type Props = {
   id: string;
   quantity: string | null;
   item: string;
-  categoryId: string;
-  setList: Dispatch<SetStateAction<ListWithDetail>>;
+  handleUpdateQuantity: (id: string, quantity: string) => Promise<void>;
+  handleUpdateItem: (id: string, item: string) => Promise<void>
 }
 
-export default function EditableListItem({ id, quantity, item, categoryId, setList }: Props) {
+export default function EditableListItem({ id, quantity, item, handleUpdateQuantity, handleUpdateItem }: Props) {
 
   const [currentQuantity, setCurrentQuantity] = useState<string>(quantity || '');
   const [currentItem, setCurrentItem] = useState<string>(item);
-
-  const handleUpdateQuantity = async () => {
-    const updateRes = await updateItem(id, { quantity: currentQuantity });
-    if (updateRes.success) {
-      setList(prev => {
-        const newListState = updateItemInState({
-          prev,
-          categoryId,
-          itemId: id,
-          prop: 'quantity',
-          val: currentQuantity || null
-        });
-        
-        return newListState;
-      })
-    }
-  }
-
-  const handleUpdateItem = async () => {
-    const updateRes = await updateItem(id, { item: currentItem });
-    if (updateRes.success) {
-      setList(prev => {
-        const newListState = updateItemInState({
-          prev,
-          categoryId,
-          itemId: id,
-          prop: 'item',
-          val: currentItem
-        });
-
-        return newListState;
-      })
-    }
-  }
 
   return (
     <View style={styles.container}>
@@ -60,14 +23,14 @@ export default function EditableListItem({ id, quantity, item, categoryId, setLi
           placeholder='amt' 
           value={currentQuantity} 
           onChange={(e) => setCurrentQuantity(e.nativeEvent.text)}
-          onBlur={handleUpdateQuantity}
+          onBlur={async () => await handleUpdateQuantity(id, currentQuantity)}
           style={styles.input} />
       </View>
       <View style={styles.itemContainer}>
       <TextInput 
           value={currentItem} 
           onChange={(e) => setCurrentItem(e.nativeEvent.text)}
-          onBlur={handleUpdateItem}
+          onBlur={async () => await handleUpdateItem(id, currentItem)}
           style={styles.input} />
       </View>
     </View>
