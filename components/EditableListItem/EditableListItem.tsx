@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import styles from './styles';
 import { TextInput } from "react-native-gesture-handler";
 
@@ -8,10 +8,11 @@ type Props = {
   quantity: string | null;
   item: string;
   handleUpdateQuantity: (id: string, quantity: string) => Promise<void>;
-  handleUpdateItem: (id: string, item: string) => Promise<void>
+  handleUpdateItem: (id: string, item: string) => Promise<void>;
+  handleDeleteItem: (id: string) => Promise<void>;
 }
 
-export default function EditableListItem({ id, quantity, item, handleUpdateQuantity, handleUpdateItem }: Props) {
+export default function EditableListItem({ id, quantity, item, handleUpdateQuantity, handleUpdateItem, handleDeleteItem }: Props) {
 
   const [currentQuantity, setCurrentQuantity] = useState<string>(quantity || '');
   const [currentItem, setCurrentItem] = useState<string>(item);

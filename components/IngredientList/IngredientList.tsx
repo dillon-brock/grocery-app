@@ -4,7 +4,7 @@ import { Ingredient } from "../../services/ingredients/types"
 import IngredientDisplay from "../IngredientDisplay/IngredientDisplay";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import EditableListItem from "../EditableListItem/EditableListItem";
-import { updateIngredient } from "../../services/ingredients/ingredients";
+import { deleteIngredient, updateIngredient } from "../../services/ingredients/ingredients";
 import { RecipeWithDetail } from "../../services/recipes/types";
 
 type Props = {
@@ -54,6 +54,23 @@ export default function IngredientList({ ingredients, locked, handleAddIngredien
     }
   }
 
+  const handleDeleteIngredient = async (id: string): Promise<void> => {
+    const res = await deleteIngredient(id);
+    if (res.success) {
+      setRecipe(prev => ({
+        ...prev,
+        ingredients: [
+          ...prev.ingredients.filter(ingredient => (
+            ingredient.id != id
+          ))
+        ]
+      }));
+    }
+    else {
+      setError(res.message);
+    }
+  }
+
   return (
     <View>
       <Text>Ingredients</Text>
@@ -74,7 +91,8 @@ export default function IngredientList({ ingredients, locked, handleAddIngredien
             quantity={ingredient.amount}
             item={ingredient.name}
             handleUpdateItem={handleUpdateName}
-            handleUpdateQuantity={handleUpdateAmount} />
+            handleUpdateQuantity={handleUpdateAmount}
+            handleDeleteItem={handleDeleteIngredient} />
         )
       })}
       <NewItemInput handleAdd={handleAddIngredient} />

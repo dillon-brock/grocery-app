@@ -37,3 +37,17 @@ export async function updateIngredient(id: string, data: IngredientUpdateData): 
 
   return await responseWithSuccessStatus<IngredientResponse>(response);
 }
+
+export async function deleteIngredient(id: string): Promise<IngredientResponse | DatabaseErrorResponse> {
+  const token = await AsyncStorage.getItem('@token');
+  const response = await fetch(`${API_URL}/ingredients/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    credentials: 'include'
+  });
+
+  return await responseWithSuccessStatus<IngredientResponse>(response);
+}
