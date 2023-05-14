@@ -1,7 +1,6 @@
 import React from "react";
-import { Keyboard, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Header from "../../components/Header/Header";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RecipeStackParamList } from "../../types/types";
 import { useRecipe } from "../../hooks/useRecipe";
@@ -29,7 +28,7 @@ export default function RecipeDetailScreen() {
   return (
     <View>
       <Header showBackButton showMenuButton />
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <ScrollView keyboardShouldPersistTaps='handled'>
         {loading && <Text>Loading...</Text>}
         {!loading &&
           <View>
@@ -51,7 +50,7 @@ export default function RecipeDetailScreen() {
             </View>
           </View>
         }
-      </TouchableWithoutFeedback>
+      </ScrollView>
     </View>
   );
 }

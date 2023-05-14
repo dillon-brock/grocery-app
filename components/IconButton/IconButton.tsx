@@ -12,12 +12,8 @@ type Props = {
 
 export default function IconButton({ name, handlePress, style, size }: Props) {
 
-  const pressTest = () => {
-    console.log('pressed');
-    // await handlePress();
-  }
   return (
-    <Pressable onPressOut={() => pressTest()} style={{ zIndex: 1 }}>
+    <Pressable onPressOut={handlePress} style={{ zIndex: 1 }}>
       <Ionicons
         style={style || {}}
         name={name}

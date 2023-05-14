@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
+
 import IconButton from "../IconButton/IconButton";
 import styles from './styles';
 
@@ -26,7 +27,7 @@ export default function NewItemInput({ handleAdd }: Props) {
           value={quantity} 
           onChange={(e) => setQuantity(e.nativeEvent.text)}
           style={styles.input} />
-      </View>
+        </View>
       <View style={styles.itemContainer}>
       <TextInput 
           placeholder='item' 
