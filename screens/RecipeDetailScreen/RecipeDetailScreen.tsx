@@ -42,7 +42,11 @@ export default function RecipeDetailScreen() {
               locked={locked}
               handleAddIngredient={handleAddIngredient}
               setRecipe={setRecipe} />
-            <StepList steps={recipe.steps} />
+            <StepList 
+              recipeId={recipe.id}
+              steps={recipe.steps}
+              setRecipe={setRecipe}
+              locked={locked} />
           </View>
         }
       </ScrollView>
