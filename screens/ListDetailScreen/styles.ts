@@ -3,7 +3,6 @@ import { CommonScreenStyle } from "../../types/types";
 
 interface ListDetailScreenStyle extends CommonScreenStyle {
   pageContainer: ViewStyle;
-  lockButtonContainer: ViewStyle;
 }
 
 export default StyleSheet.create<ListDetailScreenStyle>({
@@ -24,11 +23,5 @@ export default StyleSheet.create<ListDetailScreenStyle>({
   pageContainer: {
     backgroundColor: '#F7EBE8',
     height: '100%'
-  },
-  lockButtonContainer: {
-    position: 'absolute',
-    zIndex: 1,
-    top: 145,
-    right: 30
   }
 });

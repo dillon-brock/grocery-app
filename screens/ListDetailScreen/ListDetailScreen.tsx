@@ -5,16 +5,16 @@ import { ListStackParamList } from "../../types/types";
 import { useList } from "../../hooks/useList";
 import styles from './styles';
 import GroceryList from "../../components/GroceryList/GroceryList";
-import IconButton from "../../components/IconButton/IconButton";
 import SecondaryButton from "../../components/SecondaryButton/SecondaryButton";
 import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal";
 import Header from "../../components/Header/Header";
+import LockButton from "../../components/LockButton/LockButton";
 
 export default function ListDetailScreen() {
 
   const { listId, type } = useRoute<RouteProp<ListStackParamList, 'ListDetail'>>().params;
   const { list, setList, loading, errorMessage } = useList(listId);
-  const [editable, setEditable] = useState<boolean>(false);
+  const [locked, setLocked] = useState<boolean>(true);
   const [userWantsToAddCategory, setUserWantsToAddCategory] = useState<boolean>(false);
   const dateCreated = new Date(list.createdAt).toDateString();
 
@@ -27,12 +27,7 @@ export default function ListDetailScreen() {
   return (
     <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
-      <View style={styles.lockButtonContainer}>
-        <IconButton 
-          name={editable ? 'lock-closed' : 'lock-open'} 
-          handlePress={() => setEditable(prev => !prev)} 
-          />
-      </View>
+      <LockButton locked={locked} setLocked={setLocked} />
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
@@ -46,7 +41,7 @@ export default function ListDetailScreen() {
           {loading &&
             <Text>Loading...</Text>
           }
-          <GroceryList list={list} setList={setList} loading={loading} editable={editable} />
+          <GroceryList list={list} setList={setList} loading={loading} locked={locked} />
           <SecondaryButton text='+ ADD CATEGORY' handlePress={handleAddCategory}/>
           <NewCategoryModal 
             visible={userWantsToAddCategory} 

@@ -14,10 +14,10 @@ type Props = {
   items: ListItem[];
   listId: string;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
-  editable: boolean;
+  locked: boolean;
 }
 
-export default function ListCategorySection({ id, name, items, listId, setList, editable }: Props) {
+export default function ListCategorySection({ id, name, items, listId, setList, locked }: Props) {
 
   const handleAddItem = async (item: string, quantity: string): Promise<void> => {
     const addItemRes = await addItemToList({ 
@@ -88,7 +88,7 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
     <View>
       <CategoryTitle categoryId={id} name={name} setList={setList} />
       {items.map(item => {
-        if (editable) {
+        if (!locked) {
           return (
             <EditableListItem 
             key={item.id} 

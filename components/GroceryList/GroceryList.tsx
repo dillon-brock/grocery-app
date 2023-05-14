@@ -7,10 +7,10 @@ type Props = {
   list: ListWithDetail;
   loading: boolean;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
-  editable: boolean;
+  locked: boolean;
 }
 
-export default function GroceryList({ list, setList, loading, editable }: Props) {
+export default function GroceryList({ list, setList, loading, locked }: Props) {
 
   return (
     <ScrollView style={{ width: '90%' }}>
@@ -19,7 +19,7 @@ export default function GroceryList({ list, setList, loading, editable }: Props)
         .sort((a, b) => (a.name > b.name) ? 1 : -1)
         .map((category: CategoryInList) => (
           <ListCategorySection key={category.id} { ...category } 
-          setList={setList} listId={list.id} editable={editable} />
+          setList={setList} listId={list.id} locked={locked} />
         ))
       }
     </ScrollView>
