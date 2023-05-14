@@ -7,7 +7,7 @@ type Props = {
   amount: string | null;
 }
 
-export default function Ingredient({ name, amount }: Props) {
+export default function IngredientDisplay({ name, amount }: Props) {
 
   return (
     <View style={styles.container}>

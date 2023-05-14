@@ -4,11 +4,9 @@ import Header from "../../components/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RecipeStackParamList } from "../../types/types";
 import { useRecipe } from "../../hooks/useRecipe";
-import NewItemInput from "../../components/NewItemInput/NewItemInput";
 import { addIngredient } from "../../services/ingredients/ingredients";
-import Ingredient from "../../components/Ingredient/Ingredient";
 import LockButton from "../../components/LockButton/LockButton";
-import EditableListItem from "../../components/EditableListItem/EditableListItem";
+import IngredientList from "../../components/IngredientList/IngredientList";
 
 export default function RecipeDetailScreen() {
 
@@ -38,25 +36,10 @@ export default function RecipeDetailScreen() {
         {!loading &&
           <View>
             <Text>{recipe.name}</Text>
-            <View>
-              <Text>Ingredients</Text>
-              {recipe.ingredients.map(ingredient => {
-                if (locked) {
-                  return <Ingredient
-                    name={ingredient.name}
-                    amount={ingredient.amount} />
-                }
-                else return (
-                  <EditableListItem 
-                    id={ingredient.id} 
-                    quantity={ingredient.amount}
-                    item={ingredient.name}
-                    handleUpdateItem={async () => {null}}
-                    handleUpdateQuantity={async () => {null}} />
-                )
-              })}
-              <NewItemInput handleAdd={handleAddIngredient} />
-            </View>
+            <IngredientList
+              ingredients={recipe.ingredients}
+              locked={locked}
+              handleAddIngredient={handleAddIngredient} />
             <View>
               <Text>Steps</Text>
               {recipe.steps
