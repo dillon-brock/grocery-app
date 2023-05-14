@@ -6,15 +6,24 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { RecipeStackParamList } from "../../types/types";
 import { useRecipe } from "../../hooks/useRecipe";
 import NewItemInput from "../../components/NewItemInput/NewItemInput";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { addIngredient } from "../../services/ingredients/ingredients";
 
 export default function RecipeDetailScreen() {
 
   const { recipeId } = useRoute<RouteProp<RecipeStackParamList, 'RecipeDetail'>>().params;
-  const { recipe, loading } = useRecipe(recipeId);
+  const { recipe, setRecipe, loading } = useRecipe(recipeId);
 
-  const handleAddIngredient = async (ingredient: string, amount: string): Promise<void> => {
-    const token = await AsyncStorage.getItem('@token');
+  const handleAddIngredient = async (name: string, amount: string): Promise<void> => {
+    const newIngredientRes = await addIngredient(recipeId, { name, amount });
+    if (newIngredientRes.success) {
+      setRecipe(prev => ({
+        ...prev,
+        ingredients: [
+          ...prev.ingredients,
+          newIngredientRes.ingredient
+        ]
+      }));
+    }
   }
 
   return (

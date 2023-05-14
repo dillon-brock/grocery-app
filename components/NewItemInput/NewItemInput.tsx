@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 import IconButton from "../IconButton/IconButton";
 import styles from './styles';
 
@@ -35,7 +35,7 @@ export default function NewItemInput({ handleAdd }: Props) {
           style={styles.input} />
       </View>
       <View>
-        <IconButton name="add-circle" handlePress={addItem} size={32} style={{ color: '#E16A64' }} />
+        <IconButton name="add-circle" handlePress={addItem} />
       </View>
     </View>
   )

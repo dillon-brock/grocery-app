@@ -28,7 +28,6 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem('@token');
-      console.log(token);
       if (!token) {
         setDoneGettingUser(true);
         setUser(null);

@@ -1,17 +1,11 @@
 import { SuccessfulResponse } from '../../types/types';
+import { Ingredient } from '../ingredients/types';
 
 export type RecipeStep = {
   id: string;
   num: number;
   detail: string;
   recipeId: string;
-}
-
-export type Ingredient = {
-  id: string;
-  recipeId: string;
-  name: string;
-  amount: string | null;
 }
 
 export interface Recipe {
