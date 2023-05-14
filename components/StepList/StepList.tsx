@@ -2,6 +2,7 @@ import React from "react"
 import { Text, View } from "react-native"
 import { RecipeStep } from "../../services/recipes/types"
 import StepDisplay from "../StepDisplay/StepDisplay"
+import NewStepInput from "../NewStepInput/NewStepInput"
 
 type Props = {
   steps: RecipeStep[]
@@ -19,8 +20,8 @@ export default function StepList({ steps }: Props) {
           <StepDisplay 
             num={step.num} 
             detail={step.detail} />
-        )
-        )}
+        ))}
+        <NewStepInput num={steps.length + 1} />
       </View>
     </View>
   )
