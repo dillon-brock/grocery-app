@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react"
-import { Text, View } from "react-native"
+import { View } from "react-native"
 import { RecipeStep } from "../../services/recipes/types"
 import StepDisplay from "../StepDisplay/StepDisplay"
 import NewStepInput from "../NewStepInput/NewStepInput"
@@ -16,7 +16,6 @@ export default function StepList({ steps, recipeId, setSteps, locked }: Props) {
 
   return (
     <View>
-      <Text>Steps</Text>
       <View>
         {steps
         .sort((a, b) => a.num - b.num)
