@@ -3,6 +3,7 @@ import { Text, View } from "react-native"
 import { RecipeStep, RecipeWithDetail } from "../../services/recipes/types"
 import StepDisplay from "../StepDisplay/StepDisplay"
 import NewStepInput from "../NewStepInput/NewStepInput"
+import EditableStep from "../EditableStep/EditableStep"
 
 type Props = {
   steps: RecipeStep[];
@@ -19,11 +20,27 @@ export default function StepList({ steps, recipeId, setRecipe, locked }: Props) 
       <View>
         {steps
         .sort((a, b) => a.num - b.num)
-        .map(step => (
-          <StepDisplay 
-            num={step.num} 
-            detail={step.detail} />
-        ))}
+        .map(step => {
+          if (locked) {
+            return (
+            <StepDisplay
+              key={step.id}
+              num={step.num} 
+              detail={step.detail} />
+            );
+          }
+          else {
+            return (
+              <EditableStep
+                key={step.id}
+                id={step.id}
+                num={step.num}
+                detail={step.detail}
+                setRecipe={setRecipe}
+              />
+            )
+          }
+        })}
         {!locked &&
           <NewStepInput 
             num={steps.length + 1}

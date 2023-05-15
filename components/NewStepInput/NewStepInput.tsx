@@ -24,6 +24,7 @@ export default function NewStepInput({ num, recipeId, setRecipe }: Props) {
           res.step
         ]
       }))
+      setDetail('');
     }
   }
 
@@ -37,6 +38,7 @@ export default function NewStepInput({ num, recipeId, setRecipe }: Props) {
           multiline
           numberOfLines={2}
           placeholder='New step'
+          value={detail}
           onChange={(e) => setDetail(e.nativeEvent.text)}
         />
       </View>
