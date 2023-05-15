@@ -1,9 +1,10 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { CommonScreenStyle } from "../../types/types";
 
 interface RecipeDetailScreenStyle extends CommonScreenStyle {
   screen: ViewStyle;
   centerTitle: ViewStyle;
+  subtitle: TextStyle;
 }
 
 export default StyleSheet.create<RecipeDetailScreenStyle>({
@@ -20,10 +21,6 @@ export default StyleSheet.create<RecipeDetailScreenStyle>({
   titleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '80%',
-    paddingBottom: 4,
-    borderBottomColor: '#E16A64',
-    borderBottomWidth: 3,
   },
   centerTitle: {
     alignItems: 'center'
@@ -34,5 +31,10 @@ export default StyleSheet.create<RecipeDetailScreenStyle>({
     paddingBottom: 60,
     paddingLeft: 20,
     paddingRight: 20
+  },
+  subtitle: {
+    fontFamily: 'AvenirNextCondensed-Bold',
+    fontSize: 22,
+    color: '#4A757E'
   }
 })
