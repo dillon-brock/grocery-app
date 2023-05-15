@@ -8,6 +8,7 @@ import { addIngredient } from "../../services/ingredients/ingredients";
 import LockButton from "../../components/LockButton/LockButton";
 import IngredientList from "../../components/IngredientList/IngredientList";
 import StepList from "../../components/StepList/StepList";
+import styles from './styles';
 
 export default function RecipeDetailScreen() {
 
@@ -23,14 +24,18 @@ export default function RecipeDetailScreen() {
   }
 
   return (
-    <View>
+    <View style={styles.screen}>
       <Header showBackButton showMenuButton />
       <LockButton locked={locked} setLocked={setLocked} />
       <ScrollView keyboardShouldPersistTaps='handled'>
         {loading && <Text>Loading...</Text>}
         {!loading &&
-          <View>
-            <Text>{recipe.name}</Text>
+          <View style={styles.container}>
+            <View style={styles.centerTitle}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>{recipe.name}</Text>
+              </View>
+            </View>
             <IngredientList
               ingredients={ingredients}
               locked={locked}
