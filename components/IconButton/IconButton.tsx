@@ -5,17 +5,15 @@ import glyphs from "@expo/vector-icons/build/vendor/react-native-vector-icons/gl
 
 type Props = {
   name: keyof typeof glyphs;
-  handlePress: () => void;
+  handlePress: (() => void) | (() => Promise<void>);
   style?: ViewStyle | TextStyle,
   size?: number
 }
 
 export default function IconButton({ name, handlePress, style, size }: Props) {
-  const pressTest = () => {
-    handlePress();
-  }
+
   return (
-    <Pressable onPressOut={pressTest}>
+    <Pressable onPressOut={handlePress} style={{ zIndex: 1 }}>
       <Ionicons
         style={style || {}}
         name={name}

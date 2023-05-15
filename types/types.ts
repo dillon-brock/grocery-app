@@ -80,3 +80,10 @@ export interface CategoryInList {
 export interface ListWithDetail extends List {
   categories: CategoryInList[];
 }
+
+export interface RecipeStep {
+  id: string;
+  num: number;
+  detail: string;
+  recipeId: string;
+}
