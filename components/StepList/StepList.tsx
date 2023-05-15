@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react"
 import { Text, View } from "react-native"
-import { RecipeStep, RecipeWithDetail } from "../../services/recipes/types"
+import { RecipeStep } from "../../services/recipes/types"
 import StepDisplay from "../StepDisplay/StepDisplay"
 import NewStepInput from "../NewStepInput/NewStepInput"
 import EditableStep from "../EditableStep/EditableStep"
@@ -9,10 +9,10 @@ type Props = {
   steps: RecipeStep[];
   recipeId: string;
   locked: boolean;
-  setRecipe: Dispatch<SetStateAction<RecipeWithDetail>>;
+  setSteps: Dispatch<SetStateAction<RecipeStep[]>>;
 }
 
-export default function StepList({ steps, recipeId, setRecipe, locked }: Props) {
+export default function StepList({ steps, recipeId, setSteps, locked }: Props) {
 
   return (
     <View>
@@ -36,7 +36,7 @@ export default function StepList({ steps, recipeId, setRecipe, locked }: Props) 
                 id={step.id}
                 num={step.num}
                 detail={step.detail}
-                setRecipe={setRecipe}
+                setSteps={setSteps}
               />
             )
           }
@@ -45,7 +45,7 @@ export default function StepList({ steps, recipeId, setRecipe, locked }: Props) 
           <NewStepInput 
             num={steps.length + 1}
             recipeId={recipeId}
-            setRecipe={setRecipe} />
+            setSteps={setSteps} />
         }
       </View>
     </View>

@@ -12,19 +12,13 @@ import StepList from "../../components/StepList/StepList";
 export default function RecipeDetailScreen() {
 
   const { recipeId } = useRoute<RouteProp<RecipeStackParamList, 'RecipeDetail'>>().params;
-  const { recipe, setRecipe, ingredients, setIngredients, steps, setSteps, loading } = useRecipe(recipeId);
+  const { recipe, ingredients, setIngredients, steps, setSteps, loading } = useRecipe(recipeId);
   const [locked, setLocked] = useState<boolean>(true);
 
   const handleAddIngredient = async (name: string, amount: string): Promise<void> => {
     const newIngredientRes = await addIngredient(recipeId, { name, amount });
     if (newIngredientRes.success) {
-      setRecipe(prev => ({
-        ...prev,
-        ingredients: [
-          ...prev.ingredients,
-          newIngredientRes.ingredient
-        ]
-      }));
+      setIngredients(prev => [...prev, newIngredientRes.ingredient]);
     }
   }
 
@@ -45,7 +39,7 @@ export default function RecipeDetailScreen() {
             <StepList 
               recipeId={recipe.id}
               steps={steps}
-              setRecipe={setRecipe}
+              setSteps={setSteps}
               locked={locked} />
           </View>
         }
