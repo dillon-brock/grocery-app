@@ -12,7 +12,7 @@ import StepList from "../../components/StepList/StepList";
 export default function RecipeDetailScreen() {
 
   const { recipeId } = useRoute<RouteProp<RecipeStackParamList, 'RecipeDetail'>>().params;
-  const { recipe, setRecipe, loading } = useRecipe(recipeId);
+  const { recipe, setRecipe, ingredients, setIngredients, steps, setSteps, loading } = useRecipe(recipeId);
   const [locked, setLocked] = useState<boolean>(true);
 
   const handleAddIngredient = async (name: string, amount: string): Promise<void> => {
@@ -38,13 +38,13 @@ export default function RecipeDetailScreen() {
           <View>
             <Text>{recipe.name}</Text>
             <IngredientList
-              ingredients={recipe.ingredients}
+              ingredients={ingredients}
               locked={locked}
-              handleAddIngredient={handleAddIngredient}
-              setRecipe={setRecipe} />
+              setIngredients={setIngredients}
+              handleAddIngredient={handleAddIngredient} />
             <StepList 
               recipeId={recipe.id}
-              steps={recipe.steps}
+              steps={steps}
               setRecipe={setRecipe}
               locked={locked} />
           </View>

@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { RecipeWithDetail } from "../services/recipes/types";
+import { RecipeStep, RecipeWithDetail } from "../services/recipes/types";
 import { getRecipeById } from "../services/recipes/reicpes";
 import { useIsFocused } from "@react-navigation/native";
+import { Ingredient } from "../services/ingredients/types";
 
 const defaultRecipe: RecipeWithDetail = {
   id: '',
@@ -20,12 +21,18 @@ type RecipeHookData = {
   loading: boolean;
   error: string;
   setError: Dispatch<SetStateAction<string>>;
+  ingredients: Ingredient[];
+  steps: RecipeStep[];
+  setIngredients: Dispatch<SetStateAction<Ingredient[]>>;
+  setSteps: Dispatch<SetStateAction<RecipeStep[]>>;
 }
 
 export function useRecipe(id: string): RecipeHookData {
 
   const isFocused = useIsFocused();
   const [recipe, setRecipe] = useState<RecipeWithDetail>(defaultRecipe);
+  const [ingredients, setIngredients] = useState<Ingredient[]>(defaultRecipe.ingredients);
+  const [steps, setSteps] = useState<RecipeStep[]>(defaultRecipe.steps);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
 
@@ -35,6 +42,8 @@ export function useRecipe(id: string): RecipeHookData {
         const recipeRes = await getRecipeById(id);
         if (recipeRes.success) {
           setRecipe(recipeRes.recipe);
+          setIngredients(recipeRes.recipe.ingredients);
+          setSteps(recipeRes.recipe.steps);
         }
         else setError(recipeRes.message);
         setLoading(false);
@@ -45,5 +54,11 @@ export function useRecipe(id: string): RecipeHookData {
     fetchRecipe();
   }, [id, isFocused]);
 
-  return { recipe, setRecipe, loading, error, setError };
+  return { 
+    recipe, setRecipe,
+    error, setError,
+    ingredients, setIngredients,
+    steps, setSteps,
+    loading
+  };
 }

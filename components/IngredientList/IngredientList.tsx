@@ -5,31 +5,25 @@ import IngredientDisplay from "../IngredientDisplay/IngredientDisplay";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import EditableListItem from "../EditableListItem/EditableListItem";
 import { deleteIngredient, updateIngredient } from "../../services/ingredients/ingredients";
-import { RecipeWithDetail } from "../../services/recipes/types";
 
 type Props = {
   ingredients: Ingredient[];
+  setIngredients: Dispatch<SetStateAction<Ingredient[]>>;
   locked: boolean;
   handleAddIngredient: (name: string, amount: string) => Promise<void>;
-  setRecipe: Dispatch<SetStateAction<RecipeWithDetail>>;
 }
 
-export default function IngredientList({ ingredients, locked, handleAddIngredient, setRecipe }: Props) {
+export default function IngredientList({ ingredients, locked, handleAddIngredient, setIngredients }: Props) {
 
   const [error, setError] = useState<string>('');
 
   const handleUpdateAmount = async (id: string, amount: string): Promise<void> => {
     const res = await updateIngredient(id, { amount });
     if (res.success) {
-      setRecipe(prev => {
-        return {
-          ...prev,
-          ingredients: [
-            ...prev.ingredients.filter(ingredient => ingredient.id != id),
-            res.ingredient
-          ]
-        }
-      });
+      setIngredients(prev => [
+        ...prev.filter(ingredient => ingredient.id != id),
+        res.ingredient
+      ])
     }
     else {
       setError(res.message);
@@ -39,15 +33,10 @@ export default function IngredientList({ ingredients, locked, handleAddIngredien
   const handleUpdateName = async (id: string, name: string): Promise<void> => {
     const res = await updateIngredient(id, { name });
     if (res.success) {
-      setRecipe(prev => {
-        return {
-          ...prev,
-          ingredients: [
-            ...prev.ingredients.filter(ingredient => ingredient.id != id),
-            res.ingredient
-          ]
-        }
-      })
+      setIngredients(prev => [
+        ...prev.filter(ingredient => ingredient.id != id),
+        res.ingredient
+      ])
     }
     else {
       setError(res.message);
@@ -57,14 +46,9 @@ export default function IngredientList({ ingredients, locked, handleAddIngredien
   const handleDeleteIngredient = async (id: string): Promise<void> => {
     const res = await deleteIngredient(id);
     if (res.success) {
-      setRecipe(prev => ({
-        ...prev,
-        ingredients: [
-          ...prev.ingredients.filter(ingredient => (
-            ingredient.id != id
-          ))
-        ]
-      }));
+      setIngredients(prev => (
+        prev.filter(ingredient => ingredient.id != id)
+      ));
     }
     else {
       setError(res.message);
