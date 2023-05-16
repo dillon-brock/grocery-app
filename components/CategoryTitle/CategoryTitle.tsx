@@ -1,49 +1,51 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { TextInput, View } from "react-native";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Text, TextInput, View } from "react-native";
 import styles from './styles';
-import { ListWithDetail } from "../../types/types";
+import { CategoryInList } from "../../types/types";
 import { updateCategory } from "../../services/categories/categories";
 
 type Props = { 
   name: string;
-  setList: Dispatch<SetStateAction<ListWithDetail>>;
+  setCategories: Dispatch<SetStateAction<CategoryInList[]>>;
   categoryId: string;
+  locked: boolean;
 };
 
-export default function CategoryTitle({ name, setList, categoryId }: Props) {
+export default function CategoryTitle({ name, categoryId, locked, setCategories }: Props) {
 
   const [currentName, setCurrentName] = useState<string>(name.toUpperCase());
 
+
   const handleUpdateName = async (): Promise<void> => {
-    const updateNameRes = await updateCategory({ id: categoryId, name: currentName});
-    if (updateNameRes.success) {
-      setList(prev => {
-        const category = prev.categories.find(c => c.id == categoryId);
-        if (!category) return prev;
-        return {
-          ...prev,
-          categories: [
-            ...prev.categories.filter(c => c.id != categoryId),
-            {
-              ...category,
-              name: currentName
-            }
-          ]
-        }
-      })
+    const res = await updateCategory({ id: categoryId, name: currentName});
+    if (res.success) {
+      setCategories(prev => ([
+        ...prev.filter(c => c.id != categoryId),
+        res.category 
+      ]))
     }
   }
+
+  useEffect(() => {
+    const updateName = async () => {
+      await handleUpdateName();
+    }
+    updateName();
+  }, [locked])
 
   return (
     <View style={styles.outerContainer}>
       <View style={styles.textContainer}>
-        <TextInput
-          value={currentName}
-          onChange={(e) => setCurrentName(e.nativeEvent.text.toUpperCase())}
-          onSubmitEditing={handleUpdateName}
-          onBlur={handleUpdateName}
-          style={styles.title}
-        />
+        {locked ?
+          <Text>{name}</Text> :
+          <TextInput
+            value={currentName}
+            onChange={(e) => setCurrentName(e.nativeEvent.text.toUpperCase())}
+            onSubmitEditing={handleUpdateName}
+            onBlur={handleUpdateName}
+            style={styles.title}
+          />
+        }
       </View>
     </View>
   )

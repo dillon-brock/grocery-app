@@ -5,21 +5,23 @@ import { ScrollView } from "react-native-gesture-handler";
 
 type Props = {
   list: ListWithDetail;
-  loading: boolean;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
+  categories: CategoryInList[];
+  setCategories: Dispatch<SetStateAction<CategoryInList[]>>;
+  loading: boolean;
   locked: boolean;
 }
 
-export default function GroceryList({ list, setList, loading, locked }: Props) {
+export default function GroceryList({ list, setList, loading, locked, categories, setCategories }: Props) {
 
   return (
     <ScrollView style={{ width: '90%' }}>
       {!loading &&
-        list.categories
+        categories
         .sort((a, b) => (a.name > b.name) ? 1 : -1)
         .map((category: CategoryInList) => (
           <ListCategorySection key={category.id} { ...category } 
-          setList={setList} listId={list.id} locked={locked} />
+          setList={setList} setCategories={setCategories} listId={list.id} locked={locked} />
         ))
       }
     </ScrollView>

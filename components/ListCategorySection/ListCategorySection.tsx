@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { View } from "react-native";
-import { ListItem, ListWithDetail } from "../../types/types";
+import { CategoryInList, ListItem, ListWithDetail } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import CategoryTitle from "../CategoryTitle/CategoryTitle";
@@ -14,10 +14,11 @@ type Props = {
   items: ListItem[];
   listId: string;
   setList: Dispatch<SetStateAction<ListWithDetail>>;
+  setCategories: Dispatch<SetStateAction<CategoryInList[]>>;
   locked: boolean;
 }
 
-export default function ListCategorySection({ id, name, items, listId, setList, locked }: Props) {
+export default function ListCategorySection({ id, name, items, listId, setList, locked, setCategories }: Props) {
 
   const handleAddItem = async (item: string, quantity: string): Promise<void> => {
     const addItemRes = await addItemToList({ 
@@ -105,7 +106,11 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
 
   return (
     <View>
-      <CategoryTitle categoryId={id} name={name} setList={setList} />
+      <CategoryTitle 
+        categoryId={id} 
+        name={name} 
+        setCategories={setCategories}
+        locked={locked} />
       {items.map(item => {
         if (!locked) {
           return (
