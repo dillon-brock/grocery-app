@@ -1,12 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { View } from "react-native";
-import { CategoryInList, ListItem, ListWithDetail } from "../../types/types";
+import { CategoryInList, ListItem } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import CategoryTitle from "../CategoryTitle/CategoryTitle";
 import EditableListItem from "../EditableListItem/EditableListItem";
 import { addItemToList, deleteItem, updateItem } from "../../services/list-items/list-items";
-import { updateItemInState } from "../../utils";
 
 type Props = {
   category: CategoryInList;
@@ -62,7 +61,7 @@ export default function ListCategorySection({ category, setCategory, listId, loc
       <CategoryTitle 
         categoryId={category.id} 
         name={category.name} 
-        setCategories={setCategories}
+        setCategory={setCategory}
         locked={locked} />
       {items.map(item => {
         if (!locked) {
@@ -75,7 +74,10 @@ export default function ListCategorySection({ category, setCategory, listId, loc
             handleDeleteItem={handleDeleteItem} />
           );
         }
-        return <GroceryListItem key={item.id} { ...item } setCategory={setCategory} />
+        return <GroceryListItem 
+          key={item.id} 
+          { ...item } 
+          setItems={setItems} />
       })}
       <NewItemInput handleAdd={handleAddItem} />
     </View>

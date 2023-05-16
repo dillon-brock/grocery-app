@@ -6,12 +6,12 @@ import { updateCategory } from "../../services/categories/categories";
 
 type Props = { 
   name: string;
-  setCategories: Dispatch<SetStateAction<CategoryInList[]>>;
+  setCategory: Dispatch<SetStateAction<CategoryInList>>;
   categoryId: string;
   locked: boolean;
 };
 
-export default function CategoryTitle({ name, categoryId, locked, setCategories }: Props) {
+export default function CategoryTitle({ name, categoryId, locked, setCategory }: Props) {
 
   const [currentName, setCurrentName] = useState<string>(name.toUpperCase());
 
@@ -19,10 +19,7 @@ export default function CategoryTitle({ name, categoryId, locked, setCategories 
   const handleUpdateName = async (): Promise<void> => {
     const res = await updateCategory({ id: categoryId, name: currentName});
     if (res.success) {
-      setCategories(prev => ([
-        ...prev.filter(c => c.id != categoryId),
-        res.category 
-      ]))
+      setCategory(res.category);
     }
   }
 
@@ -37,7 +34,7 @@ export default function CategoryTitle({ name, categoryId, locked, setCategories 
     <View style={styles.outerContainer}>
       <View style={styles.textContainer}>
         {locked ?
-          <Text>{name}</Text> :
+          <Text style={styles.title}>{name}</Text> :
           <TextInput
             value={currentName}
             onChange={(e) => setCurrentName(e.nativeEvent.text.toUpperCase())}

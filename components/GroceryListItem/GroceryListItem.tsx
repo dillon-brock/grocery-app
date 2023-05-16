@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Pressable, Text, View } from "react-native";
-import { deleteItem, updateItem } from "../../services/list-items/list-items";
-import { type ListWithDetail } from "../../types/types";
-import { updateItemInState } from "../../utils";
+import { updateItem } from "../../services/list-items/list-items";
+import { ListItem } from "../../types/types";
 import styles from './styles';
 import { Ionicons } from "@expo/vector-icons";
 
@@ -11,49 +10,23 @@ type Props = {
   item: string;
   quantity: string | null;
   bought: boolean;
-  categoryId: string;
-  setList: Dispatch<SetStateAction<ListWithDetail>>;
+  setItems: Dispatch<SetStateAction<ListItem[]>>;
 }
 
-export default function GroceryListItem({ id, item, quantity, bought, categoryId, setList }: Props) {
-
-  const handleDeleteItem = async (): Promise<void> => {
-    await deleteItem(id);
-    setList((prev: ListWithDetail) => {
-      const category = prev.categories.find(category => category.id == categoryId);
-      if (!category) return prev;
-      const updatedCategory = {
-        ...category,
-        items: category?.items.filter(item => item.id != id)
-      };
-      if (!updatedCategory) return prev;
-      return {
-      ...prev,
-      categories: [
-        ...prev.categories.filter(category => category.id != categoryId),
-        updatedCategory 
-      ]
-    }});
-  }
+export default function GroceryListItem({ id, item, quantity, bought, setItems }: Props) {
 
   const handleToggleBought = async (): Promise<void> => {
-    await updateItem(id, { bought: !bought });
-    setList((prev: ListWithDetail): ListWithDetail => {
-
-      const newListState = updateItemInState({ 
-        prev, 
-        categoryId, 
-        itemId: id, 
-        prop: 'bought', 
-        val: !bought
-      });
-
-      return newListState;
-    })
+    const res = await updateItem(id, { bought: !bought });
+    if (res.success) {
+      setItems(prev => [
+        ...prev.filter(item => item.id != id),
+        res.listItem
+      ])
+    }
   }
 
   return (
-    <Pressable onLongPress={handleDeleteItem} onPress={handleToggleBought} style={styles.container}>
+    <Pressable onPress={handleToggleBought} style={styles.container}>
       <View style={styles.checkmarkContainer}>
         {bought &&
           <Ionicons name="checkmark-circle-outline" size={18} />

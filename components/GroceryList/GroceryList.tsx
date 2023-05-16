@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { CategoryInList, ListWithDetail } from "../../types/types";
 import ListCategorySection from "../ListCategorySection/ListCategorySection";
 import { ScrollView } from "react-native-gesture-handler";
