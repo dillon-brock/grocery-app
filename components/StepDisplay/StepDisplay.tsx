@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
+import styles from './styles';
 
 type Props = {
   num: number;
@@ -9,12 +10,12 @@ type Props = {
 export default function StepDisplay({ num, detail }: Props) {
 
   return (
-    <View>
-      <View>
-        <Text>{`${num}.`}</Text>
+    <View style={styles.container}>
+      <View style={[styles.subsection, styles.numContainer]}>
+        <Text style={styles.num}>{`${num}.`}</Text>
       </View>
-      <View>
-        <Text>{detail}</Text>
+      <View style={[styles.subsection, styles.detailContainer]}>
+        <Text style={styles.detail}>{detail}</Text>
       </View>
     </View>
   )

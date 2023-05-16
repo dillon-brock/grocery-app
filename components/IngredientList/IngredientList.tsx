@@ -4,16 +4,16 @@ import { Ingredient } from "../../services/ingredients/types"
 import IngredientDisplay from "../IngredientDisplay/IngredientDisplay";
 import NewItemInput from "../NewItemInput/NewItemInput";
 import EditableListItem from "../EditableListItem/EditableListItem";
-import { deleteIngredient, updateIngredient } from "../../services/ingredients/ingredients";
+import { addIngredient, deleteIngredient, updateIngredient } from "../../services/ingredients/ingredients";
 
 type Props = {
   ingredients: Ingredient[];
   setIngredients: Dispatch<SetStateAction<Ingredient[]>>;
   locked: boolean;
-  handleAddIngredient: (name: string, amount: string) => Promise<void>;
+  recipeId: string;
 }
 
-export default function IngredientList({ ingredients, locked, handleAddIngredient, setIngredients }: Props) {
+export default function IngredientList({ ingredients, locked, setIngredients, recipeId }: Props) {
 
   const [error, setError] = useState<string>('');
 
@@ -55,9 +55,15 @@ export default function IngredientList({ ingredients, locked, handleAddIngredien
     }
   }
 
+  const handleAddIngredient = async (name: string, amount: string): Promise<void> => {
+    const res = await addIngredient(recipeId, { name, amount });
+    if (res.success) {
+      setIngredients(prev => [ ...prev, res.ingredient ]);
+    }
+  }
+
   return (
     <View>
-      <Text>Ingredients</Text>
       {error &&
         <Text>{error}</Text>
       }
@@ -79,7 +85,9 @@ export default function IngredientList({ ingredients, locked, handleAddIngredien
             handleDeleteItem={handleDeleteIngredient} />
         )
       })}
-      <NewItemInput handleAdd={handleAddIngredient} />
+      {!locked &&
+        <NewItemInput handleAdd={handleAddIngredient} />
+      }
     </View>
   )
 }
