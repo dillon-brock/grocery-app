@@ -1,28 +1,31 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { CategoryInList, ListWithDetail } from "../../types/types";
 import ListCategorySection from "../ListCategorySection/ListCategorySection";
 import { ScrollView } from "react-native-gesture-handler";
 
 type Props = {
   list: ListWithDetail;
-  setList: Dispatch<SetStateAction<ListWithDetail>>;
   categories: CategoryInList[];
-  setCategories: Dispatch<SetStateAction<CategoryInList[]>>;
   loading: boolean;
   locked: boolean;
 }
 
-export default function GroceryList({ list, setList, loading, locked, categories, setCategories }: Props) {
+export default function GroceryList({ list, loading, locked, categories }: Props) {
 
   return (
     <ScrollView style={{ width: '90%' }}>
       {!loading &&
         categories
         .sort((a, b) => (a.name > b.name) ? 1 : -1)
-        .map((category: CategoryInList) => (
-          <ListCategorySection key={category.id} { ...category } 
-          setList={setList} setCategories={setCategories} listId={list.id} locked={locked} />
-        ))
+        .map((c: CategoryInList) => {
+          const [category, setCategory] = useState<CategoryInList>(c);
+          return <ListCategorySection
+            category={category}
+            setCategory={setCategory}
+            key={category.id} 
+            listId={list.id} 
+            locked={locked} />
+        })
       }
     </ScrollView>
   )

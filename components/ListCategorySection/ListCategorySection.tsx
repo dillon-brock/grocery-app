@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { View } from "react-native";
 import { CategoryInList, ListItem, ListWithDetail } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
@@ -9,106 +9,59 @@ import { addItemToList, deleteItem, updateItem } from "../../services/list-items
 import { updateItemInState } from "../../utils";
 
 type Props = {
-  id: string;
-  name: string;
-  items: ListItem[];
+  category: CategoryInList;
+  setCategory: Dispatch<SetStateAction<CategoryInList>>;
   listId: string;
-  setList: Dispatch<SetStateAction<ListWithDetail>>;
-  setCategories: Dispatch<SetStateAction<CategoryInList[]>>;
   locked: boolean;
 }
 
-export default function ListCategorySection({ id, name, items, listId, setList, locked, setCategories }: Props) {
+export default function ListCategorySection({ category, setCategory, listId, locked }: Props) {
+
+  const [items, setItems] = useState<ListItem[]>(category.items);
 
   const handleAddItem = async (item: string, quantity: string): Promise<void> => {
-    const addItemRes = await addItemToList({ 
+    const res = await addItemToList({ 
       listId, 
       item, 
       quantity: quantity || null,
-      categoryId: id
+      categoryId: category.id
     });
 
-    if (addItemRes.success) {
-      setList((prev: ListWithDetail) => {
-        const category = prev.categories.find(c => c.id == id);
-        if (!category) return prev;
-        const updatedCategory = { 
-          ...category, 
-          items: [ 
-            ...category.items, 
-            addItemRes.listItem 
-          ]
-        }
-
-        return { 
-          ...prev,
-          categories: [
-            ...prev.categories.filter(c => c.id != id),
-            updatedCategory
-          ]
-        }
-      });
+    if (res.success) {
+      setItems(prev => [...prev, res.listItem]);
     }
   }
 
   const handleUpdateQuantity = async (itemId: string, quantity: string) => {
-    const updateRes = await updateItem(itemId, { quantity });
-    if (updateRes.success) {
-      setList(prev => {
-        const newListState = updateItemInState({
-          prev,
-          categoryId: id,
-          itemId,
-          prop: 'quantity',
-          val: quantity || null
-        });
-        
-        return newListState;
-      })
+    const res = await updateItem(itemId, { quantity });
+    if (res.success) {
+      setItems(prev => [
+        ...prev.filter(item => item.id != itemId),
+        res.listItem
+      ])
     }
   }
 
   const handleUpdateItem = async (itemId: string, item: string) => {
-    const updateRes = await updateItem(id, { item });
-    if (updateRes.success) {
-      setList(prev => {
-        const newListState = updateItemInState({
-          prev,
-          categoryId: id,
-          itemId,
-          prop: 'item',
-          val: item
-        });
-
-        return newListState;
-      })
+    const res = await updateItem(itemId, { item });
+    if (res.success) {
+      setItems(prev => [
+        ...prev.filter(item => item.id != itemId),
+        res.listItem
+      ])
     }
   }
 
   const handleDeleteItem = async (itemId: string): Promise<void> => {
     await deleteItem(itemId);
-    setList((prev: ListWithDetail) => {
-      const category = prev.categories.find(category => category.id == id);
-      if (!category) return prev;
-      const updatedCategory = {
-        ...category,
-        items: category?.items.filter(item => item.id != itemId)
-      };
-      if (!updatedCategory) return prev;
-      return {
-      ...prev,
-      categories: [
-        ...prev.categories.filter(category => category.id != id),
-        updatedCategory 
-      ]
-    }});
+    setItems(prev => prev.filter(item => item.id != itemId));
   }
 
   return (
     <View>
       <CategoryTitle 
-        categoryId={id} 
-        name={name} 
+        categoryId={category.id} 
+        name={category.name} 
         setCategories={setCategories}
         locked={locked} />
       {items.map(item => {
@@ -122,7 +75,7 @@ export default function ListCategorySection({ id, name, items, listId, setList, 
             handleDeleteItem={handleDeleteItem} />
           );
         }
-        return <GroceryListItem key={item.id} { ...item } setList={setList} />
+        return <GroceryListItem key={item.id} { ...item } setCategory={setCategory} />
       })}
       <NewItemInput handleAdd={handleAddItem} />
     </View>

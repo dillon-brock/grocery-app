@@ -13,7 +13,7 @@ import LockButton from "../../components/LockButton/LockButton";
 export default function ListDetailScreen() {
 
   const { listId, type } = useRoute<RouteProp<ListStackParamList, 'ListDetail'>>().params;
-  const { list, setList, categories, setCategories, loading, errorMessage } = useList(listId);
+  const { list, setList, categories, loading, errorMessage } = useList(listId);
   const [locked, setLocked] = useState<boolean>(true);
   const [userWantsToAddCategory, setUserWantsToAddCategory] = useState<boolean>(false);
   const dateCreated = new Date(list.createdAt).toDateString();
@@ -43,9 +43,7 @@ export default function ListDetailScreen() {
           }
           <GroceryList 
             list={list} 
-            setList={setList} 
             categories={categories}
-            setCategories={setCategories} 
             loading={loading} 
             locked={locked} />
           <SecondaryButton text='+ ADD CATEGORY' handlePress={handleAddCategory}/>
