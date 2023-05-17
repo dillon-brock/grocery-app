@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { NativeSyntheticEvent, Pressable, Text, TextInputChangeEventData, View } from "react-native";
 import Header from "../../components/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { HomeStackParamList, PublicUser } from "../../types/types";
+import { HomeStackParamList } from "../../types/types";
 import { TextInput } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { useSearchUsers } from "../../hooks/useSearchUsers";
 
 export default function ShareScreen() {
 
   const { id, name, type } = useRoute<RouteProp<HomeStackParamList, 'Share'>>().params;
   const [username, setUsername] = useState<string>('');
-  const [users, setUsers] = useState<PublicUser[]>([]);
+  const { users } = useSearchUsers(username);
   const [searchBegun, setSearchBegun] = useState<boolean>(false);
-  
+
+  const handleChangeUsername = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+    if (!searchBegun) {
+      setSearchBegun(true);
+    }
+    setUsername(e.nativeEvent.text);
+  }
+
   return (
     <View>
       <Header showBackButton showMenuButton />
@@ -22,7 +30,7 @@ export default function ShareScreen() {
         <TextInput
           placeholder="Find users"
           value={username}
-          onChange={(e) => setUsername(e.nativeEvent.text)}
+          onChange={handleChangeUsername}
         />
       </View>
       {users.length == 0 && searchBegun &&
