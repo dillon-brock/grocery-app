@@ -4,8 +4,8 @@ import { TextInput } from "react-native-gesture-handler";
 import { categoryStyles } from './styles';
 
 type Props = {
-  handleUpdateTitle: () => Promise<void>;
-  type: string;
+  handleUpdateTitle: (title: string) => Promise<void>;
+  type: 'category' | 'list';
   title: string;
   locked: boolean;
 }
@@ -16,7 +16,7 @@ export default function EditableTitle({ title, type, handleUpdateTitle, locked }
 
   useEffect(() => {
     const updateTitle = async () => {
-      await handleUpdateTitle();
+      await handleUpdateTitle(currentTitle);
     }
     updateTitle();
   }, [locked]);
@@ -29,8 +29,8 @@ export default function EditableTitle({ title, type, handleUpdateTitle, locked }
           <TextInput
             value={currentTitle}
             onChange={(e) => setCurrentTitle(e.nativeEvent.text)}
-            onSubmitEditing={handleUpdateTitle}
-            onBlur={handleUpdateTitle}
+            onSubmitEditing={() => handleUpdateTitle(currentTitle)}
+            onBlur={() => handleUpdateTitle(currentTitle)}
             style={type == 'category' && categoryStyles.title} />
         }
       </View>

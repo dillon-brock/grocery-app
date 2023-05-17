@@ -3,9 +3,10 @@ import { View } from "react-native";
 import { CategoryInList, ListItem } from "../../types/types";
 import GroceryListItem from "../GroceryListItem/GroceryListItem";
 import NewItemInput from "../NewItemInput/NewItemInput";
-import CategoryTitle from "../CategoryTitle/CategoryTitle";
 import EditableListItem from "../EditableListItem/EditableListItem";
 import { addItemToList, deleteItem, updateItem } from "../../services/list-items/list-items";
+import { updateCategory } from "../../services/categories/categories";
+import EditableTitle from "../EditableTitle/EditableTitle";
 
 type Props = {
   category: CategoryInList;
@@ -56,12 +57,19 @@ export default function ListCategorySection({ category, setCategory, listId, loc
     setItems(prev => prev.filter(item => item.id != itemId));
   }
 
+  const handleUpdateTitle = async (title: string): Promise<void> => {
+    const res = await updateCategory({ id: category.id, name: title });
+    if (res.success) {
+      setCategory(res.category)
+    }
+  }
+
   return (
     <View>
-      <CategoryTitle 
-        categoryId={category.id} 
-        name={category.name} 
-        setCategory={setCategory}
+      <EditableTitle
+        handleUpdateTitle={handleUpdateTitle}
+        type='category'
+        title={category.name}
         locked={locked} />
       {items.map(item => {
         if (!locked) {
