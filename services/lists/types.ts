@@ -1,6 +1,6 @@
 import { List, ListWithDetail, SuccessfulResponse } from "../../types/types";
 
-export interface CreateListResponse extends SuccessfulResponse {
+export interface ListResponse extends SuccessfulResponse {
   list: List
 }
 
@@ -10,4 +10,8 @@ export interface AllListsResponse extends SuccessfulResponse {
 
 export interface GetListResponse extends SuccessfulResponse {
   list: ListWithDetail;
+}
+
+export type ListUpdateData = {
+  title?: string
 }

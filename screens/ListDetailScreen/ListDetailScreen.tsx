@@ -10,6 +10,7 @@ import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal
 import Header from "../../components/Header/Header";
 import LockButton from "../../components/LockButton/LockButton";
 import EditableTitle from "../../components/EditableTitle/EditableTitle";
+import { updateList } from "../../services/lists/lists";
 
 export default function ListDetailScreen() {
 
@@ -25,7 +26,12 @@ export default function ListDetailScreen() {
     setUserWantsToAddCategory(true);
   }
 
-
+  const handleUpdateTitle = async (title: string): Promise<void> => {
+    const res = await updateList(list.id, { title });
+    if (res.success) {
+      setList(prev => ({ ...prev, title }))
+    }
+  }
 
   return (
     <View style={styles.pageContainer}>
@@ -37,7 +43,7 @@ export default function ListDetailScreen() {
             type='list'
             title={list.title ? list.title : placeholderTitle}
             locked={locked}
-            handleUpdateTitle={async () => {null}}
+            handleUpdateTitle={handleUpdateTitle}
           />
           {errorMessage &&
             <Text>{errorMessage}</Text>
