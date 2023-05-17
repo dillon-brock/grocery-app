@@ -11,6 +11,11 @@ export type HomeStackParamList = {
   Dashboard: undefined;
   ListStack: { screen: keyof ListStackParamList };
   RecipeStack: { screen: keyof RecipeStackParamList };
+  Share: {
+    id: string,
+    name: string,
+    type: 'recipe' | 'list'
+  }
 }
 
 export type ListStackParamList = {
