@@ -9,11 +9,13 @@ import SecondaryButton from "../../components/SecondaryButton/SecondaryButton";
 import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal";
 import Header from "../../components/Header/Header";
 import LockButton from "../../components/LockButton/LockButton";
+import EditableTitle from "../../components/EditableTitle/EditableTitle";
+import { updateList } from "../../services/lists/lists";
 
 export default function ListDetailScreen() {
 
   const { listId, type } = useRoute<RouteProp<ListStackParamList, 'ListDetail'>>().params;
-  const { list, setList, loading, errorMessage } = useList(listId);
+  const { list, setList, categories, loading, errorMessage } = useList(listId);
   const [locked, setLocked] = useState<boolean>(true);
   const [userWantsToAddCategory, setUserWantsToAddCategory] = useState<boolean>(false);
   const dateCreated = new Date(list.createdAt).toDateString();
@@ -24,24 +26,36 @@ export default function ListDetailScreen() {
     setUserWantsToAddCategory(true);
   }
 
+  const handleUpdateTitle = async (title: string): Promise<void> => {
+    const res = await updateList(list.id, { title });
+    if (res.success) {
+      setList(prev => ({ ...prev, title }))
+    }
+  }
+
   return (
     <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
       <LockButton locked={locked} setLocked={setLocked} />
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>
-                {list.title ? list.title : placeholderTitle}
-            </Text>
-          </View>
+          <EditableTitle
+            type='list'
+            title={list.title ? list.title : placeholderTitle}
+            locked={locked}
+            handleUpdateTitle={handleUpdateTitle}
+          />
           {errorMessage &&
             <Text>{errorMessage}</Text>
           }
           {loading &&
             <Text>Loading...</Text>
           }
-          <GroceryList list={list} setList={setList} loading={loading} locked={locked} />
+          <GroceryList 
+            list={list} 
+            categories={categories}
+            loading={loading} 
+            locked={locked} />
           <SecondaryButton text='+ ADD CATEGORY' handlePress={handleAddCategory}/>
           <NewCategoryModal 
             visible={userWantsToAddCategory} 

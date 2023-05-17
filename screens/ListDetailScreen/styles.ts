@@ -1,20 +1,11 @@
 import { StyleSheet, ViewStyle } from "react-native";
-import { CommonScreenStyle } from "../../types/types";
 
-interface ListDetailScreenStyle extends CommonScreenStyle {
+interface ListDetailScreenStyle {
+  container: ViewStyle;
   pageContainer: ViewStyle;
 }
 
 export default StyleSheet.create<ListDetailScreenStyle>({
-  title: {
-    fontSize: 20,
-    fontWeight: '800',
-    fontFamily: 'Avenir-Oblique',
-    color: '#E16A64'
-  },
-  titleContainer: {
-    justifyContent: 'center',
-  },
   container: {
     gap: 30,
     alignItems: 'center',

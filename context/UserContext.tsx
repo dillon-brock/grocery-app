@@ -28,22 +28,15 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem('@token');
-      if (!token) {
-        setDoneGettingUser(true);
-        setUser(null);
-        return;
-      }
-      else {
-        try {
-          const data: UserResponse | DatabaseErrorResponse = await getUser(token);
-          if (data.success) {
-            setUser(data.user);
-            setDoneGettingUser(true);
-          }
-        } catch (e) {
+      try {
+        const data: UserResponse | DatabaseErrorResponse = await getUser(token as string);
+        if (data.success) {
+          setUser(data.user);
           setDoneGettingUser(true);
-          console.error(e);
         }
+      } catch (e) {
+        setDoneGettingUser(true);
+        console.error(e);
       }
     };
     fetchUser();

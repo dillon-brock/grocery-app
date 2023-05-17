@@ -1,10 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_URL } from "../constants";
 import { responseWithSuccessStatus } from "../../utils";
-import { AllListsResponse, CreateListResponse, GetListResponse } from "./types";
+import { AllListsResponse, ListResponse, GetListResponse, ListUpdateData } from "./types";
 import { DatabaseErrorResponse } from "../../types/types";
 
-export async function createList(title?: string): Promise<CreateListResponse | DatabaseErrorResponse> {
+export async function createList(title?: string): Promise<ListResponse | DatabaseErrorResponse> {
   const token = await AsyncStorage.getItem('@token');
   const response = await fetch(`${API_URL}/lists`, {
     method: 'POST',
@@ -17,7 +17,7 @@ export async function createList(title?: string): Promise<CreateListResponse | D
     body: JSON.stringify({ title: title || null })
   });
 
-  return responseWithSuccessStatus<CreateListResponse>(response);
+  return responseWithSuccessStatus<ListResponse>(response);
 }
 
 export async function getLists(): Promise<AllListsResponse | DatabaseErrorResponse> {
@@ -44,4 +44,20 @@ export async function getListById(id: string): Promise<GetListResponse | Databas
   });
 
   return await responseWithSuccessStatus<GetListResponse>(response);
+}
+
+export async function updateList(id: string, data: ListUpdateData): Promise<ListResponse | DatabaseErrorResponse> {
+  const token = await AsyncStorage.getItem('@token');
+  const response = await fetch(`${API_URL}/lists/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    credentials: 'include',
+    body: JSON.stringify(data)
+  });
+
+  return responseWithSuccessStatus<ListResponse>(response);
 }
