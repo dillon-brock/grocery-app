@@ -1,15 +1,20 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-type CategoryTitleStyle = {
+type EditableTitleStyle = {
+  outerContainer: ViewStyle;
   textContainer: ViewStyle;
   title: TextStyle;
-  outerContainer: ViewStyle;
 }
 
-export const categoryStyles = StyleSheet.create<CategoryTitleStyle>({
+export const defaultStyles = StyleSheet.create<EditableTitleStyle>({
+  outerContainer: {},
+  textContainer: {},
+  title: {}
+})
+
+export const categoryStyles = StyleSheet.create<EditableTitleStyle>({
   outerContainer: {
     justifyContent: 'center',
-
   },
   textContainer: {
     paddingLeft: 15,
@@ -19,5 +24,18 @@ export const categoryStyles = StyleSheet.create<CategoryTitleStyle>({
     fontSize: 22,
     color: '#4A757E',
     textAlign: 'left'
+  }
+})
+
+export const listStyles = StyleSheet.create<EditableTitleStyle>({
+  outerContainer: {},
+  textContainer: {
+    justifyContent: 'center'
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '800',
+    fontFamily: 'Avenir-Oblique',
+    color: '#E16A64'
   }
 })

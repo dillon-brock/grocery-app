@@ -9,6 +9,7 @@ import SecondaryButton from "../../components/SecondaryButton/SecondaryButton";
 import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal";
 import Header from "../../components/Header/Header";
 import LockButton from "../../components/LockButton/LockButton";
+import EditableTitle from "../../components/EditableTitle/EditableTitle";
 
 export default function ListDetailScreen() {
 
@@ -24,17 +25,20 @@ export default function ListDetailScreen() {
     setUserWantsToAddCategory(true);
   }
 
+
+
   return (
     <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
       <LockButton locked={locked} setLocked={setLocked} />
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>
-                {list.title ? list.title : placeholderTitle}
-            </Text>
-          </View>
+          <EditableTitle
+            type='list'
+            title={list.title ? list.title : placeholderTitle}
+            locked={locked}
+            handleUpdateTitle={async () => {null}}
+          />
           {errorMessage &&
             <Text>{errorMessage}</Text>
           }
