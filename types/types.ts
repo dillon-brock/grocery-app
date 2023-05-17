@@ -92,3 +92,8 @@ export interface RecipeStep {
   detail: string;
   recipeId: string;
 }
+
+export interface PublicUser {
+  id: string;
+  username: string;
+}
