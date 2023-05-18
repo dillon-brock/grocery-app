@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle } from "react-native";
+import { ViewStyle } from "react-native";
 
 export type RootStackParamList = {
   Entry: undefined;
@@ -29,9 +29,7 @@ export type RecipeStackParamList = {
 }
 
 export interface CommonScreenStyle  {
-  title: TextStyle;
   container: ViewStyle;
-  titleContainer: ViewStyle;
 }
 
 export type DatabaseErrorResponse = {

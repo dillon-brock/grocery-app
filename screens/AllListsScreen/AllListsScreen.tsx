@@ -10,6 +10,7 @@ import { List, ListStackParamList } from "../../types/types";
 import styles from './styles';
 import Header from "../../components/molecules/Header/Header";
 import DetailLink from "../../components/molecules/DetailLink/DetailLink";
+import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function AllListsScreen() {
 
@@ -35,9 +36,7 @@ export default function AllListsScreen() {
     <>
       <Header showBackButton showMenuButton />
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Your Lists</Text>
-        </View>
+        <ScreenTitle text="Your Lists" color="black" />
         {lists.length == 0 &&
           <Text>You do not have any lists yet!</Text>
         }
