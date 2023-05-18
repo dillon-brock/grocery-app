@@ -3,11 +3,10 @@ import { NativeSyntheticEvent, Text, TextInputChangeEventData, View } from "reac
 import Header from "../../components/molecules/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types/types";
-import { TextInput } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 import { useSearchUsers } from "../../hooks/useSearchUsers";
 import UserSearchResult from "../../components/molecules/UserSearchResult/UserSearchResult";
 import ShareModal from "../../components/organisms/ShareModal/ShareModal";
+import UserSearchInput from "../../components/molecules/UserSearchInput/UserSearchInput";
 
 export default function ShareScreen() {
 
@@ -29,14 +28,9 @@ export default function ShareScreen() {
     <View>
       <Header showBackButton showMenuButton />
       <Text>{`Share ${name}`}</Text>
-      <View>
-        <Ionicons name='search-outline' size={25} />
-        <TextInput
-          placeholder="Find users"
-          value={username}
-          onChange={handleChangeUsername}
-        />
-      </View>
+      <UserSearchInput 
+        value={username} 
+        handleChange={handleChangeUsername} />
       {users.length == 0 && searchBegun &&
         <Text>No users found</Text>
       }
