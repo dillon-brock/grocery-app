@@ -97,3 +97,9 @@ export interface PublicUser {
   id: string;
   username: string;
 }
+
+export enum ShareStatus {
+  'success',
+  'error',
+  'none'
+}

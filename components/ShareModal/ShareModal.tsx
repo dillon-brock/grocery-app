@@ -3,12 +3,7 @@ import { Modal, Pressable, Text, View } from "react-native";
 import { modalStyles } from "../../styles/universal";
 import { shareList } from "../../services/list-shares/list-shares";
 import ShareSuccessDisplay from "../ShareSuccessDisplay/ShareSuccessDisplay";
-
-enum ShareStatus {
-  'success',
-  'error',
-  'none'
-}
+import { ShareStatus } from "../../types/types";
 
 type Props = {
   visible: boolean;
@@ -47,7 +42,8 @@ export default function ShareModal({ visible, setVisible, title, userId, listId 
           {shareStatus == ShareStatus.success ?
             <ShareSuccessDisplay 
               title={title} 
-              setVisible={setVisible} />
+              setVisible={setVisible}
+              setShareStatus={setShareStatus} />
             :
             <>
               <Text style={modalStyles.title}>Share {title}</Text>
@@ -60,7 +56,7 @@ export default function ShareModal({ visible, setVisible, title, userId, listId 
                   <Pressable onPress={() => setEditable(prev => !prev)}>
                     <Text>Edit:</Text>
                   </Pressable>
-                  <Text>{editable}</Text>
+                  <Text>{`${editable}`}</Text>
                 </View>
               </View>
               <View>

@@ -15,8 +15,8 @@ export default function ShareScreen() {
   const [username, setUsername] = useState<string>('');
   const [sharedUserId, setSharedUserId] = useState<string>('');
   const [userWantsToShareList, setUserWantsToShareList] = useState<boolean>(false);
-  const { users } = useSearchUsers(username);
   const [searchBegun, setSearchBegun] = useState<boolean>(false);
+  const { users } = useSearchUsers(username, searchBegun);
 
   const handleChangeUsername = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
     if (!searchBegun) {
