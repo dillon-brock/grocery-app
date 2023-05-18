@@ -2,6 +2,13 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { modalStyles } from "../../styles/universal";
 import { shareList } from "../../services/list-shares/list-shares";
+import ShareSuccessDisplay from "../ShareSuccessDisplay/ShareSuccessDisplay";
+
+enum ShareStatus {
+  'success',
+  'error',
+  'none'
+}
 
 type Props = {
   visible: boolean;
@@ -14,15 +21,17 @@ type Props = {
 export default function ShareModal({ visible, setVisible, title, userId, listId }: Props) {
 
   const [editable, setEditable] = useState<boolean>(false);
-  const [message, setMessage] = useState('');
+  const [shareStatus, setShareStatus] = useState<ShareStatus>(ShareStatus.none);
+  const [error, setError] = useState('');
 
   const handleShare = async (): Promise<void> => {
     const res = await shareList({ userId, listId, editable });
     if (res.success) {
-      setMessage('List shared successfully');
+      setShareStatus(ShareStatus.success);
     }
     else {
-      setMessage('Something went wrong, please try again.');
+      setShareStatus(ShareStatus.error);
+      setError(res.message);
     }
   }
 
@@ -34,29 +43,38 @@ export default function ShareModal({ visible, setVisible, title, userId, listId 
       setVisible(prev => !prev);
     }}>
       <View style={modalStyles.centeredView}>
-          <View style={modalStyles.modalView}>
-            <Text style={modalStyles.title}>Share {title}</Text>
-            {message && <Text>{message}</Text>}
-            <View>
-              <Text>Permissions</Text>
+        <View style={modalStyles.modalView}>
+          {shareStatus == ShareStatus.success ?
+            <ShareSuccessDisplay 
+              title={title} 
+              setVisible={setVisible} />
+            :
+            <>
+              <Text style={modalStyles.title}>Share {title}</Text>
+              {shareStatus == ShareStatus.error && 
+                <Text>{error}</Text>
+              }
               <View>
-                <Pressable onPress={() => setEditable(prev => !prev)}>
-                  <Text>Edit:</Text>
-                </Pressable>
-                <Text>{editable}</Text>
+                <Text>Permissions</Text>
+                <View>
+                  <Pressable onPress={() => setEditable(prev => !prev)}>
+                    <Text>Edit:</Text>
+                  </Pressable>
+                  <Text>{editable}</Text>
+                </View>
               </View>
-            </View>
-            <View>
-              <Pressable onPress={() => setVisible(prev => !prev)}>
-                <Text>Cancel</Text>
-              </Pressable>
-              <Pressable onPress={handleShare}>
-                <Text>Share</Text>
-              </Pressable>
-            </View>
-          </View>
+              <View>
+                <Pressable onPress={() => setVisible(prev => !prev)}>
+                  <Text>Cancel</Text>
+                </Pressable>
+                <Pressable onPress={handleShare}>
+                  <Text>Share</Text>
+                </Pressable>
+              </View>
+            </>
+          }
         </View>
-
+      </View>
     </Modal>
   )
 }
