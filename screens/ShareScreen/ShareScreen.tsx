@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NativeSyntheticEvent, Pressable, Text, TextInputChangeEventData, View } from "react-native";
+import { NativeSyntheticEvent, Text, TextInputChangeEventData, View } from "react-native";
 import Header from "../../components/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types/types";
@@ -52,7 +52,8 @@ export default function ShareScreen() {
         visible={userWantsToShareList}
         setVisible={setUserWantsToShareList}
         title={name}
-        handleShare={async (searchBegun) => {null}}
+        userId={sharedUserId}
+        listId={id}
         />
     </View>
   )

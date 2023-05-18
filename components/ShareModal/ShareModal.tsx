@@ -1,17 +1,30 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { modalStyles } from "../../styles/universal";
+import { shareList } from "../../services/list-shares/list-shares";
 
 type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
   title: string;
-  handleShare: (editable: boolean) => Promise<void>;
+  userId: string;
+  listId: string;
 }
 
-export default function ShareModal({ visible, setVisible, title, handleShare }: Props) {
+export default function ShareModal({ visible, setVisible, title, userId, listId }: Props) {
 
   const [editable, setEditable] = useState<boolean>(false);
+  const [message, setMessage] = useState('');
+
+  const handleShare = async (): Promise<void> => {
+    const res = await shareList({ userId, listId, editable });
+    if (res.success) {
+      setMessage('List shared successfully');
+    }
+    else {
+      setMessage('Something went wrong, please try again.');
+    }
+  }
 
   return (
     <Modal
@@ -23,6 +36,7 @@ export default function ShareModal({ visible, setVisible, title, handleShare }: 
       <View style={modalStyles.centeredView}>
           <View style={modalStyles.modalView}>
             <Text style={modalStyles.title}>Share {title}</Text>
+            {message && <Text>{message}</Text>}
             <View>
               <Text>Permissions</Text>
               <View>
@@ -33,10 +47,10 @@ export default function ShareModal({ visible, setVisible, title, handleShare }: 
               </View>
             </View>
             <View>
-              <Pressable>
+              <Pressable onPress={() => setVisible(prev => !prev)}>
                 <Text>Cancel</Text>
               </Pressable>
-              <Pressable onPress={() => handleShare(editable)}>
+              <Pressable onPress={handleShare}>
                 <Text>Share</Text>
               </Pressable>
             </View>
