@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Dispatch, SetStateAction } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text } from "react-native";
+import styles from './styles';
 
 type Props = {
   id: string;
@@ -18,11 +19,9 @@ export default function UserSearchResult({ id, username, setUserWantsToShareList
   }
 
   return (
-    <View>
-      <Pressable onPress={handlePress}>
-        <Text>{username}</Text>
-        <Ionicons name="chevron-forward-outline" size={25}/>
-      </Pressable>
-    </View>
+    <Pressable onPress={handlePress} style={styles.container}>
+      <Text style={styles.text}>{username}</Text>
+      <Ionicons name="chevron-forward-outline" size={25}/>
+    </Pressable>
   )
 }

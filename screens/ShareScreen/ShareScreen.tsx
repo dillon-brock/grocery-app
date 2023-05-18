@@ -4,9 +4,9 @@ import Header from "../../components/molecules/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types/types";
 import { useSearchUsers } from "../../hooks/useSearchUsers";
-import UserSearchResult from "../../components/molecules/UserSearchResult/UserSearchResult";
 import ShareModal from "../../components/organisms/ShareModal/ShareModal";
 import UserSearchInput from "../../components/molecules/UserSearchInput/UserSearchInput";
+import UserSearchResultList from "../../components/organisms/UserSearchResultsList/UserSearchResultsList";
 
 export default function ShareScreen() {
 
@@ -31,17 +31,11 @@ export default function ShareScreen() {
       <UserSearchInput 
         value={username} 
         handleChange={handleChangeUsername} />
-      {users.length == 0 && searchBegun &&
-        <Text>No users found</Text>
-      }
-      {users.map(user => (
-        <UserSearchResult
-          key={user.id}
-          { ...user }
-          setUserWantsToShareList={setUserWantsToShareList}
-          setSharedUserId={setSharedUserId}
-        />
-      ))}
+      <UserSearchResultList 
+        users={users}
+        searchBegun={searchBegun}
+        setUserWantsToShareList={setUserWantsToShareList}
+        setSharedUserId={setSharedUserId} />
       <ShareModal 
         visible={userWantsToShareList}
         setVisible={setUserWantsToShareList}
