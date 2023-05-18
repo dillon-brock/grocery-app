@@ -6,11 +6,15 @@ import { HomeStackParamList } from "../../types/types";
 import { TextInput } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import { useSearchUsers } from "../../hooks/useSearchUsers";
+import UserSearchResult from "../../components/UserSearchResult/UserSearchResult";
+import ShareModal from "../../components/ShareModal/ShareModal";
 
 export default function ShareScreen() {
 
   const { id, name, type } = useRoute<RouteProp<HomeStackParamList, 'Share'>>().params;
   const [username, setUsername] = useState<string>('');
+  const [sharedUserId, setSharedUserId] = useState<string>('');
+  const [userWantsToShareList, setUserWantsToShareList] = useState<boolean>(false);
   const { users } = useSearchUsers(username);
   const [searchBegun, setSearchBegun] = useState<boolean>(false);
 
@@ -37,10 +41,19 @@ export default function ShareScreen() {
         <Text>No users found</Text>
       }
       {users.map(user => (
-        <Pressable>
-          <Text>{user.username}</Text>
-        </Pressable>
+        <UserSearchResult
+          key={user.id}
+          { ...user }
+          setUserWantsToShareList={setUserWantsToShareList}
+          setSharedUserId={setSharedUserId}
+        />
       ))}
+      <ShareModal 
+        visible={userWantsToShareList}
+        setVisible={setUserWantsToShareList}
+        title={name}
+        handleShare={async (searchBegun) => {null}}
+        />
     </View>
   )
 }
