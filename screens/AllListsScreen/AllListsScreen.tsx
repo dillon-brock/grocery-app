@@ -2,14 +2,14 @@ import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { useAllLists } from "../../hooks/useAllLists";
 import { useCheckForLogOut } from "../../hooks/useCheckForLogOut";
-import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../../components/atoms/buttons/PrimaryButton/PrimaryButton";
 import { createList } from "../../services/lists/lists";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { List, ListStackParamList } from "../../types/types";
 import styles from './styles';
-import Header from "../../components/Header/Header";
-import DetailLink from "../../components/DetailLink/DetailLink";
+import Header from "../../components/molecules/Header/Header";
+import DetailLink from "../../components/molecules/DetailLink/DetailLink";
 
 export default function AllListsScreen() {
 

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { NativeSyntheticEvent, Text, TextInputChangeEventData, View } from "react-native";
-import Header from "../../components/Header/Header";
+import Header from "../../components/molecules/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types/types";
 import { TextInput } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import { useSearchUsers } from "../../hooks/useSearchUsers";
-import UserSearchResult from "../../components/UserSearchResult/UserSearchResult";
-import ShareModal from "../../components/ShareModal/ShareModal";
+import UserSearchResult from "../../components/molecules/UserSearchResult/UserSearchResult";
+import ShareModal from "../../components/organisms/ShareModal/ShareModal";
 
 export default function ShareScreen() {
 

@@ -4,12 +4,12 @@ import { Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react
 import { HomeStackParamList, ListStackParamList } from "../../types/types";
 import { useList } from "../../hooks/useList";
 import styles from './styles';
-import GroceryList from "../../components/GroceryList/GroceryList";
-import SecondaryButton from "../../components/SecondaryButton/SecondaryButton";
-import NewCategoryModal from "../../components/NewCategoryModal/NewCategoryModal";
-import Header from "../../components/Header/Header";
-import LockButton from "../../components/LockButton/LockButton";
-import EditableTitle from "../../components/EditableTitle/EditableTitle";
+import GroceryList from "../../components/organisms/GroceryList/GroceryList";
+import SecondaryButton from "../../components/atoms/buttons/SecondaryButton/SecondaryButton";
+import NewCategoryModal from "../../components/organisms/NewCategoryModal/NewCategoryModal";
+import Header from "../../components/molecules/Header/Header";
+import LockButton from "../../components/atoms/buttons/LockButton/LockButton";
+import EditableTitle from "../../components/molecules/EditableTitle/EditableTitle";
 import { updateList } from "../../services/lists/lists";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 

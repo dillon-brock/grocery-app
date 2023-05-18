@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useCheckForLogOut } from "../../hooks/useCheckForLogOut";
 import { useOwnedRecipes } from "../../hooks/useOwnedRecipes";
-import Header from "../../components/Header/Header";
+import Header from "../../components/molecules/Header/Header";
 import { Recipe } from "../../services/recipes/types";
-import DetailLink from "../../components/DetailLink/DetailLink";
-import NewRecipeModal from "../../components/NewRecipeModal/NewRecipeModal";
+import DetailLink from "../../components/molecules/DetailLink/DetailLink";
+import NewRecipeModal from "../../components/organisms/NewRecipeModal/NewRecipeModal";
 import styles from './styles';
 
 export default function AllRecipesScreen() {

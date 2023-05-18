@@ -3,13 +3,13 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from "react-native";
 import { RootStackParamList } from '../../types/types';
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
+import PrimaryButton from '../../components/atoms/buttons/PrimaryButton/PrimaryButton';
 import styles from './styles';
-import SignInForm from '../../components/SignInForm/SignInForm';
+import SignInForm from '../../components/organisms/SignInForm/SignInForm';
 import { useUserContext } from '../../context/UserContext';
 import { getUser, signIn } from '../../services/auth/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Header from '../../components/Header/Header';
+import Header from '../../components/molecules/Header/Header';
 
 export default function LogInScreen() {
 

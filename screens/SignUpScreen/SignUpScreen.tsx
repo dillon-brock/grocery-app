@@ -3,13 +3,13 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from "react-native";
 import { RootStackParamList } from '../../types/types';
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
+import PrimaryButton from '../../components/atoms/buttons/PrimaryButton/PrimaryButton';
 import styles from './styles';
-import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import SignUpForm from '../../components/organisms/SignUpForm/SignUpForm';
 import { getUser, signUp } from '../../services/auth/auth';
 import { useUserContext } from '../../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Header from '../../components/Header/Header';
+import Header from '../../components/molecules/Header/Header';
 
 export default function SignUpScreen() {
 

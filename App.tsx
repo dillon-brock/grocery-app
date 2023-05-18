@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserProvider } from './context/UserContext';
 import { MenuProvider } from './context/MenuContext';
-import Menu from './components/Menu/Menu';
+import Menu from './components/organisms/Menu/Menu';
 import RootStack from './navigation/RootStack';
 
 

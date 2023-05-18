@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../../components/atoms/buttons/PrimaryButton/PrimaryButton";
 import styles from './styles';
 import { useUserContext } from "../../context/UserContext";
 import { useCheckForLogOut } from "../../hooks/useCheckForLogOut";
@@ -8,8 +8,8 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../types/types";
 import { useMenuContext } from "../../context/MenuContext";
-import Menu from "../../components/Menu/Menu";
-import Header from "../../components/Header/Header";
+import Menu from "../../components/organisms/Menu/Menu";
+import Header from "../../components/molecules/Header/Header";
 
 export default function DashboardScreen() {
 
