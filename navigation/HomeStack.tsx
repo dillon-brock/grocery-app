@@ -4,6 +4,7 @@ import ListStack from './ListStack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../types/types';
 import RecipeStack from './RecipeStack';
+import ShareScreen from '../screens/ShareScreen/ShareScreen';
 
 export default function HomeStack() {
 
@@ -11,22 +12,26 @@ export default function HomeStack() {
 
   return (
       <Stack.Navigator 
-        initialRouteName='Dashboard' 
+        initialRouteName='Dashboard'
+        screenOptions={{
+          headerShown: false
+        }} 
       >
         <Stack.Screen 
           name="Dashboard" 
           component={DashboardScreen}
-          options={{ headerShown: false }}
         />
         <Stack.Screen 
           name="ListStack" 
           component={ListStack} 
-          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="RecipeStack"
           component={RecipeStack}
-          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Share"
+          component={ShareScreen}
         />
       </Stack.Navigator>
   )

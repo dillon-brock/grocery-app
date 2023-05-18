@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
-import { ListStackParamList } from "../../types/types";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
+import { HomeStackParamList, ListStackParamList } from "../../types/types";
 import { useList } from "../../hooks/useList";
 import styles from './styles';
 import GroceryList from "../../components/GroceryList/GroceryList";
@@ -11,6 +11,7 @@ import Header from "../../components/Header/Header";
 import LockButton from "../../components/LockButton/LockButton";
 import EditableTitle from "../../components/EditableTitle/EditableTitle";
 import { updateList } from "../../services/lists/lists";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export default function ListDetailScreen() {
 
@@ -19,6 +20,7 @@ export default function ListDetailScreen() {
   const [locked, setLocked] = useState<boolean>(true);
   const [userWantsToAddCategory, setUserWantsToAddCategory] = useState<boolean>(false);
   const dateCreated = new Date(list.createdAt).toDateString();
+  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
   const placeholderTitle = type == 'new' ? 'New List' : dateCreated;
 
@@ -33,12 +35,23 @@ export default function ListDetailScreen() {
     }
   }
 
+  const goToShareScreen = () => {
+    navigation.navigate('Share', {
+      id: list.id,
+      name: list.title || placeholderTitle,
+      type: 'list'
+    });
+  }
+
   return (
     <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
       <LockButton locked={locked} setLocked={setLocked} />
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
+          <Pressable onPress={goToShareScreen}>
+            <Text>Share</Text>
+          </Pressable>
           <EditableTitle
             type='list'
             title={list.title ? list.title : placeholderTitle}

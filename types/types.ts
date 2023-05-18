@@ -11,6 +11,11 @@ export type HomeStackParamList = {
   Dashboard: undefined;
   ListStack: { screen: keyof ListStackParamList };
   RecipeStack: { screen: keyof RecipeStackParamList };
+  Share: {
+    id: string,
+    name: string,
+    type: 'recipe' | 'list'
+  }
 }
 
 export type ListStackParamList = {
@@ -86,4 +91,15 @@ export interface RecipeStep {
   num: number;
   detail: string;
   recipeId: string;
+}
+
+export interface PublicUser {
+  id: string;
+  username: string;
+}
+
+export enum ShareStatus {
+  'success',
+  'error',
+  'none'
 }
