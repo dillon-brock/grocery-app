@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NativeSyntheticEvent, Text, TextInputChangeEventData, View } from "react-native";
+import { NativeSyntheticEvent, TextInputChangeEventData, View } from "react-native";
 import Header from "../../components/molecules/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types/types";

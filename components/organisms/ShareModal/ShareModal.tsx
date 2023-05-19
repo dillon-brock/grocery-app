@@ -4,6 +4,7 @@ import { modalStyles } from "../../../styles/universal";
 import { shareList } from "../../../services/list-shares/list-shares";
 import ShareSuccessDisplay from "../../molecules/ShareSuccessDisplay/ShareSuccessDisplay";
 import { ShareStatus } from "../../../types/types";
+import styles from './styles';
 
 type Props = {
   visible: boolean;
@@ -38,7 +39,7 @@ export default function ShareModal({ visible, setVisible, title, userId, listId 
       setVisible(prev => !prev);
     }}>
       <View style={modalStyles.centeredView}>
-        <View style={modalStyles.modalView}>
+        <View style={[modalStyles.modalView, styles.modalView]}>
           {shareStatus == ShareStatus.success ?
             <ShareSuccessDisplay 
               title={title} 
@@ -46,25 +47,31 @@ export default function ShareModal({ visible, setVisible, title, userId, listId 
               setShareStatus={setShareStatus} />
             :
             <>
-              <Text style={modalStyles.title}>Share {title}</Text>
+              <Text style={modalStyles.title}>Share List</Text>
               {shareStatus == ShareStatus.error && 
                 <Text>{error}</Text>
               }
-              <View>
-                <Text>Permissions</Text>
-                <View>
+              <View style={styles.section}>
+                <View style={styles.subtitleContainer}>
+                  <Text style={styles.subtitle}>Permissions</Text>
+                </View>
+                <View style={styles.permissionsContainer}>
                   <Pressable onPress={() => setEditable(prev => !prev)}>
-                    <Text>Edit:</Text>
+                    <Text style={styles.subtitle}>Edit:</Text>
                   </Pressable>
                   <Text>{`${editable}`}</Text>
                 </View>
               </View>
-              <View>
-                <Pressable onPress={() => setVisible(prev => !prev)}>
-                  <Text>Cancel</Text>
+              <View style={modalStyles.buttonsContainer}>
+                <Pressable 
+                onPress={() => setVisible(prev => !prev)} 
+                style={[modalStyles.button, modalStyles.cancelButton]}>
+                  <Text style={[modalStyles.buttonText, modalStyles.cancelButtonText]}>Cancel</Text>
                 </Pressable>
-                <Pressable onPress={handleShare}>
-                  <Text>Share</Text>
+                <Pressable 
+                onPress={handleShare} 
+                style={[modalStyles.button, modalStyles.addButton]}>
+                  <Text style={[modalStyles.buttonText, modalStyles.addButtonText]}>Share</Text>
                 </Pressable>
               </View>
             </>
