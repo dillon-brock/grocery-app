@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { PublicUser } from "../../../types/types"
 import UserSearchResult from "../../molecules/UserSearchResult/UserSearchResult";
 import styles from './styles';
@@ -25,16 +25,16 @@ export default function UserSearchResultList({ users, searchBegun, setUserWantsT
           <Text style={styles.message}>No users found</Text>
         </View>
       }
-      <ScrollView style={styles.listContainer}>
-        {users.map(user => (
+      <FlatList
+        data={users}
+        renderItem={({ item: user }) => (
           <UserSearchResult
-            key={user.id}
             { ...user }
             setUserWantsToShareList={setUserWantsToShareList}
             setSharedUserId={setSharedUserId}
-          />
-        ))}
-      </ScrollView>
+          />)}
+        keyExtractor={item => item.id}
+        />
     </View>
   )
 }
