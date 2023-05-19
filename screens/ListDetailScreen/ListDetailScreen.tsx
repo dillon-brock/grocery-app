@@ -12,6 +12,7 @@ import LockButton from "../../components/atoms/buttons/LockButton/LockButton";
 import EditableTitle from "../../components/molecules/EditableTitle/EditableTitle";
 import { updateList } from "../../services/lists/lists";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import ShareButton from "../../components/atoms/buttons/ShareButton/ShareButton";
 
 export default function ListDetailScreen() {
 
@@ -47,11 +48,9 @@ export default function ListDetailScreen() {
     <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
       <LockButton locked={locked} setLocked={setLocked} />
+      <ShareButton goToShareScreen={goToShareScreen} />
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
-          <Pressable onPress={goToShareScreen}>
-            <Text>Share</Text>
-          </Pressable>
           <EditableTitle
             type='list'
             title={list.title ? list.title : placeholderTitle}
