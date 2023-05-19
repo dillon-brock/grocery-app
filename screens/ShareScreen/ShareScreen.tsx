@@ -7,6 +7,8 @@ import { useSearchUsers } from "../../hooks/useSearchUsers";
 import ShareModal from "../../components/organisms/ShareModal/ShareModal";
 import UserSearchInput from "../../components/molecules/UserSearchInput/UserSearchInput";
 import UserSearchResultList from "../../components/organisms/UserSearchResultsList/UserSearchResultsList";
+import styles from './styles';
+import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function ShareScreen() {
 
@@ -25,9 +27,9 @@ export default function ShareScreen() {
   }
 
   return (
-    <View>
+    <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
-      <Text>{`Share ${name}`}</Text>
+      <ScreenTitle text={`Share ${name}`} color='#E16A64' />
       <UserSearchInput 
         value={username} 
         handleChange={handleChangeUsername} />

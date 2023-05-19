@@ -9,11 +9,14 @@ type UserSearchInputStyle = {
 export default StyleSheet.create<UserSearchInputStyle>({
   container: {
     flexDirection: 'row',
-    paddingLeft: 5,
-    gap: 5
+    marginLeft: 16,
+    gap: 12
   },
   inputView: {
     borderWidth: 0
   },
-  inputText: {}
+  inputText: {
+    fontSize: 18,
+    fontStyle: 'italic'
+  }
 })

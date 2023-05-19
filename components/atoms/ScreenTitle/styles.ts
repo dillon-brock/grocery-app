@@ -8,10 +8,11 @@ type TitleStyles = {
 export default StyleSheet.create<TitleStyles>({
   container: {
     alignItems: 'center',
-    height: 80
+    height: 60,
+    width: '100%'
   },
   title: {
-    fontSize: 40,
+    fontSize: 25,
     fontFamily: 'Avenir-Oblique',
     fontWeight: '600',
   }

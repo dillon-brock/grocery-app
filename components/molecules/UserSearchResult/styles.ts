@@ -9,10 +9,10 @@ export default StyleSheet.create<UserSearchResultStyle>({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 20,
-    paddingLeft: 20,
     paddingBottom: 5,
     paddingTop: 5
   },
-  text: {}
+  text: {
+    fontSize: 18
+  }
 })

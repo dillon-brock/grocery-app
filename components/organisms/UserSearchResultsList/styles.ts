@@ -10,7 +10,9 @@ type UserSearchResultsListStyle = {
 export default StyleSheet.create<UserSearchResultsListStyle>({
   content: {
     alignContent: 'center',
-    marginTop: 20
+    marginTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20
   },
   messageContainer: {
     marginTop: 40
