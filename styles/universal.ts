@@ -2,14 +2,6 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { CommonScreenStyle } from "../types/types";
 
 export const commonScreenStyles: CommonScreenStyle = StyleSheet.create<CommonScreenStyle>({
-  title: {
-    fontSize: 50,
-    fontFamily: 'Avenir-Oblique'
-  },
-  titleContainer: {
-    height: 80,
-    justifyContent: 'center',
-  },
   container: {
     gap: 30,
     alignItems: 'center',
@@ -36,15 +28,16 @@ export const modalStyles = StyleSheet.create<ModalStyle>({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)'
   },
   modalView: {
     margin: 20,
     backgroundColor: '#F8EBD5',
-    borderRadius: 20,
-    padding: 25,
-    paddingRight: 20,
-    paddingLeft: 20,
+    borderRadius: 10,
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingTop: 8,
+    paddingBottom: 8,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { NativeSyntheticEvent, Text, TextInputChangeEventData, View } from "react-native";
+import { NativeSyntheticEvent, TextInputChangeEventData, View } from "react-native";
 import Header from "../../components/molecules/Header/Header";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HomeStackParamList } from "../../types/types";
-import { TextInput } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 import { useSearchUsers } from "../../hooks/useSearchUsers";
-import UserSearchResult from "../../components/molecules/UserSearchResult/UserSearchResult";
 import ShareModal from "../../components/organisms/ShareModal/ShareModal";
+import UserSearchInput from "../../components/molecules/UserSearchInput/UserSearchInput";
+import UserSearchResultList from "../../components/organisms/UserSearchResultsList/UserSearchResultsList";
+import styles from './styles';
+import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function ShareScreen() {
 
@@ -26,28 +27,17 @@ export default function ShareScreen() {
   }
 
   return (
-    <View>
+    <View style={styles.pageContainer}>
       <Header showBackButton showMenuButton />
-      <Text>{`Share ${name}`}</Text>
-      <View>
-        <Ionicons name='search-outline' size={25} />
-        <TextInput
-          placeholder="Find users"
-          value={username}
-          onChange={handleChangeUsername}
-        />
-      </View>
-      {users.length == 0 && searchBegun &&
-        <Text>No users found</Text>
-      }
-      {users.map(user => (
-        <UserSearchResult
-          key={user.id}
-          { ...user }
-          setUserWantsToShareList={setUserWantsToShareList}
-          setSharedUserId={setSharedUserId}
-        />
-      ))}
+      <ScreenTitle text={`Share ${name}`} color='#E16A64' />
+      <UserSearchInput 
+        value={username} 
+        handleChange={handleChangeUsername} />
+      <UserSearchResultList 
+        users={users}
+        searchBegun={searchBegun}
+        setUserWantsToShareList={setUserWantsToShareList}
+        setSharedUserId={setSharedUserId} />
       <ShareModal 
         visible={userWantsToShareList}
         setVisible={setUserWantsToShareList}

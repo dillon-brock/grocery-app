@@ -8,6 +8,7 @@ import LockButton from "../../components/atoms/buttons/LockButton/LockButton";
 import IngredientList from "../../components/organisms/IngredientList/IngredientList";
 import StepList from "../../components/organisms/StepList/StepList";
 import styles from './styles';
+import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function RecipeDetailScreen() {
 
@@ -23,11 +24,7 @@ export default function RecipeDetailScreen() {
         {loading && <Text>Loading...</Text>}
         {!loading &&
           <View style={styles.container}>
-            <View style={styles.centerTitle}>
-              <View style={styles.titleContainer}>
-                <Text style={styles.title}>{recipe.name}</Text>
-              </View>
-            </View>
+            <ScreenTitle text={recipe.name} color="#E16A64" />
             <View>
               <Text style={styles.subtitle}>INGREDIENTS</Text>
               <IngredientList

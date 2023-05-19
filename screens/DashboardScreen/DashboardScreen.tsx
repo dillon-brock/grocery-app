@@ -10,6 +10,7 @@ import { HomeStackParamList } from "../../types/types";
 import { useMenuContext } from "../../context/MenuContext";
 import Menu from "../../components/organisms/Menu/Menu";
 import Header from "../../components/molecules/Header/Header";
+import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function DashboardScreen() {
 
@@ -28,7 +29,7 @@ export default function DashboardScreen() {
       {menuOpen && <Menu />}
       <View style={styles.container}>
         <Text>{`Welcome, ${user?.username}`}</Text>
-        <Text style={styles.title}>Dashboard</Text>
+        <ScreenTitle text="Dashboard" color="black" />
         <View style={styles.buttonContainer}>
           <PrimaryButton text="My Recipes"
             handlePress={() => navigation.navigate('RecipeStack', { screen: 'Recipes' })} />

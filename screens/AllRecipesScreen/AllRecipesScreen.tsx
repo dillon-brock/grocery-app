@@ -7,6 +7,7 @@ import { Recipe } from "../../services/recipes/types";
 import DetailLink from "../../components/molecules/DetailLink/DetailLink";
 import NewRecipeModal from "../../components/organisms/NewRecipeModal/NewRecipeModal";
 import styles from './styles';
+import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function AllRecipesScreen() {
 
@@ -23,9 +24,7 @@ export default function AllRecipesScreen() {
       <View style={styles.screen}>
         <Header showBackButton showMenuButton />
         <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Your Recipes</Text>
-          </View>
+          <ScreenTitle text="Your Recipes" color="#E16A64" />
           {recipes.length == 0 &&
             <Text style={styles.subtitle}>You do not have any recipes yet!</Text>
           }

@@ -17,17 +17,6 @@ export default StyleSheet.create<AllRecipesScreenStyle>({
     backgroundColor: '#CCD5C5',
     height: '100%'
   },
-  title: {
-    fontSize: 50,
-    fontFamily: 'Avenir-Oblique',
-    fontWeight: '600',
-    color: '#E16A64'
-  },
-  titleContainer: {
-    height: 80,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   container: {
     gap: 30,
     alignItems: 'center',
