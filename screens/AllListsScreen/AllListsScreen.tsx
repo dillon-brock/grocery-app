@@ -14,7 +14,7 @@ export default function AllListsScreen() {
   return (
     <>
       <Header showBackButton showMenuButton />
-      <ListTabs setActiveId={setActiveTabId} />
+      <ListTabs setActiveId={setActiveTabId} activeId={activeTabId} />
       <MyLists activeTabId={activeTabId}/>
       <SharedLists activeTabId={activeTabId} />
     </>
