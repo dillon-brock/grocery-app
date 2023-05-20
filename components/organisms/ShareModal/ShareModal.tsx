@@ -5,23 +5,25 @@ import { shareList } from "../../../services/list-shares/list-shares";
 import ShareSuccessDisplay from "../../molecules/ShareSuccessDisplay/ShareSuccessDisplay";
 import { ShareStatus } from "../../../types/types";
 import styles from './styles';
+import { shareRecipe } from "../../../services/recipe-shares/recipe-shares";
 
 type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
   title: string;
   userId: string;
-  listId: string;
+  elementId: string;
+  type: string;
 }
 
-export default function ShareModal({ visible, setVisible, title, userId, listId }: Props) {
+export default function ShareModal({ visible, setVisible, title, userId, elementId, type }: Props) {
 
   const [editable, setEditable] = useState<boolean>(false);
   const [shareStatus, setShareStatus] = useState<ShareStatus>(ShareStatus.none);
   const [error, setError] = useState('');
 
-  const handleShare = async (): Promise<void> => {
-    const res = await shareList({ userId, listId, editable });
+  const handleShareList = async (): Promise<void> => {
+    const res = await shareList({ userId, listId: elementId, editable });
     if (res.success) {
       setShareStatus(ShareStatus.success);
     }
@@ -30,6 +32,21 @@ export default function ShareModal({ visible, setVisible, title, userId, listId 
       setError(res.message);
     }
   }
+
+  const handleShareRecipe = async (): Promise<void> => {
+    const res = await shareRecipe({ userId, recipeId: elementId, editable });
+    if (res.success) {
+      setShareStatus(ShareStatus.success);
+    }
+    else {
+      setShareStatus(ShareStatus.error);
+      setError(res.message);
+    }
+  }
+
+  let handleShare = async (): Promise<void> => {null};
+  if (type == 'list') handleShare = handleShareList;
+  else if (type == 'recipe') handleShare = handleShareRecipe;
 
   return (
     <Modal

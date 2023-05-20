@@ -12,7 +12,7 @@ import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 
 export default function ShareScreen() {
 
-  const { id, name } = useRoute<RouteProp<HomeStackParamList, 'Share'>>().params;
+  const { id, name, type } = useRoute<RouteProp<HomeStackParamList, 'Share'>>().params;
   const [username, setUsername] = useState<string>('');
   const [sharedUserId, setSharedUserId] = useState<string>('');
   const [userWantsToShareList, setUserWantsToShareList] = useState<boolean>(false);
@@ -43,7 +43,8 @@ export default function ShareScreen() {
         setVisible={setUserWantsToShareList}
         title={name}
         userId={sharedUserId}
-        listId={id}
+        elementId={id}
+        type={type}
         />
     </View>
   )
