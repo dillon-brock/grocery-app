@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useCheckForLogOut } from "../../hooks/useCheckForLogOut";
 import Header from "../../components/molecules/Header/Header";
-import MyLists from "../../components/templates/MyLists/MyLists";
+import MyLists from "../../components/creatures/MyLists/MyLists";
 import ListTabs from "../../components/molecules/ListTabs/ListTabs";
-import SharedLists from "../../components/templates/SharedLists/SharedLists";
+import SharedLists from "../../components/creatures/SharedLists/SharedLists";
 
 export default function AllListsScreen() {
 
