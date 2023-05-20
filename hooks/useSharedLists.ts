@@ -3,7 +3,7 @@ import { List } from "../types/types";
 import { getSharedLists } from "../services/list-shares/list-shares";
 import { useIsFocused } from "@react-navigation/native";
 
-export function useSharedLists() {
+export function useSharedLists(activeTabId: number) {
 
   const isFocused = useIsFocused();
   const [sharedLists, setSharedLists] = useState<List[]>([]);
@@ -21,7 +21,7 @@ export function useSharedLists() {
       setLoading(false);
     };
     fetchLists();
-  }, [isFocused])
+  }, [isFocused, activeTabId])
 
   return { sharedLists, setSharedLists, error, loading };
 
