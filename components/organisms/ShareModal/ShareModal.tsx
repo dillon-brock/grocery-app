@@ -13,7 +13,7 @@ type Props = {
   title: string;
   userId: string;
   elementId: string;
-  type: string;
+  type: 'recipe' | 'list';
 }
 
 export default function ShareModal({ visible, setVisible, title, userId, elementId, type }: Props) {
@@ -21,6 +21,8 @@ export default function ShareModal({ visible, setVisible, title, userId, element
   const [editable, setEditable] = useState<boolean>(false);
   const [shareStatus, setShareStatus] = useState<ShareStatus>(ShareStatus.none);
   const [error, setError] = useState('');
+
+  const formattedType = type.slice(0, 1).toUpperCase() + type.slice(1);
 
   const handleShareList = async (): Promise<void> => {
     const res = await shareList({ userId, listId: elementId, editable });
@@ -58,13 +60,14 @@ export default function ShareModal({ visible, setVisible, title, userId, element
       <View style={modalStyles.centeredView}>
         <View style={[modalStyles.modalView, styles.modalView]}>
           {shareStatus == ShareStatus.success ?
-            <ShareSuccessDisplay 
+            <ShareSuccessDisplay
+              type={type}
               title={title} 
               setVisible={setVisible}
               setShareStatus={setShareStatus} />
             :
             <>
-              <Text style={modalStyles.title}>Share List</Text>
+              <Text style={modalStyles.title}>{`Share ${formattedType}`}</Text>
               {shareStatus == ShareStatus.error && 
                 <Text>{error}</Text>
               }
