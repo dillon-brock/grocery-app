@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 import { HomeStackParamList, ListStackParamList } from "../../types/types";
 import { useList } from "../../hooks/useList";
 import styles from './styles';
