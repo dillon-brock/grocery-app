@@ -101,3 +101,15 @@ export enum ShareStatus {
   'error',
   'none'
 }
+
+export interface NewShareData {
+  userId: string;
+  editable: boolean;
+}
+
+export type RecipeShare = {
+  id: string;
+  recipeId: string;
+  userId: string;
+  editable: boolean;
+}

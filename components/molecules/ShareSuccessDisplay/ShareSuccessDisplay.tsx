@@ -7,9 +7,10 @@ type Props = {
   title: string;
   setVisible: Dispatch<SetStateAction<boolean>>;
   setShareStatus: Dispatch<SetStateAction<ShareStatus>>;
+  type: 'recipe' | 'list'
 }
 
-export default function ShareSuccessDisplay({ title, setVisible, setShareStatus }: Props) {
+export default function ShareSuccessDisplay({ title, setVisible, setShareStatus, type }: Props) {
 
   const navigation = useNavigation();
 
@@ -31,7 +32,7 @@ export default function ShareSuccessDisplay({ title, setVisible, setShareStatus 
           <Text>Share with more users</Text>
         </Pressable>
         <Pressable onPress={handleGoBack}>
-          <Text>Return to list</Text>
+          <Text>{`Return to ${type}`}</Text>
         </Pressable>
       </View>
     </View>
