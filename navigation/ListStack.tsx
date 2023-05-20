@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AllListsScreen from "../screens/AllListsScreen/AllListsScreen";
 import ListDetailScreen from "../screens/ListDetailScreen/ListDetailScreen";
 import { ListStackParamList } from "../types/types";
+import AllListsTabs from "./AllListsTabs";
 
 const Stack = createNativeStackNavigator<ListStackParamList>();
 
@@ -13,7 +13,7 @@ export default function ListStack() {
       initialRouteName="Lists"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Lists" component={AllListsScreen} />
+      <Stack.Screen name="Lists" component={AllListsTabs} />
       <Stack.Screen name="ListDetail" component={ListDetailScreen} />
     </Stack.Navigator>
   )
