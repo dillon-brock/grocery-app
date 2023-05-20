@@ -1,4 +1,4 @@
-import { SuccessfulResponse } from "../../types/types";
+import { List, SuccessfulResponse } from "../../types/types";
 
 export type ListShare = {
   id: string;
@@ -15,4 +15,8 @@ export type NewListShareData = {
   userId: string;
   listId: string;
   editable: boolean;
+}
+
+export interface SharedListsRes extends SuccessfulResponse {
+  sharedLists: List[]
 }

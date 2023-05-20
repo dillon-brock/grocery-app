@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AllListsScreen from "../screens/AllListsScreen/AllListsScreen";
 import ListDetailScreen from "../screens/ListDetailScreen/ListDetailScreen";
 import { ListStackParamList } from "../types/types";
+import AllListsScreen from "../screens/AllListsScreen/AllListsScreen";
 
 const Stack = createNativeStackNavigator<ListStackParamList>();
 
