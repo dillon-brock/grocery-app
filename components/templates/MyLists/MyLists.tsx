@@ -32,8 +32,9 @@ export default function MyLists({ activeTabId }: Props) {
     }
   }
 
-  return (
-    <View style={styles.container}>
+  if (activeTabId == 1) {
+    return (
+      <View style={styles.container}>
         <ScreenTitle text="Your Lists" color="black" />
         {lists.length == 0 &&
           <Text>You do not have any lists yet!</Text>
@@ -65,5 +66,9 @@ export default function MyLists({ activeTabId }: Props) {
           </View>
         }
       </View>
-  )
+    )
+  }
+  else {
+    return <></>;
+  }
 }
