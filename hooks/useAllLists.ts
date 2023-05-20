@@ -4,7 +4,7 @@ import { getLists } from "../services/lists/lists";
 import { useIsFocused } from "@react-navigation/native";
 import { AllListsResponse } from "../services/lists/types";
 
-export function useAllLists()  {
+export function useAllLists(activeTabId: number)  {
   
   const isFocused: boolean = useIsFocused();
   const [lists, setLists] = useState<List[]>([]);
@@ -28,7 +28,7 @@ export function useAllLists()  {
       }
     };
     fetchLists();
-  }, [isFocused]);
+  }, [isFocused, activeTabId]);
 
   return { lists, loading, errorMessage, setErrorMessage };
 }
