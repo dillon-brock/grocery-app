@@ -10,6 +10,7 @@ import { getUser, signUp } from '../../services/auth/auth';
 import { useUserContext } from '../../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../../components/molecules/Header/Header';
+import ScreenTitle from '../../components/atoms/ScreenTitle/Title';
 
 export default function SignUpScreen() {
 
@@ -18,6 +19,7 @@ export default function SignUpScreen() {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const { user, setUser, doneGettingUser } = useUserContext();
 
   useEffect(() => {
@@ -38,6 +40,14 @@ export default function SignUpScreen() {
       const userRes = await getUser(token);
       if (userRes.success) setUser(userRes.user);
     }
+    else {
+      if (signUpResponse.status == 400 || signUpResponse.status == 409) {
+        setError(signUpResponse.message);
+      }
+      else {
+        setError('Something went wrong. Please try again. If the error persists please try quitting and reopening the app.');
+      }
+    }
   }
 
   return (
@@ -47,7 +57,7 @@ export default function SignUpScreen() {
         showMenuButton={false}
       />
       <View style={styles.container}>
-        <Text style={styles.title}>Sign Up</Text>
+        <ScreenTitle text='Sign Up' color='#E16A64' />
         <SignUpForm
           email={email}
           setEmail={setEmail}
@@ -58,6 +68,7 @@ export default function SignUpScreen() {
           passwordConfirmation={passwordConfirmation}
           setPasswordConfirmation={setPasswordConfirmation}
         />
+        {error && <Text>{error}</Text>}
         <PrimaryButton text="Sign Up" handlePress={handleSubmit} />
       </View>
     </>

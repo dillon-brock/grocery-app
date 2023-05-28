@@ -10,12 +10,14 @@ import { useUserContext } from '../../context/UserContext';
 import { getUser, signIn } from '../../services/auth/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../../components/molecules/Header/Header';
+import ScreenTitle from '../../components/atoms/ScreenTitle/Title';
 
 export default function LogInScreen() {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const { user, setUser, doneGettingUser } = useUserContext();
 
   useEffect(() => {
@@ -36,6 +38,14 @@ export default function LogInScreen() {
       const userRes = await getUser(token);
       if (userRes.success) setUser(userRes.user);
     }
+    else {
+      if (signInResponse.status == 400) {
+        setError('Email and password do not match. Please check your login information and try again.');
+      }
+      else {
+        setError('Something went wrong. Please try again. If the error persists, please try quitting and reopening the app.')
+      }
+    }
   }
 
   return (
@@ -45,12 +55,13 @@ export default function LogInScreen() {
         showMenuButton={false}
       />
       <View style={styles.container}>
-        <Text style={styles.title}>Log In</Text>
+        <ScreenTitle text='Log In' color='#E16A64' />
         <SignInForm 
           email={email}
           setEmail={setEmail}
           password={password}
           setPassword={setPassword} />
+        {error && <Text>{error}</Text>}
         <PrimaryButton text="Log In" handlePress={handleLogin} />
       </View>
     </>
