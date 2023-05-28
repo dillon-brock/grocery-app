@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { RootStackParamList } from '../../types/types';
 import PrimaryButton from '../../components/atoms/buttons/PrimaryButton/PrimaryButton';
 import styles from './styles';
