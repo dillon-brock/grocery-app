@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { RootStackParamList } from '../../types/types';
 import PrimaryButton from '../../components/atoms/buttons/PrimaryButton/PrimaryButton';
 import styles from './styles';
@@ -11,6 +11,7 @@ import { getUser, signIn } from '../../services/auth/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../../components/molecules/Header/Header';
 import ScreenTitle from '../../components/atoms/ScreenTitle/Title';
+import ErrorText from '../../components/atoms/ErrorText/ErrorText';
 
 export default function LogInScreen() {
 
@@ -61,7 +62,7 @@ export default function LogInScreen() {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword} />
-        {error && <Text>{error}</Text>}
+        <ErrorText text={error} />
         <PrimaryButton text="Log In" handlePress={handleLogin} />
       </View>
     </>

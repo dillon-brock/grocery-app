@@ -11,6 +11,7 @@ import { useUserContext } from '../../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../../components/molecules/Header/Header';
 import ScreenTitle from '../../components/atoms/ScreenTitle/Title';
+import ErrorText from '../../components/atoms/ErrorText/ErrorText';
 
 export default function SignUpScreen() {
 
@@ -68,7 +69,7 @@ export default function SignUpScreen() {
           passwordConfirmation={passwordConfirmation}
           setPasswordConfirmation={setPasswordConfirmation}
         />
-        {error && <Text>{error}</Text>}
+        <ErrorText text={error} />
         <PrimaryButton text="Sign Up" handlePress={handleSubmit} />
       </View>
     </>
