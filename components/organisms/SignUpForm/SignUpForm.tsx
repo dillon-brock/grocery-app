@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { TurboModuleRegistry, View } from "react-native";
+import { View } from "react-native";
 import Input from "../../atoms/Input/Input";
 import styles from "./styles";
 import { SignUpFormProps } from "../../../types/props";
 import ErrorText from "../../atoms/ErrorText/ErrorText";
+import { useCheckForExistingUser } from "../../../hooks/useCheckForExistingUser";
 
 export default function SignUpForm({
   email, setEmail,
@@ -23,6 +24,8 @@ export default function SignUpForm({
   const [usernameError, setUsernameError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [passwordConfirmationError, setPasswordConfirmationError] = useState<string>('');
+
+  const userFound = useCheckForExistingUser(username);
 
   useEffect(() => {
     setEmailIsValid(!checkEmail || (email.length > 6 && email.includes('@')));
@@ -51,6 +54,15 @@ export default function SignUpForm({
     }
   }, [passwordConfirmation, checkPasswordConfirmation]);
 
+  useEffect(() => {
+    setUsernameIsValid(!userFound);
+    if (userFound) {
+      setUsernameError('Username already exists');
+    } else {
+      setUsernameError('');
+    }
+  }, [username])
+
 
   return (
     <View style={styles.container}>
@@ -66,7 +78,9 @@ export default function SignUpForm({
         placeholder='Username'
         type='text'
         value={username}
-        onChange={(e) => setUsername(e.nativeEvent.text)} />
+        onChange={(e) => setUsername(e.nativeEvent.text)}
+        isValid={usernameIsValid} />
+      {usernameError && <ErrorText text={usernameError} size={14} />}
       <Input
         placeholder='Password'
         type='password'
