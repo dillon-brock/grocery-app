@@ -47,3 +47,5 @@ export async function getUser(token: string): Promise<UserResponse | DatabaseErr
 
   return responseWithSuccessStatus<UserResponse>(response);
 }
+
+

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { TurboModuleRegistry, View } from "react-native";
 import Input from "../../atoms/Input/Input";
 import styles from "./styles";
 import { SignUpFormProps } from "../../../types/props";
@@ -16,9 +16,11 @@ export default function SignUpForm({
   const [checkPassword, setCheckPassword] = useState<boolean>(false);
   const [checkPasswordConfirmation, setCheckPasswordConfirmation] = useState<boolean>(false);
   const [emailIsValid, setEmailIsValid] = useState<boolean>(true);
-  const [passwordIsValid, setPasswordIsValid] = useState<boolean>(false);
-  const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] = useState<boolean>(false);
+  const [usernameIsValid, setUsernameIsValid] = useState<boolean>(true);
+  const [passwordIsValid, setPasswordIsValid] = useState<boolean>(true);
+  const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] = useState<boolean>(true);
   const [emailError, setEmailError] = useState<string>('');
+  const [usernameError, setUsernameError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [passwordConfirmationError, setPasswordConfirmationError] = useState<string>('');
 
