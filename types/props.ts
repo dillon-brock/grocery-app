@@ -15,7 +15,9 @@ export interface InputProps extends TextInputProps {
   placeholder?: string;
   value?: string;
   onChange: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onBlur?: () => void;
   style?: ViewStyle | TextStyle;
+  isValid?: boolean;
 }
 
 export type SignUpFormProps = {
