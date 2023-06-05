@@ -17,15 +17,17 @@ export default function SignUpForm({
   const [checkPassword, setCheckPassword] = useState<boolean>(false);
   const [checkPasswordConfirmation, setCheckPasswordConfirmation] = useState<boolean>(false);
   const [emailIsValid, setEmailIsValid] = useState<boolean>(true);
-  const [usernameIsValid, setUsernameIsValid] = useState<boolean>(true);
   const [passwordIsValid, setPasswordIsValid] = useState<boolean>(true);
   const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] = useState<boolean>(true);
   const [emailError, setEmailError] = useState<string>('');
-  const [usernameError, setUsernameError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [passwordConfirmationError, setPasswordConfirmationError] = useState<string>('');
 
+  const { usernameIsValid, setUsernameIsValid, usernameError, setUsernameError } = useCheckForExistingUser(username);
+
+  console.log(username);
   const userFound = useCheckForExistingUser(username);
+  console.log(userFound);
 
   useEffect(() => {
     setEmailIsValid(!checkEmail || (email.length > 6 && email.includes('@')));
@@ -54,14 +56,12 @@ export default function SignUpForm({
     }
   }, [passwordConfirmation, checkPasswordConfirmation]);
 
-  useEffect(() => {
-    setUsernameIsValid(!userFound);
-    if (userFound) {
-      setUsernameError('Username already exists');
-    } else {
-      setUsernameError('');
+  const handleBlurUsername = () => {
+    if (username === '') {
+      setUsernameIsValid(false);
+      setUsernameError('Username is required');
     }
-  }, [username])
+  }
 
 
   return (
@@ -79,6 +79,7 @@ export default function SignUpForm({
         type='text'
         value={username}
         onChange={(e) => setUsername(e.nativeEvent.text)}
+        onBlur={handleBlurUsername}
         isValid={usernameIsValid} />
       {usernameError && <ErrorText text={usernameError} size={14} />}
       <Input
