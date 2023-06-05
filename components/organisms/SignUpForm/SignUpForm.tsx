@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import styles from "./styles";
 import { SignUpFormProps } from "../../../types/props";
 import { useCheckForExistingUser } from "../../../hooks/formValidity/useCheckForExistingUser";
 import FormGroup from "../../molecules/FormGroup/FormGroup";
+import { useCheckNewEmail, useCheckNewPassword, useCheckPasswordConfirmation } from "../../../hooks/formValidity/useInputValidity";
 
 export default function SignUpForm({
   email, setEmail,
@@ -15,41 +16,19 @@ export default function SignUpForm({
   const [checkEmail, setCheckEmail] = useState<boolean>(false);
   const [checkPassword, setCheckPassword] = useState<boolean>(false);
   const [checkPasswordConfirmation, setCheckPasswordConfirmation] = useState<boolean>(false);
-  const [emailIsValid, setEmailIsValid] = useState<boolean>(true);
-  const [passwordIsValid, setPasswordIsValid] = useState<boolean>(true);
-  const [passwordConfirmationIsValid, setPasswordConfirmationIsValid] = useState<boolean>(true);
-  const [emailError, setEmailError] = useState<string>('');
-  const [passwordError, setPasswordError] = useState<string>('');
-  const [passwordConfirmationError, setPasswordConfirmationError] = useState<string>('');
-
-  const { usernameIsValid, setUsernameIsValid, usernameError, setUsernameError } = useCheckForExistingUser(username);
-
-  useEffect(() => {
-    setEmailIsValid(!checkEmail || (email.length > 6 && email.includes('@')));
-    if (checkEmail && !(email.length > 6 && email.includes('@'))) {
-      setEmailError('Please enter a valid email address');
-    } else {
-      setEmailError('');
-    }
-  }, [email, checkEmail]);
-
-  useEffect(() => {
-    setPasswordIsValid(!checkPassword || (password.length >= 6));
-    if (checkPassword && !(password.length >= 6)) {
-      setPasswordError('Password must be at least 6 characters');
-    } else {
-      setPasswordError('');
-    }
-  }, [password, checkPassword]);
-
-  useEffect(() => {
-    setPasswordConfirmationIsValid(!checkPasswordConfirmation || passwordConfirmation == password);
-    if (checkPasswordConfirmation && passwordConfirmation != password) {
-      setPasswordConfirmationError('Passwords do not match');
-    } else {
-      setPasswordConfirmationError('');
-    }
-  }, [passwordConfirmation, checkPasswordConfirmation]);
+  
+  const { emailIsValid, emailError } = useCheckNewEmail(checkEmail, email);
+  const { passwordIsValid, passwordError } = useCheckNewPassword(checkPassword, password);
+  const { 
+    usernameIsValid, 
+    setUsernameIsValid, 
+    usernameError, 
+    setUsernameError 
+  } = useCheckForExistingUser(username);
+  const { 
+    passwordConfirmationIsValid, 
+    passwordConfirmationError 
+  }  = useCheckPasswordConfirmation(checkPasswordConfirmation, passwordConfirmation, password);
 
   const handleBlurUsername = () => {
     if (username === '') {
