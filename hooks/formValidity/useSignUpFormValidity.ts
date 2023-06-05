@@ -12,8 +12,9 @@ export function useCheckNewEmail(checkEmail: boolean, email: string): EmailValid
   const [emailError, setEmailError] = useState<string>('');
 
   useEffect(() => {
-    setEmailIsValid(!checkEmail || (email.length > 6 && email.includes('@')));
-    if (checkEmail && !(email.length > 6 && email.includes('@'))) {
+    const valid = !checkEmail || /^[A-Z0-9._%+-]*@[A-Z0-9.-]*\.[A-Z]{2,}$/i.test(email);
+    setEmailIsValid(valid);
+    if (!valid) {
       setEmailError('Please enter a valid email address');
     } else {
       setEmailError('');

@@ -4,7 +4,7 @@ import styles from "./styles";
 import { SignUpFormProps } from "../../../types/props";
 import { useCheckForExistingUser } from "../../../hooks/formValidity/useCheckForExistingUser";
 import FormGroup from "../../molecules/FormGroup/FormGroup";
-import { useCheckNewEmail, useCheckNewPassword, useCheckPasswordConfirmation } from "../../../hooks/formValidity/useInputValidity";
+import { useCheckNewEmail, useCheckNewPassword, useCheckPasswordConfirmation } from "../../../hooks/formValidity/useSignUpFormValidity";
 
 export default function SignUpForm({
   email, setEmail,
