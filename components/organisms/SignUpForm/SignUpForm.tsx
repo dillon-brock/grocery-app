@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
-import Input from "../../atoms/Input/Input";
 import styles from "./styles";
 import { SignUpFormProps } from "../../../types/props";
+import { useCheckForExistingUser } from "../../../hooks/formValidity/useCheckForExistingUser";
+import FormGroup from "../../molecules/FormGroup/FormGroup";
+import { useCheckNewEmail, useCheckNewPassword, useCheckPasswordConfirmation } from "../../../hooks/formValidity/useSignUpFormValidity";
 
 export default function SignUpForm({
   email, setEmail,
@@ -11,28 +13,64 @@ export default function SignUpForm({
   passwordConfirmation, setPasswordConfirmation
 }: SignUpFormProps) {
 
+  const [checkEmail, setCheckEmail] = useState<boolean>(false);
+  const [checkPassword, setCheckPassword] = useState<boolean>(false);
+  const [checkPasswordConfirmation, setCheckPasswordConfirmation] = useState<boolean>(false);
+  
+  const { emailIsValid, emailError } = useCheckNewEmail(checkEmail, email);
+  const { passwordIsValid, passwordError } = useCheckNewPassword(checkPassword, password);
+  const { 
+    usernameIsValid, 
+    setUsernameIsValid, 
+    usernameError, 
+    setUsernameError 
+  } = useCheckForExistingUser(username);
+  const { 
+    passwordConfirmationIsValid, 
+    passwordConfirmationError 
+  }  = useCheckPasswordConfirmation(checkPasswordConfirmation, passwordConfirmation, password);
+
+  const handleBlurUsername = () => {
+    if (username === '') {
+      setUsernameIsValid(false);
+      setUsernameError('Username is required');
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Input 
-      placeholder='Email'
-      type='text'
-      value={email}
-      onChange={(e) => setEmail(e.nativeEvent.text)} />
-      <Input
-        placeholder='Username'
-        type='text'
+      <FormGroup
+        placeholder="janedoe@email.com"
+        type="text"
+        value={email}
+        onChange={(e) => setEmail(e.nativeEvent.text)}
+        onBlur={() => setCheckEmail(true)}
+        isValid={emailIsValid}
+        error={emailError} />
+      <FormGroup
+        placeholder="Username"
+        type="text"
         value={username}
-        onChange={(e) => setUsername(e.nativeEvent.text)} />
-      <Input
-        placeholder='Password'
-        type='password'
+        onChange={(e) => setUsername(e.nativeEvent.text)}
+        onBlur={handleBlurUsername}
+        isValid={usernameIsValid}
+        error={usernameError} />
+      <FormGroup
+        placeholder="******"
+        type="password"
         value={password}
-        onChange={(e) => setPassword(e.nativeEvent.text)} />
-      <Input
-        placeholder='Confirm password'
-        type='password'
+        onChange={(e) => setPassword(e.nativeEvent.text)}
+        onBlur={() => setCheckPassword(true)}
+        isValid={passwordIsValid}
+        error={passwordError} />
+      <FormGroup
+        placeholder="Confirm password"
+        type="password"
         value={passwordConfirmation}
-        onChange={(e) => setPasswordConfirmation(e.nativeEvent.text)} />
+        onChange={(e) => setPasswordConfirmation(e.nativeEvent.text)}
+        onBlur={() => setCheckPasswordConfirmation(true)}
+        isValid={passwordConfirmationIsValid}
+        error={passwordConfirmationError} />
     </View>
   );
 }
