@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
-import Input from "../../atoms/Input/Input";
 import styles from "./styles";
 import { SignUpFormProps } from "../../../types/props";
-import ErrorText from "../../atoms/ErrorText/ErrorText";
-import { useCheckForExistingUser } from "../../../hooks/useCheckForExistingUser";
+import { useCheckForExistingUser } from "../../../hooks/formValidity/useCheckForExistingUser";
+import FormGroup from "../../molecules/FormGroup/FormGroup";
 
 export default function SignUpForm({
   email, setEmail,
@@ -24,10 +23,6 @@ export default function SignUpForm({
   const [passwordConfirmationError, setPasswordConfirmationError] = useState<string>('');
 
   const { usernameIsValid, setUsernameIsValid, usernameError, setUsernameError } = useCheckForExistingUser(username);
-
-  console.log(username);
-  const userFound = useCheckForExistingUser(username);
-  console.log(userFound);
 
   useEffect(() => {
     setEmailIsValid(!checkEmail || (email.length > 6 && email.includes('@')));
@@ -63,41 +58,40 @@ export default function SignUpForm({
     }
   }
 
-
   return (
     <View style={styles.container}>
-      <Input 
-      placeholder='Email'
-      type='text'
-      value={email}
-      onChange={(e) => setEmail(e.nativeEvent.text)}
-      onBlur={() => setCheckEmail(true)}
-      isValid={emailIsValid}/>
-      {emailError && <ErrorText text={emailError} size={14}/>}
-      <Input
-        placeholder='Username'
-        type='text'
+      <FormGroup
+        placeholder="janedoe@email.com"
+        type="text"
+        value={email}
+        onChange={(e) => setEmail(e.nativeEvent.text)}
+        onBlur={() => setCheckEmail(true)}
+        isValid={emailIsValid}
+        error={emailError} />
+      <FormGroup
+        placeholder="Username"
+        type="text"
         value={username}
         onChange={(e) => setUsername(e.nativeEvent.text)}
         onBlur={handleBlurUsername}
-        isValid={usernameIsValid} />
-      {usernameError && <ErrorText text={usernameError} size={14} />}
-      <Input
-        placeholder='Password'
-        type='password'
+        isValid={usernameIsValid}
+        error={usernameError} />
+      <FormGroup
+        placeholder="******"
+        type="password"
         value={password}
         onChange={(e) => setPassword(e.nativeEvent.text)}
         onBlur={() => setCheckPassword(true)}
-        isValid={passwordIsValid} />
-      {passwordError && <ErrorText text={passwordError} size={14} />}
-      <Input
-        placeholder='Confirm password'
-        type='password'
+        isValid={passwordIsValid}
+        error={passwordError} />
+      <FormGroup
+        placeholder="Confirm password"
+        type="password"
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.nativeEvent.text)}
         onBlur={() => setCheckPasswordConfirmation(true)}
-        isValid={passwordConfirmationIsValid} />
-      {passwordConfirmationError && <ErrorText text={passwordConfirmationError} size={14} />}
+        isValid={passwordConfirmationIsValid}
+        error={passwordConfirmationError} />
     </View>
   );
 }

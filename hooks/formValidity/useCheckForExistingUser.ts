@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { checkForUsername } from "../services/users/users";
+import { checkForUsername } from "../../services/users/users";
 
 type ExistingUserState = {
   usernameIsValid: boolean;
