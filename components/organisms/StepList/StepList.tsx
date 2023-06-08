@@ -1,18 +1,20 @@
-import React, { Dispatch, SetStateAction } from "react"
+import React, { Reducer, useReducer } from "react"
 import { View } from "react-native"
 import { RecipeStep } from "../../../services/recipes/types"
 import StepDisplay from "../../molecules/StepDisplay/StepDisplay"
 import NewStepInput from "../../molecules/NewStepInput/NewStepInput"
 import EditableStep from "../../molecules/EditableStep/EditableStep"
+import stepsReducer, { StepsAction } from "../../../reducers/steps"
 
 type Props = {
-  steps: RecipeStep[];
+  initialSteps: RecipeStep[];
   recipeId: string;
   locked: boolean;
-  setSteps: Dispatch<SetStateAction<RecipeStep[]>>;
 }
 
-export default function StepList({ steps, recipeId, setSteps, locked }: Props) {
+export default function StepList({ initialSteps, recipeId, locked }: Props) {
+
+  const [steps, dispatch] = useReducer<Reducer<RecipeStep[], StepsAction>>(stepsReducer, initialSteps);
 
   return (
     <View>
@@ -35,7 +37,7 @@ export default function StepList({ steps, recipeId, setSteps, locked }: Props) {
                 id={step.id}
                 num={step.num}
                 detail={step.detail}
-                setSteps={setSteps}
+                dispatch={dispatch}
               />
             )
           }
@@ -44,7 +46,7 @@ export default function StepList({ steps, recipeId, setSteps, locked }: Props) {
           <NewStepInput 
             num={steps.length + 1}
             recipeId={recipeId}
-            setSteps={setSteps} />
+            dispatch={dispatch} />
         }
       </View>
     </View>

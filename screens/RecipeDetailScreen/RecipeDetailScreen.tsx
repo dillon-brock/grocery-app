@@ -15,7 +15,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export default function RecipeDetailScreen() {
 
   const { recipeId } = useRoute<RouteProp<RecipeStackParamList, 'RecipeDetail'>>().params;
-  const { recipe, initialIngredients, steps, setSteps, loading } = useRecipe(recipeId);
+  const { recipe, ingredients, steps, loading } = useRecipe(recipeId);
   const [locked, setLocked] = useState<boolean>(true);
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
@@ -40,7 +40,7 @@ export default function RecipeDetailScreen() {
             <View>
               <Text style={styles.subtitle}>INGREDIENTS</Text>
               <IngredientList
-                initialIngredients={initialIngredients}
+                initialIngredients={ingredients}
                 locked={locked}
                 recipeId={recipe.id} />
             </View>
@@ -48,8 +48,7 @@ export default function RecipeDetailScreen() {
               <Text style={styles.subtitle}>STEPS</Text>
               <StepList 
                 recipeId={recipe.id}
-                steps={steps}
-                setSteps={setSteps}
+                initialSteps={steps}
                 locked={locked} />
             </View>
           </View>

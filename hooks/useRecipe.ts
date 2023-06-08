@@ -21,9 +21,8 @@ type RecipeHookData = {
   loading: boolean;
   error: string;
   setError: Dispatch<SetStateAction<string>>;
-  initialIngredients: Ingredient[];
+  ingredients: Ingredient[];
   steps: RecipeStep[];
-  setSteps: Dispatch<SetStateAction<RecipeStep[]>>;
 }
 
 export function useRecipe(id: string): RecipeHookData {
@@ -56,8 +55,8 @@ export function useRecipe(id: string): RecipeHookData {
   return { 
     recipe, setRecipe,
     error, setError,
-    initialIngredients: ingredients,
-    steps, setSteps,
+    ingredients,
+    steps,
     loading
   };
 }
