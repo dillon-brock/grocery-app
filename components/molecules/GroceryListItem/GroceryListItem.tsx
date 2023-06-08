@@ -1,27 +1,28 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch } from "react";
 import { Pressable, Text, View } from "react-native";
 import { updateItem } from "../../../services/list-items/list-items";
-import { ListItem } from "../../../types/types";
 import styles from './styles';
 import { Ionicons } from "@expo/vector-icons";
+import { ListItemAction } from "../../../reducers/listItems";
 
 type Props = {
   id: string;
   item: string;
   quantity: string | null;
   bought: boolean;
-  setItems: Dispatch<SetStateAction<ListItem[]>>;
+  dispatch: Dispatch<ListItemAction>;
 }
 
-export default function GroceryListItem({ id, item, quantity, bought, setItems }: Props) {
+export default function GroceryListItem({ id, item, quantity, bought, dispatch }: Props) {
 
   const handleToggleBought = async (): Promise<void> => {
     const res = await updateItem(id, { bought: !bought });
     if (res.success) {
-      setItems(prev => [
-        ...prev.filter(item => item.id != id),
-        res.listItem
-      ])
+      dispatch({ 
+        type: 'updated', 
+        item: res.listItem, 
+        itemId: id 
+      });
     }
   }
 
