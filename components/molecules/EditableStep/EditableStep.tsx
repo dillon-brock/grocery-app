@@ -1,27 +1,28 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch,useState } from 'react';
 import { Text, TextInput, View } from "react-native";
 import { updateStepDetail } from '../../../services/steps/steps';
-import { RecipeStep } from '../../../services/recipes/types';
 import styles from './styles';
+import { StepsAction } from '../../../reducers/steps';
 
 type Props = {
   id: string;
   num: number;
   detail: string;
-  setSteps: Dispatch<SetStateAction<RecipeStep[]>>;
+  dispatch: Dispatch<StepsAction>;
 }
 
-export default function EditableStep({ id, num, detail, setSteps }: Props) {
+export default function EditableStep({ id, num, detail, dispatch }: Props) {
 
   const [currentDetail, setCurrentDetail] = useState<string>(detail);
 
   const handleUpdateDetail = async () => {
     const res = await updateStepDetail(id, currentDetail);
     if (res.success) {
-      setSteps(prev => [
-        ...prev.filter(step => step.id != id),
-        res.step
-      ]);
+      dispatch({
+        type: 'updated',
+        stepId: id,
+        step: res.step
+      });
     }
   }
 

@@ -1,13 +1,13 @@
-import React, { Dispatch, SetStateAction, useReducer } from "react";
+import React, { Dispatch, Reducer, SetStateAction, useReducer } from "react";
 import { View } from "react-native";
-import { CategoryInList } from "../../../types/types";
+import { CategoryInList, ListItem } from "../../../types/types";
 import GroceryListItem from "../../molecules/GroceryListItem/GroceryListItem";
 import NewItemInput from "../../molecules/NewItemInput/NewItemInput";
 import EditableListItem from "../../molecules/EditableListItem/EditableListItem";
 import { addItemToList, deleteItem, updateItem } from "../../../services/list-items/list-items";
 import { updateCategory } from "../../../services/categories/categories";
 import EditableTitle from "../../molecules/EditableTitle/EditableTitle";
-import listItemsReducer from "../../../reducers/listItems";
+import listItemsReducer, { ListItemsAction } from "../../../reducers/listItems";
 
 type Props = {
   category: CategoryInList;
@@ -18,7 +18,7 @@ type Props = {
 
 export default function ListCategorySection({ category, setCategory, listId, locked }: Props) {
 
-  const [items, dispatch] = useReducer(listItemsReducer, category.items);
+  const [items, dispatch] = useReducer<Reducer<ListItem[], ListItemsAction>>(listItemsReducer, category.items);
 
   const handleAddItem = async (item: string, quantity: string): Promise<void> => {
     const res = await addItemToList({ 
@@ -91,7 +91,7 @@ export default function ListCategorySection({ category, setCategory, listId, loc
         return <GroceryListItem 
           key={item.id} 
           { ...item } 
-          setItems={setItems} />
+          dispatch={dispatch} />
       })}
       <NewItemInput handleAdd={handleAddItem} />
     </View>
