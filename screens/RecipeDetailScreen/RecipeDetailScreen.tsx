@@ -1,4 +1,4 @@
-import React, { Reducer, useReducer, useState } from "react";
+import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import Header from "../../components/molecules/Header/Header";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
@@ -11,13 +11,11 @@ import styles from './styles';
 import ScreenTitle from "../../components/atoms/ScreenTitle/Title";
 import ShareButton from "../../components/atoms/buttons/ShareButton/ShareButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import ingredientsReducer, { IngredientsAction } from "../../reducers/ingredients";
-import { Ingredient } from "../../services/ingredients/types";
 
 export default function RecipeDetailScreen() {
 
   const { recipeId } = useRoute<RouteProp<RecipeStackParamList, 'RecipeDetail'>>().params;
-  const { recipe, initialIngredients, setIngredients, steps, setSteps, loading } = useRecipe(recipeId);
+  const { recipe, initialIngredients, steps, setSteps, loading } = useRecipe(recipeId);
   const [locked, setLocked] = useState<boolean>(true);
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
@@ -44,7 +42,6 @@ export default function RecipeDetailScreen() {
               <IngredientList
                 initialIngredients={initialIngredients}
                 locked={locked}
-                setIngredients={setIngredients}
                 recipeId={recipe.id} />
             </View>
             <View>
