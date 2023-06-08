@@ -1,12 +1,13 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useReducer } from "react";
 import { View } from "react-native";
-import { CategoryInList, ListItem } from "../../../types/types";
+import { CategoryInList } from "../../../types/types";
 import GroceryListItem from "../../molecules/GroceryListItem/GroceryListItem";
 import NewItemInput from "../../molecules/NewItemInput/NewItemInput";
 import EditableListItem from "../../molecules/EditableListItem/EditableListItem";
 import { addItemToList, deleteItem, updateItem } from "../../../services/list-items/list-items";
 import { updateCategory } from "../../../services/categories/categories";
 import EditableTitle from "../../molecules/EditableTitle/EditableTitle";
+import listItemsReducer from "../../../reducers/listItems";
 
 type Props = {
   category: CategoryInList;
@@ -17,7 +18,7 @@ type Props = {
 
 export default function ListCategorySection({ category, setCategory, listId, locked }: Props) {
 
-  const [items, setItems] = useState<ListItem[]>(category.items);
+  const [items, dispatch] = useReducer(listItemsReducer, category.items);
 
   const handleAddItem = async (item: string, quantity: string): Promise<void> => {
     const res = await addItemToList({ 
@@ -28,33 +29,38 @@ export default function ListCategorySection({ category, setCategory, listId, loc
     });
 
     if (res.success) {
-      setItems(prev => [...prev, res.listItem]);
+      dispatch({
+        type: 'added',
+        item: res.listItem
+      });
     }
   }
 
   const handleUpdateQuantity = async (itemId: string, quantity: string) => {
     const res = await updateItem(itemId, { quantity });
     if (res.success) {
-      setItems(prev => [
-        ...prev.filter(item => item.id != itemId),
-        res.listItem
-      ])
+      dispatch({
+        type: 'updated',
+        item: res.listItem,
+        itemId
+      })
     }
   }
 
   const handleUpdateItem = async (itemId: string, item: string) => {
     const res = await updateItem(itemId, { item });
     if (res.success) {
-      setItems(prev => [
-        ...prev.filter(item => item.id != itemId),
-        res.listItem
-      ])
+      dispatch({
+        type: 'updated',
+        item: res.listItem,
+        itemId
+      })
     }
   }
 
   const handleDeleteItem = async (itemId: string): Promise<void> => {
     await deleteItem(itemId);
-    setItems(prev => prev.filter(item => item.id != itemId));
+    dispatch({ type: 'deleted', itemId });
   }
 
   const handleUpdateTitle = async (title: string): Promise<void> => {
