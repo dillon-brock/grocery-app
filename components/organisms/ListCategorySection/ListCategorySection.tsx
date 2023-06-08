@@ -7,7 +7,7 @@ import EditableListItem from "../../molecules/EditableListItem/EditableListItem"
 import { addItemToList, deleteItem, updateItem } from "../../../services/list-items/list-items";
 import { updateCategory } from "../../../services/categories/categories";
 import EditableTitle from "../../molecules/EditableTitle/EditableTitle";
-import listItemsReducer, { ListItemAction } from "../../../reducers/listItems";
+import listItemsReducer, { ListItemsAction } from "../../../reducers/listItems";
 
 type Props = {
   category: CategoryInList;
@@ -18,7 +18,7 @@ type Props = {
 
 export default function ListCategorySection({ category, setCategory, listId, locked }: Props) {
 
-  const [items, dispatch] = useReducer<Reducer<ListItem[], ListItemAction>>(listItemsReducer, category.items);
+  const [items, dispatch] = useReducer<Reducer<ListItem[], ListItemsAction>>(listItemsReducer, category.items);
 
   const handleAddItem = async (item: string, quantity: string): Promise<void> => {
     const res = await addItemToList({ 

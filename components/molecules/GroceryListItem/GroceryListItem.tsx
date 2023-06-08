@@ -3,14 +3,14 @@ import { Pressable, Text, View } from "react-native";
 import { updateItem } from "../../../services/list-items/list-items";
 import styles from './styles';
 import { Ionicons } from "@expo/vector-icons";
-import { ListItemAction } from "../../../reducers/listItems";
+import { ListItemsAction } from "../../../reducers/listItems";
 
 type Props = {
   id: string;
   item: string;
   quantity: string | null;
   bought: boolean;
-  dispatch: Dispatch<ListItemAction>;
+  dispatch: Dispatch<ListItemsAction>;
 }
 
 export default function GroceryListItem({ id, item, quantity, bought, dispatch }: Props) {
