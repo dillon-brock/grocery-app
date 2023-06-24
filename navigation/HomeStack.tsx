@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../types/types';
 import RecipeStack from './RecipeStack';
 import ShareScreen from '../screens/ShareScreen/ShareScreen';
+import MealPlansScreen from '../screens/MealPlansScreen/MealPlansScreen';
 
 export default function HomeStack() {
 
@@ -32,6 +33,10 @@ export default function HomeStack() {
         <Stack.Screen
           name="Share"
           component={ShareScreen}
+        />
+        <Stack.Screen
+          name="Meal Plans"
+          component={MealPlansScreen}
         />
       </Stack.Navigator>
   )

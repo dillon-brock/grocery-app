@@ -16,6 +16,7 @@ export type HomeStackParamList = {
     name: string,
     type: 'recipe' | 'list'
   }
+  "Meal Plans": undefined
 }
 
 export type ListStackParamList = {
