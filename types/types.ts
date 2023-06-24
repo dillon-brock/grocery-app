@@ -114,3 +114,19 @@ export type RecipeShare = {
   userId: string;
   editable: boolean;
 }
+
+export type CoalescedRecipe = {
+  id: string;
+  name: string;
+  meal: string;
+  planRecipeId: string;
+}
+
+export type MealPlanWithRecipes = {
+  id: string;
+  ownerId: string;
+  date: string;
+  updatedAt: string;
+  createdAt: string;
+  recipes: CoalescedRecipe[]
+}
